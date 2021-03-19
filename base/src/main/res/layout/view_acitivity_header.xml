@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <TextView
+        android:id="@+id/activity_header_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/activity_header_height"
+        android:text="ActivityName"
+        android:textSize="@dimen/activity_title_textsize"
+        android:textColor="@color/activity_header_textcolor"
+        android:background="@color/activity_header_backcolor"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <com.pw.codeset.weidgt.IconImageView
+        android:id="@+id/activity_header_backview"
+        android:layout_width="@dimen/activity_header_height"
+        android:layout_height="@dimen/activity_header_height"
+        android:text="&#xe609;"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

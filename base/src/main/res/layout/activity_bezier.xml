@@ -4,17 +4,14 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:layout_width="match_parent"
+    <com.pw.codeset.weidgt.ActivityHeaderView
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/bezier_activity"
-        android:textSize="@dimen/activity_title_textsize"
-        android:textColor="@color/activity_title_textcolor"
-        android:gravity="center"
-        android:padding="40dp"
+        app:title_text="@string/bezier_activity"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

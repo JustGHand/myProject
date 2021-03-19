@@ -2,5 +2,6 @@
 <resources>
 
     <dimen name="activity_title_textsize">16sp</dimen>
+    <dimen name="activity_header_height">58dp</dimen>
 
 </resources>

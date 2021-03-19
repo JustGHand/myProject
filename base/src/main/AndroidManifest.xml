@@ -17,6 +17,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!--贝塞尔曲线-->
+        <activity android:name=".activity.view.BezierCurveActivity">
+
+        </activity>
     </application>
 
 </manifest>

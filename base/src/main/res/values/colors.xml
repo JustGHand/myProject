@@ -9,5 +9,6 @@
     <color name="white">#FFFFFFFF</color>
 
 
-    <color name="activity_title_textcolor">#000000</color>
+    <color name="activity_header_textcolor">#ffffff</color>
+    <color name="activity_header_backcolor">#FF6200EE</color>
 </resources>

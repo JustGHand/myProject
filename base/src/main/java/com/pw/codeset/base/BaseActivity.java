@@ -13,9 +13,12 @@ public abstract class BaseActivity extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getContentId());
+        initView();
     }
 
 
     protected abstract int getContentId();
+
+    protected abstract void initView();
 
 }
