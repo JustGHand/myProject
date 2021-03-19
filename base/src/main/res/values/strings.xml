@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">代码集</string>
+
+    <string name="bezier_activity">贝塞尔曲线</string>
 </resources>

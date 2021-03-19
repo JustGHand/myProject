@@ -1,10 +1,12 @@
-package com.pw.codeset;
+package com.pw.codeset.activity.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+import com.pw.codeset.R;
+
+public class MainActivityView extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
