@@ -3,4 +3,5 @@
 
     <string name="main_activity">CodeSets</string>
     <string name="bezier_activity">贝塞尔曲线</string>
+    <string name="touch_activity">触摸控件</string>
 </resources>

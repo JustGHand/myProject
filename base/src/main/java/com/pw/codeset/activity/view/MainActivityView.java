@@ -26,4 +26,8 @@ public class MainActivityView extends BaseActivity {
             }
         });
     }
+
+    public void toTouchView(View view) {
+        startActivity(new Intent(MainActivityView.this,TouchViewAct.class));
+    }
 }

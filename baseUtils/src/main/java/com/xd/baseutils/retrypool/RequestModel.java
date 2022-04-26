@@ -20,7 +20,7 @@ public class RequestModel {
     private int method;
     private Map<String, String> header;
 
-    public RequestModel(@NotNull String url, String param, @method int method, Map<String, String> header) {
+    public RequestModel(String url, String param, @method int method, Map<String, String> header) {
         this.url = url;
         this.param = param;
         this.method = method;

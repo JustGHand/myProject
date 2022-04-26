@@ -24,4 +24,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/main_header"/>
 
+    <Button
+        android:id="@+id/main_to_touchview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/touch_activity"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/main_to_bazier"
+        android:onClick="toTouchView"/>
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
