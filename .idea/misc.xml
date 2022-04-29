@@ -3,9 +3,21 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="base/src/main/res/drawable-v24/back_dark_radiusall.xml" value="0.35260416666666666" />
+        <entry key="base/src/main/res/drawable-v24/back_white_radiusall.xml" value="0.35260416666666666" />
+        <entry key="base/src/main/res/drawable/back_dark_radiusall.xml" value="0.35260416666666666" />
+        <entry key="base/src/main/res/drawable/back_white_border_radiusall.xml" value="0.35260416666666666" />
+        <entry key="base/src/main/res/drawable/back_white_radiusall.xml" value="0.35260416666666666" />
+        <entry key="base/src/main/res/drawable/border_bottom_noback.xml" value="0.35260416666666666" />
+        <entry key="base/src/main/res/drawable/border_gray_all_radius.xml" value="0.35260416666666666" />
+        <entry key="base/src/main/res/drawable/border_gray_bottom.xml" value="0.35260416666666666" />
         <entry key="base/src/main/res/layout/act_touch_view.xml" value="0.33645833333333336" />
         <entry key="base/src/main/res/layout/activity_bezier.xml" value="0.33645833333333336" />
+        <entry key="base/src/main/res/layout/activity_login.xml" value="0.33" />
+        <entry key="base/src/main/res/layout/activity_login_mvp.xml" value="0.22135416666666666" />
         <entry key="base/src/main/res/layout/activity_main.xml" value="0.33645833333333336" />
+        <entry key="base/src/main/res/layout/view_acitivity_header.xml" value="0.33645833333333336" />
+        <entry key="base/src/main/res/layout/view_myprogress_dialog.xml" value="0.33645833333333336" />
       </map>
     </option>
   </component>

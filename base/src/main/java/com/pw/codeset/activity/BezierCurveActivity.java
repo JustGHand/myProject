@@ -1,4 +1,4 @@
-package com.pw.codeset.activity.view;
+package com.pw.codeset.activity;
 
 import android.view.View;
 
@@ -7,6 +7,11 @@ import com.pw.codeset.base.BaseActivity;
 
 public class BezierCurveActivity extends BaseActivity {
 
+
+    @Override
+    protected void dealWithData() {
+
+    }
 
     @Override
     protected int getContentId() {

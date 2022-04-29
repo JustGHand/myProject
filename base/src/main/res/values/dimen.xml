@@ -4,4 +4,23 @@
     <dimen name="activity_title_textsize">16sp</dimen>
     <dimen name="activity_header_height">58dp</dimen>
 
+    <dimen name="clickable_minsize">48dp</dimen>
+
+    <dimen name="view_defaultmargin">16dp</dimen>
+    <dimen name="view_defaultmargin_double">32dp</dimen>
+    <dimen name="view_defaultpadding">5dp</dimen>
+    <dimen name="view_defaultpadding_double">10dp</dimen>
+
+    <dimen name="title_selected_textsize">20sp</dimen>
+    <dimen name="title_textsize">18sp</dimen>
+    <dimen name="btn_textsize">16sp</dimen>
+    <dimen name="secendtitle_textsize">15sp</dimen>
+    <dimen name="normal_textsize">14sp</dimen>
+    <dimen name="min_fontsize">12sp</dimen>
+    <dimen name="minor_textsize">11sp</dimen>
+
+
+    <dimen name="normal_raiuds">8dp</dimen>
+    <dimen name="border_width">1dp</dimen>
+    <dimen name="cutline_width">1px</dimen>
 </resources>

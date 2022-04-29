@@ -1,10 +1,15 @@
-package com.pw.codeset.activity.view;
+package com.pw.codeset.activity;
 
 import com.pw.codeset.R;
 import com.pw.codeset.base.BaseActivity;
 import com.pw.read.TouchAnimView;
 
 public class TouchViewAct extends BaseActivity {
+    @Override
+    protected void dealWithData() {
+
+    }
+
     @Override
     protected int getContentId() {
         return R.layout.act_touch_view;

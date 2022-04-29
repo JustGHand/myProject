@@ -17,15 +17,34 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:paddingLeft="@dimen/activity_header_height"
+        android:paddingRight="@dimen/activity_header_height"
         />
 
     <com.pw.codeset.weidgt.IconImageView
         android:id="@+id/activity_header_backview"
         android:layout_width="@dimen/activity_header_height"
         android:layout_height="@dimen/activity_header_height"
-        android:text="&#xe609;"
+        android:text="&#xe601;"
+        android:textSize="@dimen/activity_title_textsize"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:background="@color/activity_header_backcolor"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <com.pw.codeset.weidgt.IconImageView
+        android:id="@+id/activity_header_menuview"
+        android:layout_width="@dimen/activity_header_height"
+        android:layout_height="@dimen/activity_header_height"
+        android:text="&#xe620;"
+        android:textSize="@dimen/activity_title_textsize"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:background="@color/activity_header_backcolor"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

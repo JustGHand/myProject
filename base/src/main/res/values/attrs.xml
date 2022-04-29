@@ -3,6 +3,8 @@
 
     <declare-styleable name="ActivityHeaderView">
         <attr name="title_text" format="string"></attr>
+        <attr name="showback" format="boolean"></attr>
+        <attr name="showmenu" format="boolean"></attr>
     </declare-styleable>
 
 </resources>

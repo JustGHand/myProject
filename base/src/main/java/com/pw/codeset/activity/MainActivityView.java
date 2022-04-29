@@ -1,15 +1,21 @@
-package com.pw.codeset.activity.view;
+package com.pw.codeset.activity;
 
 import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 
 import com.pw.codeset.R;
+import com.pw.codeset.activity.login_mvp.UserLoginActivity;
 import com.pw.codeset.base.BaseActivity;
 
 public class MainActivityView extends BaseActivity {
 
     private Button toBazierButton;
+
+    @Override
+    protected void dealWithData() {
+
+    }
 
     @Override
     protected int getContentId() {
@@ -29,5 +35,9 @@ public class MainActivityView extends BaseActivity {
 
     public void toTouchView(View view) {
         startActivity(new Intent(MainActivityView.this,TouchViewAct.class));
+    }
+
+    public void toLoginMvp(View view) {
+        startActivity(new Intent(MainActivityView.this, UserLoginActivity.class));
     }
 }

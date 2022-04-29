@@ -2,8 +2,10 @@ package com.pw.codeset.weidgt;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -13,6 +15,7 @@ import com.pw.codeset.R;
 public class ActivityHeaderView extends ConstraintLayout {
 
     private IconImageView mBackView;
+    private IconImageView mMenuView;
     private TextView mTitleTextView;
 
     public ActivityHeaderView(Context context) {
@@ -33,8 +36,12 @@ public class ActivityHeaderView extends ConstraintLayout {
     }
 
     private void initView(Context context) {
+        if (getId() == NO_ID) {
+            setId(R.id.activity_header);
+        }
         LayoutInflater.from(context).inflate(R.layout.view_acitivity_header, this, true);
         mBackView = this.findViewById(R.id.activity_header_backview);
+        mMenuView = this.findViewById(R.id.activity_header_menuview);
         mTitleTextView = this.findViewById(R.id.activity_header_title);
     }
 
@@ -42,6 +49,37 @@ public class ActivityHeaderView extends ConstraintLayout {
         TypedArray typedArray = context.obtainStyledAttributes(attributeSet, R.styleable.ActivityHeaderView);
         String titleText = typedArray.getString(R.styleable.ActivityHeaderView_title_text);
         mTitleTextView.setText(titleText);
+
+        boolean showBackView = typedArray.getBoolean(R.styleable.ActivityHeaderView_showback, true);
+        boolean showMenuView = typedArray.getBoolean(R.styleable.ActivityHeaderView_showmenu, false);
+
+        setBackViewVisiable(showBackView ? VISIBLE : GONE);
+        setMenuViewVisiable(showMenuView ? VISIBLE : GONE);
+
+    }
+
+    public void setBackViewVisiable(int visiable) {
+        if (mBackView!=null) {
+            mBackView.setVisibility(visiable);
+        }
+    }
+
+    public void setMenuViewVisiable(int visiable) {
+        if (mMenuView!=null) {
+            mMenuView.setVisibility(visiable);
+        }
+    }
+
+    public void setOnBackClick(OnClickListener clickListener) {
+        if (mBackView != null) {
+            mBackView.setOnClickListener(clickListener);
+        }
+    }
+
+    public void setOnMenuClick(OnClickListener clickListener) {
+        if (mMenuView != null) {
+            mMenuView.setOnClickListener(clickListener);
+        }
     }
 
 }
