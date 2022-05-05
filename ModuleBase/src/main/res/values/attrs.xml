@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <declare-styleable name="ScrollRefreshLayout">
+        <attr name="layout_scroll_empty" format="reference"/>
+        <attr name="text_error_tip" format="string"/>
+    </declare-styleable>
+
+    <declare-styleable name="RefreshLayout">
+        <attr name="layout_refresh_empty" format="reference"/>
+        <attr name="layout_refresh_error" format="reference"/>
+        <attr name="layout_refresh_loading" format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="WebViewLayout">
+        <attr name="isUpdateTitle" format="boolean" />
+        <attr name="isShowIconBack" format="boolean" />
+        <attr name="isJavaScriptEnabled" format="boolean" />
+    </declare-styleable>
+    <!--自动换行Linearlayout-->
+    <declare-styleable name="WarpLinearLayout">
+        <attr name="grivate" format="enum"><!--对齐方式 !-->
+            <enum name="right" value="0"></enum>
+            <enum name="left" value="1"></enum>
+            <enum name="center" value="2"></enum>
+        </attr>
+        <attr name="horizontal_Space" format="dimension"></attr>
+        <attr name="vertical_Space" format="dimension"></attr>
+        <attr name="isFull" format="boolean"></attr>
+        <attr name="maxLines" format="integer"></attr><!--  0表示无限制-->
+    </declare-styleable>
+
+    <declare-styleable name="ExpandableTextView">
+        <attr name="trimLength" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="CustomScrollView">
+        <attr name="maxY" format="integer" />
+        <attr name="maxX" format="integer" />
+        <attr name="validDistance" format="integer" />
+    </declare-styleable>
+
+
+    <declare-styleable name="DayNightTextView">
+        <attr name="textNightmode" format="boolean"/>
+        <attr name="nightTextColor" format="color"/>
+        <attr name="nightText" format="string"/>
+        <attr name="nightBackground" format="reference"/>
+        <attr name="nightDrawableLeft" format="reference"/>
+        <attr name="nightDrawableRight" format="reference"/>
+        <attr name="nightDrawableTop" format="reference"/>
+        <attr name="nightDrawableBottom" format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="DayNightRadioButton">
+        <attr name="radioNightmode" format="boolean"/>
+        <attr name="nightRadioColor" format="color"/>
+        <attr name="nightRadioText" format="string"/>
+        <attr name="nightRadioBackground" format="reference"/>
+        <attr name="nightRadioDrawableLeft" format="reference"/>
+        <attr name="nightRadioDrawableRight" format="reference"/>
+        <attr name="nightRadioDrawableTop" format="reference"/>
+        <attr name="nightRadioDrawableBottom" format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="DayNightImageView">
+        <attr name="ImageNightmode" format="boolean"/>
+        <attr name="ImageNightSrc" format="reference"/>
+        <attr name="ImageNightBackground" format="reference"/>
+    </declare-styleable>
+    <declare-styleable name="DayNightSeekBar">
+        <attr name="seekBarNightmode" format="boolean"/>
+        <attr name="nightProgressDrawable" format="reference"/>
+        <attr name="nightThumb" format="reference"/>
+    </declare-styleable>
+
+
+
+    <declare-styleable name="ydxReadStyle">
+        <attr name="pageTextColor" format="color" />
+        <attr name="pageBackgroundColor" format="color" />
+        <attr name="dialogTextColor" format="color" />
+        <attr name="dialogBackgroundColor" format="color" />
+        <attr name="progressProgressColor" format="color" />
+        <attr name="progressBackgroundColor" format="color" />
+        <attr name="progressThumbColor" format="color" />
+        <attr name="backicon" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="StyleTextView">
+        <attr name="readStyle" format="reference"/>
+    </declare-styleable>
+</resources>

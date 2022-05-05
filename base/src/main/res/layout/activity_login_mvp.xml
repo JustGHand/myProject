@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.pw.codeset.weidgt.ActivityHeaderView
+        android:id="@+id/activity_header"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:title_text="@string/login_mvp_activity"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+    <androidx.constraintlayout.helper.widget.Layer
+        android:id="@+id/login_name_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="login_name_input,login_name_title"
+        android:background="@drawable/border_gray_bottom"
+        app:layout_constraintTop_toTopOf="@id/login_name_title"
+        app:layout_constraintBottom_toBottomOf="@id/login_name_title"
+        app:layout_constraintLeft_toLeftOf="@id/login_name_title"
+        app:layout_constraintRight_toRightOf="@id/login_name_input"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/login_name_title"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/clickable_minsize"
+        android:text="@string/login_username_title"
+        style="@style/normalText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activity_header"
+        app:layout_constraintEnd_toStartOf="@id/login_name_input"
+        app:layout_constraintBottom_toTopOf="@id/login_pw_title"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintVertical_bias="0.3"
+        android:layout_marginLeft="@dimen/view_defaultmargin_double"
+        android:paddingLeft="@dimen/view_defaultpadding"
+        android:paddingRight="@dimen/view_defaultpadding"
+        />
+
+    <EditText
+        android:id="@+id/login_name_input"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/clickable_minsize"
+        app:layout_constraintStart_toEndOf="@id/login_name_title"
+        app:layout_constraintTop_toTopOf="@id/login_name_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginRight="@dimen/view_defaultmargin_double"
+        android:paddingLeft="@dimen/view_defaultpadding"
+        android:paddingRight="@dimen/view_defaultpadding"
+        android:hint="@string/login_username_hint"
+        android:background="@null"
+        android:gravity="center"
+        style="@style/normalText"
+        android:inputType="number"
+        />
+
+
+    <androidx.constraintlayout.helper.widget.Layer
+        android:id="@+id/login_pw_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="login_pw_input,login_pw_title"
+        android:background="@drawable/border_gray_bottom"
+        app:layout_constraintTop_toTopOf="@id/login_pw_title"
+        app:layout_constraintBottom_toBottomOf="@id/login_pw_title"
+        app:layout_constraintLeft_toLeftOf="@id/login_pw_title"
+        app:layout_constraintRight_toRightOf="@id/login_pw_input" />
+
+    <TextView
+        android:id="@+id/login_pw_title"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/clickable_minsize"
+        android:text="@string/login_password_title"
+        style="@style/normalText"
+        app:layout_constraintStart_toStartOf="@id/login_name_title"
+        app:layout_constraintTop_toBottomOf="@id/login_name_title"
+        app:layout_constraintEnd_toEndOf="@id/login_name_title"
+        app:layout_constraintBottom_toTopOf="@id/login_btn"
+        android:layout_marginTop="@dimen/view_defaultmargin"
+        android:paddingLeft="@dimen/view_defaultpadding"
+        android:paddingRight="@dimen/view_defaultpadding"
+        />
+
+    <EditText
+        android:id="@+id/login_pw_input"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/clickable_minsize"
+        app:layout_constraintStart_toEndOf="@id/login_pw_title"
+        app:layout_constraintTop_toTopOf="@id/login_pw_title"
+        app:layout_constraintEnd_toEndOf="@id/login_name_input"
+        android:paddingLeft="@dimen/view_defaultpadding"
+        android:paddingRight="@dimen/view_defaultpadding"
+        android:background="@null"
+        android:hint="@string/login_password_hint"
+        android:gravity="center"
+        style="@style/normalText"
+        android:inputType="numberPassword"
+        />
+
+
+    <Button
+        android:id="@+id/login_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/login_btn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/login_pw_title"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="@dimen/view_defaultmargin_double"
+        android:onClick="loginMvp"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

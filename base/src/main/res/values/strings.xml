@@ -3,4 +3,6 @@
 
     <string name="main_activity">CodeSets</string>
     <string name="bezier_activity">贝塞尔曲线</string>
+
+    <string name="note_activity">备忘录</string>
 </resources>
