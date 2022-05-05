@@ -3,6 +3,14 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        release {
+            storeFile file('E:\\program\\myProject\\release')
+            storePassword '77Xingfu'
+            keyAlias 'myProject'
+            keyPassword '77Xingfu'
+        }
+    }
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
@@ -14,6 +22,20 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        signingConfigs {
+            release {
+                storeFile file("../release")
+                storePassword '77Xingfu'
+                keyAlias 'mycodeset'
+                keyPassword '77Xingfu'
+            }
+            debug {
+                storeFile file("../release.jks")
+                storePassword '77Xingfu'
+                keyAlias 'mycodeset'
+                keyPassword '77Xingfu'
+            }
+        }
     }
 
     buildTypes {

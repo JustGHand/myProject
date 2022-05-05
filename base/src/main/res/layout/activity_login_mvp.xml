@@ -9,7 +9,7 @@
         android:id="@+id/activity_header"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:title_text="@string/login_mvp"
+        app:title_text="@string/login_mvp_activity"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

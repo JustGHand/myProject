@@ -48,9 +48,9 @@ public abstract class BaseActivity extends Activity {
     protected void onResume() {
         super.onResume();
         if (isCreating) {
-            showLoading();
+//            showLoading();
             dealWithData();
-            hideLoading();
+//            hideLoading();
         }
         isCreating = false;
     }
@@ -70,11 +70,12 @@ public abstract class BaseActivity extends Activity {
         hideProgressDialog();
     }
 
-    protected abstract void dealWithData();
 
     protected abstract int getContentId();
 
     protected abstract void initView();
+
+    protected abstract void dealWithData();
 
     protected void onBackClick() {
         finish();

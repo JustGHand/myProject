@@ -5,6 +5,15 @@
         <attr name="title_text" format="string"></attr>
         <attr name="showback" format="boolean"></attr>
         <attr name="showmenu" format="boolean"></attr>
+        <attr name="menutext" format="string"></attr>
+        <attr name="onMenuClick" format="string"></attr>
+    </declare-styleable>
+
+    <declare-styleable name="FlipCard">
+        <attr name="flipSpeed" format="integer"></attr>
+        <attr name="showFront" format="boolean"></attr>
+        <attr name="frontView" format="reference"></attr>
+        <attr name="backView" format="reference"></attr>
     </declare-styleable>
 
 </resources>

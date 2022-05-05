@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.pw.codeset.weidgt.ActivityHeaderView
+        android:id="@+id/activity_header"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:title_text="@string/bezier_activity"

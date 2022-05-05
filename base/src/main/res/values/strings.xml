@@ -4,7 +4,8 @@
     <string name="main_activity">CodeSets</string>
     <string name="bezier_activity">贝塞尔曲线</string>
     <string name="touch_activity">触摸控件</string>
-    <string name="login_mvp">登录(MVP)</string>
+    <string name="login_mvp_activity">登录(MVP)</string>
+    <string name="games_activity">GAMEs</string>
 
     <string name="loading">加载中</string>
 
@@ -14,4 +15,8 @@
     <string name="login_password_title">密码</string>
     <string name="login_password_hint">请输入密码</string>
     <string name="login_btn">登录</string>
+
+
+
+    <string name="game_block">争霸艾泽拉斯</string>
 </resources>

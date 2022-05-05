@@ -10,7 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
-        <activity android:name=".activity.MainActivityView">
+        <activity android:name=".activity.main.MainActivityView">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,18 +19,30 @@
         </activity>
 
         <!--贝塞尔曲线-->
-        <activity android:name=".activity.BezierCurveActivity">
+        <activity android:name=".activity.bezier.BezierCurveActivity">
 
         </activity>
 
         <!--触摸view-->
-        <activity android:name=".activity.TouchViewAct">
+        <activity android:name=".activity.touchview.TouchViewAct">
 
         </activity>
         <!--mvp架构登录页面-->
         <activity android:name=".activity.login_mvp.UserLoginActivity">
 
         </activity>
+        <!--游戏列表-->
+        <activity android:name=".activity.games.GamesActivity">
+
+        </activity>
+        <!--黑白格-->
+        <activity android:name=".activity.games.block.BlockGameActivity"
+            android:windowSoftInputMode="adjustResize"
+            >
+
+        </activity>
+
+
     </application>
 
 </manifest>

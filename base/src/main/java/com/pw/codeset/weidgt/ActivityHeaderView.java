@@ -8,9 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatViewInflater;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.pw.codeset.R;
+import com.xd.baseutils.others.click.DeclaredOnClickListener;
+import com.xd.baseutils.utils.NStringUtils;
 
 public class ActivityHeaderView extends ConstraintLayout {
 
@@ -56,6 +59,15 @@ public class ActivityHeaderView extends ConstraintLayout {
         setBackViewVisiable(showBackView ? VISIBLE : GONE);
         setMenuViewVisiable(showMenuView ? VISIBLE : GONE);
 
+        String menuText = typedArray.getString(R.styleable.ActivityHeaderView_menutext);
+        if (NStringUtils.isNotBlank(menuText)) {
+            mMenuView.setText(menuText);
+        }
+
+        String menuClick = typedArray.getString(R.styleable.ActivityHeaderView_onMenuClick);
+        if (NStringUtils.isNotBlank(menuClick)) {
+            mMenuView.setOnClickListener(new DeclaredOnClickListener(mMenuView, menuClick));
+        }
     }
 
     public void setBackViewVisiable(int visiable) {
