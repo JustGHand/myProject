@@ -1,5 +1,9 @@
 package com.pw.codeset.databean;
 
+import com.pw.codeset.utils.Constant;
+import com.pw.codeset.utils.MD5Utils;
+import com.xd.baseutils.utils.NStringUtils;
+
 public class NotesBean {
 
     public static final int NOTE_STATE_TODO = 0;
@@ -13,6 +17,9 @@ public class NotesBean {
 
     public NotesBean() {
         date = System.currentTimeMillis();
+        int randomNum = (int) (Math.random() * 1000);
+        String idTxt = NStringUtils.dateConvert(date, Constant.DATA_PARTNER_WITH_LINE_TILE_SECOND) + randomNum;
+        id = MD5Utils.strToMd5By16(idTxt);
     }
 
     public String getId() {
@@ -53,5 +60,27 @@ public class NotesBean {
 
     public void setState(int state) {
         this.state = state;
+    }
+
+    public boolean haveDone() {
+        return state == NOTE_STATE_DONE;
+    }
+
+    public int compareTo(NotesBean notesBean) {
+        if (notesBean == null) {
+            return -1;
+        }
+        if (this.state < notesBean.state) {
+            return -1;
+        } else if (this.state > notesBean.state) {
+            return 1;
+        }
+        if (this.date > notesBean.date) {
+            return -1;
+        } else if (this.date < notesBean.date) {
+            return 1;
+        }else {
+            return 0;
+        }
     }
 }

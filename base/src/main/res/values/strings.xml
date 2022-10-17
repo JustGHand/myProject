@@ -6,6 +6,7 @@
     <string name="touch_activity">触摸控件</string>
     <string name="login_mvp_activity">登录(MVP)</string>
     <string name="games_activity">GAMEs</string>
+    <string name="pc_connect_activity">PC交互</string>
 
     <string name="loading">加载中</string>
 
@@ -20,5 +21,30 @@
 
     <string name="game_block">争霸艾泽拉斯</string>
 
-    <string name="note_activity">备忘录</string>
+
+    <string name="game_minesweep">扫雷</string>
+    <string name="game_minesweep_tip">单击标记；双击打开</string>
+
+<!--  备忘录  -->
+    <string name="notes_activity">备忘录</string>
+    <string name="notes_edit_activity">编辑备忘录</string>
+    <string name="notes_edit_title">标题</string>
+    <string name="notes_edit_title_hint">备忘录</string>
+    <string name="notes_edit_date">日期</string>
+    <string name="notes_edit_content">内容</string>
+    <string name="notes_edit_content_hint">无</string>
+    <string name="notes_edit_state">状态</string>
+
+    <string name="notes_dialog_title">确认完成？</string>
+
+
+    <string name="pc_wifi_error">请正确连接WIFI</string>
+
+
+<!-- dialog-->
+    <string name="dialog_default_confirm">确认</string>
+    <string name="dialog_default_cancel">取消</string>
+
+    <string name="dialog_default_title">标题</string>
+    <string name="dialog_default_content">内容</string>
 </resources>

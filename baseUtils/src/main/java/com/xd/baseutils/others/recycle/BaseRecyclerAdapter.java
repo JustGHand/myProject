@@ -39,6 +39,7 @@ public abstract class BaseRecyclerAdapter<T,T2 extends BaseViewHolder> extends R
     public HeadGenerate mHeadGenerate;
     public FootGenerate mFootGenerate;
 
+
     public abstract ItemGenerate GenerateItem();
 
     public HeadGenerate GenerateHead(){
@@ -192,6 +193,15 @@ public abstract class BaseRecyclerAdapter<T,T2 extends BaseViewHolder> extends R
                         }
                     }
                 });
+                holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        if (mListener != null) {
+                            return mListener.onLongClick(data, pos);
+                        }
+                        return false;
+                    }
+                });
 //                setViewClick(holder.itemView, new View.OnClickListener() {
 //                    @Override
 //                    public void onClick(View v) {
@@ -251,6 +261,8 @@ public abstract class BaseRecyclerAdapter<T,T2 extends BaseViewHolder> extends R
 
     public interface onItemClickListener<T>{
         void onClick(T data,int pos);
+
+        boolean onLongClick(T data, int pos);
     }
 
     public onItemClickListener mListener;

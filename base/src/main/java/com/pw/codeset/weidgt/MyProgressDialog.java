@@ -120,9 +120,9 @@ public class MyProgressDialog extends Dialog {
         setOnDismissListener(new OnDismissListener() {
             @Override
             public void onDismiss(DialogInterface dialog) {
-                WindowManager.LayoutParams lp = mActivity.getWindow().getAttributes();
-                lp.alpha = 1;
-                mActivity.getWindow().setAttributes(lp);
+//                WindowManager.LayoutParams lp = mActivity.getWindow().getAttributes();
+//                lp.alpha = 1;
+//                mActivity.getWindow().setAttributes(lp);
             }
         });
     }
@@ -132,10 +132,10 @@ public class MyProgressDialog extends Dialog {
     public void show() {
         super.show();
 
-        if (showBlackBack) {
-            WindowManager.LayoutParams lp = mActivity.getWindow().getAttributes();
-            lp.alpha = 0.9f;
-            mActivity.getWindow().setAttributes(lp);
-        }
+//        if (showBlackBack) {
+//            WindowManager.LayoutParams lp = mActivity.getWindow().getAttributes();
+//            lp.alpha = 0.9f;
+//            mActivity.getWindow().setAttributes(lp);
+//        }
     }
 }

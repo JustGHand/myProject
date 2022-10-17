@@ -3,8 +3,11 @@ package com.pw.codeset.base;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.pw.codeset.R;
@@ -13,7 +16,12 @@ import com.pw.codeset.weidgt.MyProgressDialog;
 
 public abstract class BaseActivity extends Activity {
 
+    private static final int HANDLER_HIDE_DIALOG = 1;
+    private static final int HANDLER_FINISH_DATA = 11;
 
+    private boolean haveAttachedToWindow = false;
+
+    private Thread mResumeThread;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,25 +57,80 @@ public abstract class BaseActivity extends Activity {
         super.onResume();
         if (isCreating) {
 //            showLoading();
-            dealWithData();
+            startDataThread();
 //            hideLoading();
+        }else {
+            onNormalResume();
         }
         isCreating = false;
+        Log.e("BaseActivity", "onResume");
     }
+
+    protected void onNormalResume() {
+
+    }
+
+    @Override
+    public void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        Log.e("BaseActivity", "onAttachedToWindow");
+        haveAttachedToWindow = true;
+        try {
+            notifyAll();
+        } catch (Exception e) {
+
+        }
+    }
+
 
     @Override
     protected void onDestroy() {
         handler.removeCallbacksAndMessages(null);
         handler = null;
+        if (mResumeThread != null && mResumeThread.isAlive()) {
+            mResumeThread.interrupt();
+            mResumeThread = null;
+        }
         super.onDestroy();
     }
 
     protected void showLoading() {
-        showProgressDialog(getResources().getString(R.string.loading),false);
+        showProgressDialog(getResources().getString(R.string.loading),true);
     }
 
     protected void hideLoading() {
         hideProgressDialog();
+    }
+
+    private void startDataThread() {
+        showLoading();
+        mResumeThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                dealWithData();
+                finishDataThread();
+            }
+        });
+        mResumeThread.start();
+    }
+
+    private void finishDataThread() {
+        if (mResumeThread == null) {
+            return;
+        }
+        synchronized (mResumeThread) {
+            while (!haveAttachedToWindow) {
+                try {
+                    wait();
+                } catch (Exception e) {
+
+                }
+            }
+        }
+        if (handler != null) {
+            handler.sendEmptyMessage(HANDLER_FINISH_DATA);
+        }
+        hideLoading();
     }
 
 
@@ -75,7 +138,15 @@ public abstract class BaseActivity extends Activity {
 
     protected abstract void initView();
 
+    /**
+     * run on new thread
+     */
     protected abstract void dealWithData();
+
+    protected void finishData() {
+
+        Log.e("BaseActivity", "data finish");
+    }
 
     protected void onBackClick() {
         finish();
@@ -105,7 +176,23 @@ public abstract class BaseActivity extends Activity {
         }
     }
 
-    Handler handler = new Handler();
+    Handler handler = new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(@NonNull Message msg) {
+            switch (msg.what) {
+                case HANDLER_HIDE_DIALOG:
+                    if (progressDialog != null && progressDialog.isShowing()) {
+                        progressDialog.dismiss();
+                    }
+                    break;
+                case HANDLER_FINISH_DATA:
+                    finishData();
+                    break;
+                default:break;
+            }
+            return false;
+        }
+    });
 
     public void hideProgressDialog() {
         if (System.currentTimeMillis()-showDialogTime>500) {

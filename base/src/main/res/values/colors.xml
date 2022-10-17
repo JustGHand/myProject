@@ -21,7 +21,9 @@
     <color name="normal_text_color">#4E4E4E</color>
     <color name="normal_title_color">#1B1B1B</color>
     <color name="normal_support_color">#7E7E7E</color>
+    <color name="normal_import_color">#FFA400</color>
 
     <color name="border_color">#B4B4B4</color>
     <color name="alpha_border_color">#26000000</color>
+    <color name="alpha_back_color">#10000000</color>
 </resources>

@@ -19,8 +19,13 @@
     <dimen name="min_fontsize">12sp</dimen>
     <dimen name="minor_textsize">11sp</dimen>
 
+    <dimen name="btn_raiuds">24dp</dimen>
 
     <dimen name="normal_raiuds">8dp</dimen>
     <dimen name="border_width">1dp</dimen>
     <dimen name="cutline_width">1px</dimen>
+
+
+    <dimen name="defalut_dialog_margin">50dp</dimen>
+    <dimen name="dialog_back_radius">12dp</dimen>
 </resources>

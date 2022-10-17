@@ -11,6 +11,8 @@ import com.pw.codeset.R;
 import com.pw.codeset.activity.bezier.BezierCurveActivity;
 import com.pw.codeset.activity.games.GamesActivity;
 import com.pw.codeset.activity.login_mvp.UserLoginActivity;
+import com.pw.codeset.activity.notes.NotesActivity;
+import com.pw.codeset.activity.pc_connect.ActivityPcConnect;
 import com.pw.codeset.activity.touchview.TouchViewAct;
 import com.pw.codeset.application.MyApp;
 import com.pw.codeset.base.BaseActivity;
@@ -25,7 +27,11 @@ public class MainActivityView extends BaseActivity {
     private String FUNC_BAZIER;
     private String FUNC_TOUCHVIEW;
     private String FUNC_MVP_LOGIN;
+    private String FUNC_PC_CONNECT;
     private String FUNC_GAMES;
+    private String FUNC_NOTES;
+
+
     @Override
     protected int getContentId() {
         return R.layout.activity_main;
@@ -51,10 +57,19 @@ public class MainActivityView extends BaseActivity {
                         toLoginMvp(null);
                     } else if (data.equals(FUNC_GAMES)) {
                         toGames(null);
+                    } else if (data.equals(FUNC_PC_CONNECT)) {
+                        toPcConnect(null);
+                    } else if (data.equals(FUNC_NOTES)) {
+                        toNotes(null);
                     }else {
                         MyApp.getInstance().showToast("未知错误");
                     }
                 }
+            }
+
+            @Override
+            public boolean onLongClick(String data, int pos) {
+                return false;
             }
         });
 
@@ -78,18 +93,23 @@ public class MainActivityView extends BaseActivity {
             mSupportFuncList.clear();
         }
 
-//        FUNC_BAZIER = getResources().getString(R.string.bezier_activity);
-//        mSupportFuncList.add(FUNC_BAZIER);
-//
-//        FUNC_TOUCHVIEW = getResources().getString(R.string.touch_activity);
-//        mSupportFuncList.add(FUNC_TOUCHVIEW);
-//
-//        FUNC_MVP_LOGIN = getResources().getString(R.string.login_mvp_activity);
-//        mSupportFuncList.add(FUNC_MVP_LOGIN);
+        FUNC_BAZIER = getResources().getString(R.string.bezier_activity);
+        mSupportFuncList.add(FUNC_BAZIER);
+
+        FUNC_TOUCHVIEW = getResources().getString(R.string.touch_activity);
+        mSupportFuncList.add(FUNC_TOUCHVIEW);
+
+        FUNC_MVP_LOGIN = getResources().getString(R.string.login_mvp_activity);
+        mSupportFuncList.add(FUNC_MVP_LOGIN);
+
+        FUNC_PC_CONNECT = getResources().getString(R.string.pc_connect_activity);
+        mSupportFuncList.add(FUNC_PC_CONNECT);
 
         FUNC_GAMES = getResources().getString(R.string.games_activity);
         mSupportFuncList.add(FUNC_GAMES);
 
+        FUNC_NOTES = getResources().getString(R.string.notes_activity);
+        mSupportFuncList.add(FUNC_NOTES);
     }
 
     public void toBazier(View view) {
@@ -107,4 +127,13 @@ public class MainActivityView extends BaseActivity {
     public void toGames(View view) {
         startActivity(new Intent(MainActivityView.this, GamesActivity.class));
     }
+
+    public void toPcConnect(View view) {
+        startActivity(new Intent(MainActivityView.this, ActivityPcConnect.class));
+    }
+
+    public void toNotes(View view) {
+        startActivity(new Intent(MainActivityView.this, NotesActivity.class));
+    }
+
 }

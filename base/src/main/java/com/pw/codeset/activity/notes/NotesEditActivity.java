@@ -1,5 +1,7 @@
 package com.pw.codeset.activity.notes;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.widget.EditText;
 
 import com.pw.codeset.R;
@@ -23,13 +25,30 @@ public class NotesEditActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+
+
+        mTitleEdit = findViewById(R.id.notes_edit_title_edit);
+        mDateEdit = findViewById(R.id.notes_edit_date_edit);
+        mContentEdit = findViewById(R.id.notes_edit_content_edit);
+
         String noteId = getIntent().getStringExtra(Constant.NOTE_ID);
         if (NStringUtils.isNotBlank(noteId)) {
             mNoteBean = NotesManager.getInstance().getNote(noteId);
         }
-        if (mNoteBean == null) {
-            mNoteBean = new NotesBean();
-        }
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        saveNote();
+    }
+
+    @Override
+    protected void onMenuClick() {
+        super.onMenuClick();
+        saveNote();
+        finish();
     }
 
     @Override
@@ -50,7 +69,23 @@ public class NotesEditActivity extends BaseActivity {
                 noteDate = getResources().getString(R.string.notes_edit_date);
             }
             mDateEdit.setText(noteDate);
-
         }
+    }
+
+    private void saveNote() {
+        if (mNoteBean == null) {
+            mNoteBean = new NotesBean();
+        }
+        String title = mTitleEdit.getText().toString();
+        String content = mContentEdit.getText().toString();
+        if (NStringUtils.isBlank(title)) {
+            title = getResources().getString(R.string.notes_edit_title_hint);
+        }
+        if (NStringUtils.isBlank(content)) {
+            content = getResources().getString(R.string.notes_edit_content_hint);
+        }
+        mNoteBean.setTitle(title);
+        mNoteBean.setContent(content);
+        NotesManager.getInstance().updateNotes(mNoteBean);
     }
 }

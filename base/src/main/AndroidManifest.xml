@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.pw.codeset">
 
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+
     <application
         android:name=".application.MyApp"
         android:allowBackup="true"
@@ -42,6 +44,11 @@
 
         </activity>
 
+        <activity android:name=".activity.pc_connect.ActivityPcConnect"
+            />
+
+        <activity android:name=".activity.notes.NotesActivity" />
+        <activity android:name=".activity.notes.NotesEditActivity" />
 
     </application>
 

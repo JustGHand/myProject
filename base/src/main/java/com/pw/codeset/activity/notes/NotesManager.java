@@ -7,6 +7,8 @@ import com.pw.codeset.utils.SaveFileUtils;
 import com.xd.baseutils.utils.NStringUtils;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class NotesManager {
@@ -98,6 +100,15 @@ public class NotesManager {
     private void saveNotesListToFile() {
         String notesStr = "";
         if (mNotesList != null && mNotesList.size() > 0) {
+            Collections.sort(mNotesList, new Comparator<NotesBean>() {
+                @Override
+                public int compare(NotesBean o1, NotesBean o2) {
+                    if (o1 == null) {
+                        return 1;
+                    }
+                    return o1.compareTo(o2);
+                }
+            });
             notesStr = new Gson().toJson(mNotesList);
         }
         SaveFileUtils.saveNotesList(notesStr);

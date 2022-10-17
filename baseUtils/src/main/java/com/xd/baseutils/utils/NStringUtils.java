@@ -58,17 +58,21 @@ public class NStringUtils {
     }
 
     //将时间转换成日期，time为毫秒
-    public static String dateConvert(long time,String pattern){
+    public static String dateConvert(Long time,String pattern){
 //        Date date = new Date(time*1000);
 //        SimpleDateFormat format = new SimpleDateFormat(pattern);
 //        return format.format(date);
 
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTimeInMillis(time);//转换为毫秒
-            Date date = calendar.getTime();
-            SimpleDateFormat format = new SimpleDateFormat(pattern);
-            String dateString = format.format(date);
-            return dateString;
+        if (time==null||time<0||isBlank(pattern)){
+            return "error";
+        }
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(time);//转换为毫秒
+        Date date = calendar.getTime();
+        SimpleDateFormat format = new SimpleDateFormat(pattern);
+        String dateString = format.format(date);
+        return dateString;
     }
 
     public static String dateConvertFromTimeStamp(long timeStamp) {
@@ -332,6 +336,26 @@ public class NStringUtils {
             return null;
         }
         return path.substring(path.lastIndexOf(".") + 1, path.length());
+    }
+
+    public static boolean isFileReadable(String filePath) {
+        if (isBlank(filePath)) {
+            return false;
+        }
+        String suffix = getFileSuffix(filePath);
+        if (NStringUtils.isNotBlank(suffix) && suffix.equalsIgnoreCase("txt")) {
+            return true;
+        }
+        return false;
+    }
+
+    public static String intToIp(int ipInt) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(ipInt & 0xFF).append(".");
+        sb.append(ipInt >> 8 & 0xFF).append(".");
+        sb.append(ipInt >> 16 & 0xFF).append(".");
+        sb.append(ipInt >> 24 & 0xFF).append(".");
+        return sb.toString();
     }
 
 }

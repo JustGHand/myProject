@@ -1,6 +1,7 @@
 package com.pw.codeset.activity.games;
 
 import android.content.Intent;
+import android.util.Log;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,11 +22,19 @@ public class GamesActivity extends BaseActivity {
 
     @Override
     protected void dealWithData() {
+        try {
+            Thread.sleep(2000);
+            GAME_BLOCK = this.getString(R.string.game_block);
+            mGameList = new ArrayList<>();
+            mGameList.add(GAME_BLOCK);
+        } catch (Exception e) {
 
-        GAME_BLOCK = this.getString(R.string.game_block);
+        }
+    }
 
-        mGameList = new ArrayList<>();
-        mGameList.add(GAME_BLOCK);
+    @Override
+    protected void finishData() {
+        super.finishData();
 
         mAdapter = new GameListAdapter(this);
         gameListView.setLayoutManager(new LinearLayoutManager(this));
@@ -39,6 +48,11 @@ public class GamesActivity extends BaseActivity {
                         toBlockGame();
                     }
                 }
+            }
+
+            @Override
+            public boolean onLongClick(String data, int pos) {
+                return false;
             }
         });
 
@@ -64,5 +78,31 @@ public class GamesActivity extends BaseActivity {
 
     private void toBlockGame() {
         startActivity(new Intent(GamesActivity.this, BlockGameActivity.class));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+    }
+
+    @Override
+    public void onAttachedToWindow() {
+        super.onAttachedToWindow();
+    }
+
+    @Override
+    public void onTopResumedActivityChanged(boolean isTopResumedActivity) {
+        super.onTopResumedActivityChanged(isTopResumedActivity);
+
+    }
+
+    @Override
+    public void onEnterAnimationComplete() {
+        super.onEnterAnimationComplete();
     }
 }
