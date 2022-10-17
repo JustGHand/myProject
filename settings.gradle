@@ -2,4 +2,3 @@ include ':baseUtils'
 include ':base'
 rootProject.name = "My Application"
 include ':read'
-include ':ModuleBase'

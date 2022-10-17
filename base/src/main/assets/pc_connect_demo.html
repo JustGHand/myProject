@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+  </script>
+</head>
+<div class="wrap">
+  <div class="right">
+    <p class="title">文件管理</p>
+    <dl class="first">
+      <dt>文件名</dt>
+      <dd>大小</dd>
+      <dd class="wf_bgn">操作</dd>
+    </dl>
+
+    <div class="scroll">
+      <ul class="" id="tableStyle"></ul>
+    </div><!--scroll end-->
+  </div><!--right end-->
+  <div class="left">
+    <div class="logo"></div>
+    <div id="drag_area" class="wf_box ">
+
+    </div><!--wf_bg1和wf_bg2两个背景样式还有wf_on样式拖拽时候的状态-->
+    <div class="wf_btn">
+      <div id="spanButtonPlaceHolder"></div>
+    </div>
+    <p class="wf_gs" onclick="startSocket()">支持格式：TXT、PDF、EPUB、EBK2、EBK3、CHM、UMD、DOC、DOCX、WPS、XLS、XLSX、ET、PPT、PPTX、DPS、MOBI</p>
+  </div><!--left end -->
+  <div class="download gpu" data-js="download" data-map="{&quot;is_fenxiao&quot;:0,&quot;ori_userid&quot;:&quot;&quot;,&quot;bid&quot;:&quot;11545490&quot;}" style="">
+    <div class="dlc" onclick="location.href='upload?path=file:///Users/admin/Desktop/pic/test.jpeg'">
+      <div class="btn_close"></div>
+      <div class="logo"></div>
+      <div class="btn_red" >立即打开</div>
+    </div>
+  </div>
+
+  <input type="file" id="avatar" name="avatar">
+  <button id="uploadFile" type="button">保存</button>
+</div>
+<script>
+
+function startSocket(){
+}
+
+$('#uploadFile').click(function(){
+<!-- var files = $('#avatar').prop('files'); //多个-->
+ //或者
+ var files = $('#avatar')[0].files[0] //单个
+
+ var data = new FormData();
+ data.append('avatar', files[0]);
+  var url = location.href +"upload";
+ $.ajax({
+  url: url,
+  type: 'POST',
+  data: data,
+  cache: false,
+  processData: false,
+  contentType: false
+ });
+});
+
+</script>
+</body>
+</html>

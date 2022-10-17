@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.pw.codeset.weidgt.ActivityHeaderView
+        android:id="@+id/activity_header"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:title_text="@string/pc_connect_activity"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/pc_server_ip_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/pc_wifi_error"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activity_header"
+        />
+
+    <LinearLayout
+        android:id="@+id/pc_exist_files"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:gravity="top"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pc_server_ip_text"
+        app:layout_constraintBottom_toTopOf="@id/pc_server_file_holder_scroll"
+        />
+
+    <ScrollView
+        android:id="@+id/pc_server_file_holder_scroll"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pc_exist_files"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
+
+        <TextView
+            android:id="@+id/pc_server_file_holder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
