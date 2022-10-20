@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="男"
-        android:textColor="@color/selector_btn_color_t_b"
+        android:textColor="@color/normal_import_color"
         android:textSize="@dimen/btn_textsize"
         android:padding="@dimen/view_defaultmargin"/>
 </RelativeLayout>

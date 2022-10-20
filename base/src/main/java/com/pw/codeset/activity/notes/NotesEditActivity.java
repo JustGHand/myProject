@@ -35,6 +35,9 @@ public class NotesEditActivity extends BaseActivity {
         if (NStringUtils.isNotBlank(noteId)) {
             mNoteBean = NotesManager.getInstance().getNote(noteId);
         }
+        if (mNoteBean == null) {
+            mNoteBean = new NotesBean();
+        }
 
     }
 
@@ -55,11 +58,9 @@ public class NotesEditActivity extends BaseActivity {
     protected void dealWithData() {
         if (mNoteBean != null) {
             String noteTitle = mNoteBean.getTitle();
-            if (NStringUtils.isBlank(noteTitle)) {
-                noteTitle = getResources().getString(R.string.notes_edit_title);
+            if (NStringUtils.isNotBlank(noteTitle)) {
+                mTitleEdit.setText(noteTitle);
             }
-            mTitleEdit.setText(noteTitle);
-
             Long noteTime = mNoteBean.getDate();
             String noteDate = "";
             if (noteTime != null && noteTime > 0) {

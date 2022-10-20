@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.pw.codeset.R;
+import com.pw.codeset.application.MyApp;
 import com.pw.codeset.weidgt.ActivityHeaderView;
 import com.pw.codeset.weidgt.MyProgressDialog;
 

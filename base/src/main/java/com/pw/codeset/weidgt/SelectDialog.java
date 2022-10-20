@@ -201,6 +201,7 @@ public class SelectDialog extends Dialog implements OnClickListener,OnItemClickL
         mListener.onItemClick(parent, view, position, id);
         dismiss();
     }
+
     private class DialogAdapter extends BaseAdapter {
         private List<String> mStrings;
         private Viewholder viewholder;
@@ -237,6 +238,7 @@ public class SelectDialog extends Dialog implements OnClickListener,OnItemClickL
             if (null == convertView) {
                 viewholder=new Viewholder();
                 convertView=layoutInflater.inflate(R.layout.view_dialog_item, null);
+                convertView.setBackground(null);
                 viewholder.dialogItemButton=(TextView) convertView.findViewById(R.id.dialog_item_bt);
                 convertView.setTag(viewholder);
             }else{

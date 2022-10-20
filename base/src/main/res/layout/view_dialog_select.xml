@@ -13,7 +13,6 @@
         android:layout_marginTop="5dip"
         android:background="@drawable/dialog_item_bg_only"
         android:padding="10dip"
-        android:textColor="#0073FF"
         android:textSize="18sp"
         android:gravity="center"
         android:visibility="gone"/>
@@ -22,6 +21,7 @@
         android:id="@+id/dialog_list"
         android:layout_width="match_parent"
         android:dividerHeight="@dimen/cutline_width"
+        android:listSelector="@drawable/empty_drawable"
         android:divider="@color/border_color"
         android:background="@drawable/back_white_radiustop"
         android:layout_height="wrap_content" >

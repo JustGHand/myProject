@@ -31,9 +31,15 @@ public class MainActivityView extends BaseActivity {
     private String FUNC_GAMES;
     private String FUNC_NOTES;
 
+    public static MainActivityView mInstance;
+
+    public static MainActivityView getInstance() {
+        return mInstance;
+    }
 
     @Override
     protected int getContentId() {
+        mInstance = this;
         return R.layout.activity_main;
     }
 
@@ -93,17 +99,17 @@ public class MainActivityView extends BaseActivity {
             mSupportFuncList.clear();
         }
 
-        FUNC_BAZIER = getResources().getString(R.string.bezier_activity);
-        mSupportFuncList.add(FUNC_BAZIER);
-
-        FUNC_TOUCHVIEW = getResources().getString(R.string.touch_activity);
-        mSupportFuncList.add(FUNC_TOUCHVIEW);
-
-        FUNC_MVP_LOGIN = getResources().getString(R.string.login_mvp_activity);
-        mSupportFuncList.add(FUNC_MVP_LOGIN);
-
-        FUNC_PC_CONNECT = getResources().getString(R.string.pc_connect_activity);
-        mSupportFuncList.add(FUNC_PC_CONNECT);
+//        FUNC_BAZIER = getResources().getString(R.string.bezier_activity);
+//        mSupportFuncList.add(FUNC_BAZIER);
+//
+//        FUNC_TOUCHVIEW = getResources().getString(R.string.touch_activity);
+//        mSupportFuncList.add(FUNC_TOUCHVIEW);
+//
+//        FUNC_MVP_LOGIN = getResources().getString(R.string.login_mvp_activity);
+//        mSupportFuncList.add(FUNC_MVP_LOGIN);
+//
+//        FUNC_PC_CONNECT = getResources().getString(R.string.pc_connect_activity);
+//        mSupportFuncList.add(FUNC_PC_CONNECT);
 
         FUNC_GAMES = getResources().getString(R.string.games_activity);
         mSupportFuncList.add(FUNC_GAMES);

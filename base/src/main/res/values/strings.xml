@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">代码集</string>
+    <string name="app_name">MyTool</string>
 
-    <string name="main_activity">CodeSets</string>
+    <string name="main_activity">MyTool</string>
     <string name="bezier_activity">贝塞尔曲线</string>
     <string name="touch_activity">触摸控件</string>
     <string name="login_mvp_activity">登录(MVP)</string>
@@ -9,7 +9,6 @@
     <string name="pc_connect_activity">PC交互</string>
 
     <string name="loading">加载中</string>
-
 
     <string name="login_username_title">用户名</string>
     <string name="login_username_hint">请输入用户名</string>
