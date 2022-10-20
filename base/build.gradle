@@ -33,13 +33,29 @@ android {
 
     buildTypes {
         release {
+            signingConfig signingConfigs.release
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+        }
+        debug {
+            signingConfig signingConfigs.release
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
         }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            //定义apk名字
+            def fileName = "MyT.apk"
+//            fileName = fileName.replace("application-", "${defaultConfig.applicationId.substring(defaultConfig.applicationId.lastIndexOf(".") + 1)}-")
+            fileName = fileName.replace(".apk", "-${defaultConfig.versionName}.apk")
+            outputFileName = fileName
+        }
     }
 }
 
