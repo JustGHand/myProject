@@ -70,6 +70,8 @@ public class NotesEditActivity extends BaseActivity {
                 noteDate = getResources().getString(R.string.notes_edit_date);
             }
             mDateEdit.setText(noteDate);
+
+            mContentEdit.setText(mNoteBean.getContent());
         }
     }
 
