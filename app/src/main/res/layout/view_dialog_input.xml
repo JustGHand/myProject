@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@drawable/back_alpha_white_radiusall"
+        android:backgroundTint="@color/white"
+        android:layout_marginLeft="@dimen/defalut_dialog_margin"
+        android:layout_marginRight="@dimen/defalut_dialog_margin"
+        >
+
+        <TextView
+            android:id="@+id/inputdialog_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/dialog_default_title"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/normal_title_color"
+            android:gravity="center"
+            android:padding="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <EditText
+            android:id="@+id/inputdialog_edit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/normal_text_color"
+            android:gravity="left"
+            android:padding="16dp"
+            android:background="@null"
+            android:maxHeight="200dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/inputdialog_clear"
+            app:layout_constraintTop_toBottomOf="@id/inputdialog_title"
+            android:layout_marginLeft="16dp"
+            />
+
+        <com.pw.codeset.weidgt.IconImageView
+            android:id="@+id/inputdialog_clear"
+            android:layout_width="@dimen/clickable_minsize"
+            android:layout_height="@dimen/clickable_minsize"
+            android:text="@string/iconfont_undo"
+            android:textSize="@dimen/title_selected_textsize"
+            android:gravity="center"
+            android:textColor="@color/enableselector_black_gray"
+            android:enabled="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/inputdialog_edit"
+            android:layout_marginRight="16dp"
+            />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/cutline_width"
+            android:background="@color/border_color"
+            app:layout_constraintStart_toStartOf="@id/inputdialog_edit"
+            app:layout_constraintTop_toBottomOf="@id/inputdialog_edit"
+            app:layout_constraintEnd_toEndOf="@id/inputdialog_clear"
+            />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/inputdialog_twobtn_part"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/inputdialog_edit"
+            android:layout_marginTop="16dp"
+            >
+
+            <View
+                android:id="@+id/inputdialog_line"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/cutline_width"
+                android:background="@color/border_color"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/inputdialog_cancel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/dialog_default_cancel"
+                android:textSize="16sp"
+                android:textColor="@color/normal_support_color"
+                android:gravity="center"
+                android:paddingTop="18dp"
+                android:paddingBottom="18dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/inputdialog_line"
+                app:layout_constraintEnd_toStartOf="@id/inputdialog_confirm"
+                />
+
+            <View
+                android:layout_width="@dimen/cutline_width"
+                android:layout_height="0dp"
+                android:background="@color/border_color"
+                app:layout_constraintStart_toEndOf="@id/inputdialog_cancel"
+                app:layout_constraintEnd_toStartOf="@id/inputdialog_confirm"
+                app:layout_constraintTop_toTopOf="@id/inputdialog_cancel"
+                app:layout_constraintBottom_toBottomOf="@id/inputdialog_cancel"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:id="@+id/inputdialog_confirm"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/dialog_default_confirm"
+                android:textSize="16sp"
+                android:textColor="@color/normal_import_color"
+                android:gravity="center"
+                android:paddingTop="18dp"
+                android:paddingBottom="18dp"
+                app:layout_constraintStart_toEndOf="@id/inputdialog_cancel"
+                app:layout_constraintTop_toBottomOf="@id/inputdialog_line"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/inputdialog_singlebtn_part"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/inputdialog_edit"
+            android:visibility="gone"
+            >
+
+            <Button
+                android:id="@+id/inputdialog_singlebtn"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="@string/dialog_default_confirm"
+                android:textColor="@color/enableselector_black_white"
+                android:paddingLeft="40dp"
+                android:paddingRight="40dp"
+                android:background="@drawable/enableselector_back_theme_gray_noborder"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_margin="16dp"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

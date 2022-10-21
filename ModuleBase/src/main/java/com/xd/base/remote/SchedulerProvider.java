@@ -39,9 +39,20 @@ public class SchedulerProvider{
         return AndroidSchedulers.mainThread();
     }
 
+    //子线程监听
+    //主线程回调
     @NonNull
     public <T> ObservableTransformer<T, T> applySchedulers() {
         return observable -> observable.subscribeOn(io())
                 .observeOn(ui());
+    }
+
+
+    //子线程监听
+    //子线程回调
+    @NonNull
+    public <T> ObservableTransformer<T, T> applySchedulersOnIo() {
+        return observable -> observable.subscribeOn(io())
+                .observeOn(io());
     }
 }

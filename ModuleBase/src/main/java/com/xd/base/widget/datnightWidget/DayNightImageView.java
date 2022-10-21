@@ -40,6 +40,11 @@ public class DayNightImageView extends androidx.appcompat.widget.AppCompatImageV
         nightModeBack = typedArray.getDrawable(R.styleable.DayNightImageView_ImageNightBackground);
     }
 
+    public void setDayImage(Drawable drawable) {
+        this.dayModeDrawable = drawable;
+        toggleImageDrawable();
+    }
+
     public void setNightMode(boolean isNightMode) {
         this.isNightMode = isNightMode;
         toggleImageDrawable();

@@ -22,8 +22,6 @@ import com.xd.base.event.NetworkChangeEvent;
 import com.xd.base.receiver.NetworkChangeReceiver;
 import com.xd.base.utils.statusbar.StatusBarUtils;
 
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -38,8 +36,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     //ButterKnife
     private Toolbar mToolbar;
 
-    private Unbinder unbinder;
-
     private IntentFilter intentFilter;
     private NetworkChangeReceiver networkChangeReceiver;
 
@@ -49,14 +45,14 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected abstract int getContentId();
 
     /************************init area************************************/
-    protected void addDisposable(Disposable d) {
+    public void addDisposable(Disposable d) {
         if (mDisposable == null) {
             mDisposable = new CompositeDisposable();
         }
         mDisposable.add(d);
     }
 
-    protected void removeDisposable(Disposable d){
+    public void removeDisposable(Disposable d){
         if (mDisposable != null && d != null){
             mDisposable.remove(d);
         }
@@ -100,13 +96,14 @@ public abstract class BaseActivity extends AppCompatActivity {
             savedInstanceState.putParcelable("android:support:fragments", null);
         }
         super.onCreate(savedInstanceState);
-        StatusBarUtils.setStatusBarColor(this,getResources().getColor(R.color.white),true);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            StatusBarUtils.myStatusBar(this, getResources().getColor(R.color.white), true);
+        }
         setContentView(getContentId());
 
 //        App.getInstance().addActivity(this);
 
         initData(savedInstanceState);
-        unbinder = ButterKnife.bind(this);
 //        initToolbar();
         initWidget();
         initClick();
@@ -156,8 +153,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onDestroy() {
 //        App.getInstance().removeActivity(this);
         super.onDestroy();
-        if (unbinder != null)
-            unbinder.unbind();
         if (mDisposable != null) {
             mDisposable.dispose();
         }
@@ -192,18 +187,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         WindowManager.LayoutParams localLayoutParams = getWindow().getAttributes();
         localLayoutParams.flags = (WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | localLayoutParams.flags);}
 
-    //Umeng手动模式埋点
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//        MobclickAgent.onResume(this);
-//    }
-//
-//    @Override
-//    public void onPause() {
-//        super.onPause();
-//        MobclickAgent.onPause(this);
-//    }
 
 
     @Override
@@ -219,8 +202,4 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.attachBaseContext(newBase);
     }
 
-
-    public void BackPress(View view) {
-        finish();
-    }
 }

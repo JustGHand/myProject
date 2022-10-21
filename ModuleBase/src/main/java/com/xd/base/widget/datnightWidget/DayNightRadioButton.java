@@ -4,10 +4,13 @@ import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.RadioButton;
 
+import androidx.annotation.ColorInt;
+import androidx.annotation.ColorRes;
 import androidx.annotation.Nullable;
 
 import com.xd.base.R;
@@ -28,8 +31,8 @@ public class DayNightRadioButton extends androidx.appcompat.widget.AppCompatRadi
     }
 
     private boolean isNightMode;
-    private ColorStateList dayModeTextColor;
-    private ColorStateList nightModeTextColor;
+    private Integer dayModeTextColor;
+    private Integer nightModeTextColor;
     private Drawable dayModeBackground;
     private Drawable nightModeBackground;
     private Drawable nightDrawableLeft;
@@ -44,19 +47,34 @@ public class DayNightRadioButton extends androidx.appcompat.widget.AppCompatRadi
     private void initAttrs(Context context, AttributeSet attributeSet) {
         TypedArray typedArray = context.obtainStyledAttributes(attributeSet, R.styleable.DayNightRadioButton);
         isNightMode = typedArray.getBoolean(R.styleable.DayNightRadioButton_radioNightmode, false);
-        dayModeTextColor = getTextColors();
+        dayModeTextColor = getCurrentTextColor();
         dayModeBackground = getBackground();
         dayDrawableLeft = getCompoundDrawables()[0];
         dayDrawableTop = getCompoundDrawables()[1];
         dayDrawableRight = getCompoundDrawables()[2];
         dayDrawableBottom = getCompoundDrawables()[3];
-        nightModeTextColor = typedArray.getColorStateList(R.styleable.DayNightRadioButton_nightRadioColor);
+        nightModeTextColor = typedArray.getColor(R.styleable.DayNightRadioButton_nightRadioColor,getContext().getResources().getColor(R.color.alpha_gray));
         nightModeBackground = typedArray.getDrawable(R.styleable.DayNightRadioButton_nightRadioBackground);
         nightDrawableLeft = typedArray.getDrawable(R.styleable.DayNightRadioButton_nightRadioDrawableLeft);
         nightDrawableRight = typedArray.getDrawable(R.styleable.DayNightRadioButton_nightRadioDrawableRight);
         nightDrawableTop = typedArray.getDrawable(R.styleable.DayNightRadioButton_nightRadioDrawableTop);
         nightDrawableBottom = typedArray.getDrawable(R.styleable.DayNightRadioButton_nightRadioDrawableBottom);
         toggleTextColor();
+    }
+
+    public void setTotalBack(Drawable drawable) {
+        this.dayModeBackground = drawable;
+        this.nightModeBackground = drawable;
+        toggleTextColor();
+    }
+
+
+    public void setDayModeTextColor(@ColorInt int textColor) {
+        dayModeTextColor = textColor;
+    }
+
+    public void setNightModeTextColor(@ColorInt int textColor) {
+        nightModeTextColor = textColor;
     }
 
     public void setNightMode(boolean isNightMode) {
@@ -88,8 +106,12 @@ public class DayNightRadioButton extends androidx.appcompat.widget.AppCompatRadi
             }
             setCompoundDrawablesWithIntrinsicBounds(drawables[0],drawables[1],drawables[2],drawables[3]);
         }else {
-            setTextColor(dayModeTextColor);
-            setBackground(dayModeBackground);
+            if (dayModeTextColor!=null) {
+                setTextColor(dayModeTextColor);
+            }
+            if (dayModeBackground!=null) {
+                setBackground(dayModeBackground);
+            }
 
             setCompoundDrawablesWithIntrinsicBounds(dayDrawableLeft,dayDrawableTop,dayDrawableRight,dayDrawableBottom);
         }

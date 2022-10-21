@@ -12,7 +12,7 @@ import androidx.annotation.Nullable;
 
 import com.xd.base.R;
 
-public class DayNightCheckBox extends androidx.appcompat.widget.AppCompatCheckBox {
+public class DayNightCheckBox extends CheckBox {
     public DayNightCheckBox(Context context) {
         super(context);
     }

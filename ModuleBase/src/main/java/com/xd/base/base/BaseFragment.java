@@ -9,8 +9,6 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 
@@ -23,7 +21,16 @@ public abstract class BaseFragment extends Fragment {
     protected CompositeDisposable mDisposable;
 
     private View root = null;
-    private Unbinder unbinder;
+
+    private String extraData;
+
+    public void setExtraData(String extraData) {
+        this.extraData = extraData;
+    }
+
+    public String getExtraData() {
+        return extraData;
+    }
 
     @LayoutRes
     protected abstract int getContentId();
@@ -72,7 +79,6 @@ public abstract class BaseFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initData(savedInstanceState);
-        unbinder = ButterKnife.bind(this, root);
         initWidget(savedInstanceState);
         initClick();
         processLogic();
@@ -81,9 +87,6 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
-        if (unbinder != null)
-            unbinder.unbind();
-
         if (mDisposable != null) {
             mDisposable.clear();
         }

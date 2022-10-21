@@ -2,9 +2,11 @@ package com.xd.base.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.xd.base.R;
 
@@ -31,10 +33,12 @@ public class WarpLinearLayout extends ViewGroup {
     public WarpLinearLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mType = new Type(context, attrs);
+        temMaxlines = mType.maxLines;
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec,heightMeasureSpec);
         int withMode = MeasureSpec.getMode(widthMeasureSpec);
         int withSize = MeasureSpec.getSize(widthMeasureSpec);
         int heightMode = MeasureSpec.getMode(heightMeasureSpec);
@@ -42,7 +46,7 @@ public class WarpLinearLayout extends ViewGroup {
         int with = 0;
         int height = 0;
         int lineCount = 0;
-        int childCount = getChildCount();
+        int childCount = super.getChildCount();
         /**
          * 在调用childView。getMeasre之前必须先调用该行代码，用于对子View大小的测量
          */
@@ -88,19 +92,55 @@ public class WarpLinearLayout extends ViewGroup {
         mWarpLineGroup = new ArrayList<WarpLine>();
         for (int i = 0; i < childCount; i++) {
             if (warpLine.lineWidth + getChildWidth(i) + mType.horizontal_Space > with) {
-                if (mType.maxLines == 0 || lineCount < mType.maxLines-1) {
+                if (temMaxlines == 0 || lineCount < temMaxlines-1) {
                     if (warpLine.lineView.size() == 0) {
-                        warpLine.addView(getChildAt(i));
+                        warpLine.addView(super.getChildAt(i));
                         mWarpLineGroup.add(warpLine);
                         warpLine = new WarpLine();
                     } else {
                         mWarpLineGroup.add(warpLine);
                         warpLine = new WarpLine();
-                        warpLine.addView(getChildAt(i));
+                        warpLine.addView(super.getChildAt(i));
+                    }
+                    lineCount++;
+                }else {
+                    if(!haveAdExpand||i-1!=expandIndex) {
+                        if (expandView != null) {
+                            expandView.setVisibility(VISIBLE);
+                            expandView.setTag(EXPANDVIEW_TAG);
+                            expandIndex = i - 1;
+                            expandView.setOnClickListener(new OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    if (expandView.isSelected()) {
+                                        temMaxlines = mType.maxLines;
+                                        removeView(expandView);
+                                        addView(expandView, expandIndex);
+                                    } else {
+                                        temMaxlines = Integer.MAX_VALUE;
+                                        removeView(expandView);
+                                        addView(expandView, getChildCount()+1);
+                                    }
+                                    expandView.setSelected(!expandView.isSelected());
+                                    if (mListener != null) {
+                                        mListener.onExpand(temMaxlines != Integer.MAX_VALUE);
+                                    }
+                                }
+                            });
+                            haveAdExpand = true;
+                            if (expandView.getParent()!=null) {
+                                ((ViewGroup) expandView.getParent()).removeView(expandView);
+                            }
+                            expandView.setSelected(false);
+                            warpLine.removeView(warpLine.lineView.size()-1);
+                            warpLine.addView(expandView);
+                            addView(expandView, expandIndex);
+                            break;
+                        }
                     }
                 }
             } else {
-                warpLine.addView(getChildAt(i));
+                warpLine.addView(super.getChildAt(i));
             }
         }
         /**
@@ -134,8 +174,13 @@ public class WarpLinearLayout extends ViewGroup {
         setMeasuredDimension(with, height);
     }
 
+    private final String EXPANDVIEW_TAG = "expandView";
+
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        for (int i = 0; i < super.getChildCount(); i++) {
+            super.getChildAt(i).layout(0,0,0,0);
+        }
         t = getPaddingTop();
         for (int i = 0; i < mWarpLineGroup.size(); i++) {
             int left = getPaddingLeft();
@@ -147,6 +192,14 @@ public class WarpLinearLayout extends ViewGroup {
                     view.layout(left, t, left + view.getMeasuredWidth() + lastWidth / warpLine.lineView.size(), t + view.getMeasuredHeight());
                     left += view.getMeasuredWidth() + mType.horizontal_Space + lastWidth / warpLine.lineView.size();
                 } else {
+                    if (view.getTag() != null) {
+                        if (EXPANDVIEW_TAG.equals((String) view.getTag())) {
+                            int expandLeft = getPaddingLeft() + getMeasuredWidth() - view.getMeasuredWidth();
+                            int expandRight = expandLeft + view.getMeasuredWidth();
+                            view.layout(expandLeft, t, expandRight, t + view.getMeasuredHeight());
+                            continue;
+                        }
+                    }
                     switch (getGrivate()) {
                         case 0://右对齐
                             view.layout(left + lastWidth, t, left + lastWidth + view.getMeasuredWidth(), t + view.getMeasuredHeight());
@@ -164,6 +217,22 @@ public class WarpLinearLayout extends ViewGroup {
             t += warpLine.height + mType.vertical_Space;
         }
     }
+
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+        findViews();
+    }
+
+    private void findViews() {
+        if (mType.expandViewId != 0) {
+            expandView = findViewById(mType.expandViewId);
+        }
+    }
+    boolean haveAdExpand = false;
+    private View expandView;
+    private int expandIndex=-1;
+    private int temMaxlines;
 
     /**
      * 用于存放一行子View
@@ -186,6 +255,23 @@ public class WarpLinearLayout extends ViewGroup {
             height = height > view.getMeasuredHeight() ? height : view.getMeasuredHeight();
             lineWidth += view.getMeasuredWidth();
             lineView.add(view);
+        }
+
+        private void removeView(int index) {
+            if (lineView.get(index) != null) {
+                lineWidth = (int) (lineWidth - mType.horizontal_Space);
+                lineWidth = lineWidth - lineView.get(index).getMeasuredWidth();
+                int finalHeight = 0;
+                for (int i = 0; i < lineView.size(); i++) {
+                    if (i != index) {
+                        if (finalHeight < lineView.get(i).getMeasuredHeight()) {
+                            finalHeight = lineView.get(i).getMeasuredHeight();
+                        }
+                    }
+                }
+                height = finalHeight;
+                lineView.remove(index);
+            }
         }
     }
 
@@ -215,6 +301,8 @@ public class WarpLinearLayout extends ViewGroup {
          */
         private int maxLines;
 
+        private int expandViewId;
+
         Type(Context context, AttributeSet attrs) {
             if (attrs == null) {
                 return;
@@ -225,6 +313,7 @@ public class WarpLinearLayout extends ViewGroup {
             vertical_Space = typedArray.getDimension(R.styleable.WarpLinearLayout_vertical_Space, vertical_Space);
             isFull = typedArray.getBoolean(R.styleable.WarpLinearLayout_isFull, isFull);
             maxLines = typedArray.getInt(R.styleable.WarpLinearLayout_maxLines, maxLines);
+            expandViewId = typedArray.getResourceId(R.styleable.WarpLinearLayout_expandviewId,0);
         }
     }
 
@@ -266,6 +355,9 @@ public class WarpLinearLayout extends ViewGroup {
 
     public void setMaxLines(int maxLines) {
         mType.maxLines = maxLines;
+        temMaxlines = mType.maxLines;
+        requestLayout();
+        invalidate();
     }
 
     /**
@@ -278,8 +370,49 @@ public class WarpLinearLayout extends ViewGroup {
     }
 
     private int getChildWidth(int i) {
-        int measureWidth = getChildAt(i).getMeasuredWidth();
-        int minWidth = getChildAt(i).getMinimumWidth();
+        int measureWidth = super.getChildAt(i).getMeasuredWidth();
+        if (measureWidth == 0) {
+            super.getChildAt(i).measure(MeasureSpec.EXACTLY, MeasureSpec.EXACTLY);
+            measureWidth = super.getChildAt(i).getMeasuredWidth();
+        }
+        int minWidth = super.getChildAt(i).getMinimumWidth();
         return measureWidth > minWidth ? measureWidth : minWidth;
+    }
+
+    public int getShownChildCount() {
+        int showCount = 0;
+        for (int i = 0; i < mWarpLineGroup.size(); i++) {
+            showCount += mWarpLineGroup.get(i).lineView.size();
+        }
+        return showCount;
+    }
+
+    @Override
+    public int getChildCount() {
+        if (haveAdExpand) {
+            return super.getChildCount() - 1;
+        }
+        return super.getChildCount();
+    }
+
+    @Override
+    public View getChildAt(int index) {
+        if (haveAdExpand) {
+            int expandIndex = indexOfChild(expandView);
+            if (index >= expandIndex) {
+                return super.getChildAt(index+1);
+            }
+        }
+        return super.getChildAt(index);
+    }
+
+    private ExpandListener mListener;
+
+    public void setExpandListener(ExpandListener listener) {
+        mListener = listener;
+    }
+
+    public interface ExpandListener{
+        void onExpand(boolean expand);
     }
 }

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/bookshelf_pop_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/shape_pop_top_white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/view_defaultpadding"
+        app:layout_constraintHorizontal_bias="0.8"
+        />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bookshelf_pop_top"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@drawable/back_alpha_white_radiusall"
+        android:paddingLeft="@dimen/view_defaultpadding_double"
+        android:paddingRight="@dimen/view_defaultpadding_double"
+        android:paddingTop="@dimen/view_defaultpadding_double"
+        android:paddingBottom="@dimen/view_defaultpadding_double"
+        >
+
+    <TextView
+        android:id="@+id/bookshelf_manager"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="书籍管理"
+        android:textColor="@color/normal_text_color"
+        android:drawableLeft="@mipmap/icon_bookshelf_manager"
+        android:drawablePadding="@dimen/view_defaultpadding"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bookshelf_history"
+        app:layout_constraintVertical_chainStyle="spread_inside"
+        android:layout_marginBottom="@dimen/view_defaultmargin"
+        />
+
+    <View
+        android:id="@+id/bookshelf_pop_line"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cutline_width"
+        app:layout_constraintStart_toStartOf="@id/bookshelf_manager"
+        app:layout_constraintEnd_toEndOf="@id/bookshelf_manager"
+        app:layout_constraintTop_toBottomOf="@id/bookshelf_manager"
+        app:layout_constraintBottom_toTopOf="@id/bookshelf_history"
+        android:layout_marginLeft="@dimen/view_defaultpadding"
+        android:layout_marginRight="@dimen/view_defaultpadding"
+        />
+
+    <TextView
+        android:id="@+id/bookshelf_history"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="阅读历史"
+        android:textColor="@color/normal_text_color"
+        android:drawableLeft="@mipmap/icon_bookshelf_history"
+        android:drawablePadding="@dimen/view_defaultpadding"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bookshelf_manager"
+        app:layout_constraintBottom_toTopOf="@id/bookshelf_leadbook"
+        android:layout_marginBottom="16dp"
+        android:visibility="gone"
+        />
+
+    <View
+        android:id="@+id/bookshelf_pop_line2"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cutline_width"
+        app:layout_constraintStart_toStartOf="@id/bookshelf_manager"
+        app:layout_constraintEnd_toEndOf="@id/bookshelf_manager"
+        app:layout_constraintTop_toBottomOf="@id/bookshelf_history"
+        app:layout_constraintBottom_toTopOf="@id/bookshelf_leadbook"
+        android:layout_marginLeft="@dimen/view_defaultpadding"
+        android:layout_marginRight="@dimen/view_defaultpadding"
+        />
+
+    <TextView
+        android:id="@+id/bookshelf_leadbook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="导入书籍"
+        android:textColor="@color/normal_text_color"
+        android:drawableLeft="@mipmap/icon_booklead"
+        android:drawablePadding="@dimen/view_defaultpadding"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bookshelf_history"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

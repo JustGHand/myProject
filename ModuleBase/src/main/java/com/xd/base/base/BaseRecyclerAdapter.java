@@ -1,5 +1,6 @@
 package com.xd.base.base;
 
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -8,24 +9,25 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.xd.base.utils.NStringUtils;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public abstract class BaseRecyclerAdapter<T,T2 extends BaseViewHolder> extends RecyclerView.Adapter<BaseViewHolder> {
 
-    final int itemTypeITEM = 0;
-    final int itemTypeHEAD = 1;
-    final int itemTypeFOOT = 2;
+    public static final int itemTypeITEM = 0;
+    public static final int itemTypeHEAD = 1;
+    public static final int itemTypeFOOT = 2;
 
-    final String UPDATE_ITEM_HEAD = "updateItemHead";
-    final String UPDATE_ITEM_FOOT = "updateItemFoot";
-    final String UPDATE_ITEM_ITEM = "updateItemItem";
+    public static final String UPDATE_ITEM_HEAD = "updateItemHead";
+    public static final String UPDATE_ITEM_FOOT = "updateItemFoot";
+    public static final String UPDATE_ITEM_ITEM = "updateItemItem";
 
 
     public List<T> mDataList;
 
-    private ItemGenerate mItemGenerate;
-    private HeadGenerate mHeadGenerate;
-    private FootGenerate mFootGenerate;
+    public ItemGenerate mItemGenerate;
+    public HeadGenerate mHeadGenerate;
+    public FootGenerate mFootGenerate;
 
     public abstract ItemGenerate GenerateItem();
 
@@ -38,7 +40,7 @@ public abstract class BaseRecyclerAdapter<T,T2 extends BaseViewHolder> extends R
 
     public void updateFootView() {
         if (getFootCount()>0) {
-            notifyItemRangeChanged(getHeadCount() + getItemCount(), getFootCount(),UPDATE_ITEM_FOOT);
+            notifyItemRangeChanged(getHeadCount() + getRealItemCount(), getFootCount(),UPDATE_ITEM_FOOT);
         }
     }
 
@@ -46,6 +48,11 @@ public abstract class BaseRecyclerAdapter<T,T2 extends BaseViewHolder> extends R
         if (getHeadCount() > 0) {
             notifyItemRangeChanged(0, getHeadCount(),UPDATE_ITEM_HEAD);
         }
+    }
+
+
+    public T getData(int pos) {
+        return mDataList.get(pos);
     }
 
     public void updateItem(int itemPos,String dataString) {
@@ -57,6 +64,15 @@ public abstract class BaseRecyclerAdapter<T,T2 extends BaseViewHolder> extends R
         mItemGenerate = GenerateItem();
         mHeadGenerate = GenerateHead();
         mFootGenerate = GenerateFoot();
+    }
+
+    public void move(int fromIndex, int tarIndex) {
+//        Collections.swap(mDataList, fromIndex, tarIndex);
+        notifyItemMoved(fromIndex,tarIndex);
+    }
+
+    public void dismiss(int index) {
+        notifyItemRemoved(index);
     }
 
     public void setData(List<T> dataList) {
@@ -72,24 +88,24 @@ public abstract class BaseRecyclerAdapter<T,T2 extends BaseViewHolder> extends R
         boolean updateItemView(T2 holder, int position,List<Object> payloads);
     }
 
-    public interface HeadGenerate{
-        void BindHeadView(BaseViewHolder holder,int postion);
+    public interface HeadGenerate<T extends BaseViewHolder>{
+        void BindHeadView(T holder,int postion);
 
-        BaseViewHolder creatHeadHolder(@NonNull ViewGroup parent, int viewType);
+        T creatHeadHolder(@NonNull ViewGroup parent, int viewType);
 
         int HeadCount();
 
-        boolean updateHeadView(BaseViewHolder holder, int position);
+        boolean updateHeadView(T holder, int position);
     }
 
-    public interface FootGenerate{
-        void BindFootView(BaseViewHolder holder,int postion);
+    public interface FootGenerate<T extends BaseViewHolder>{
+        void BindFootView(T holder,int postion);
 
-        BaseViewHolder creatFootHolder(@NonNull ViewGroup parent, int viewType);
+        T creatFootHolder(@NonNull ViewGroup parent, int viewType);
 
         int FootCount();
 
-        boolean updateFootView(BaseViewHolder holder, int position);
+        boolean updateFootView(T holder, int position);
     }
 
 
@@ -99,26 +115,37 @@ public abstract class BaseRecyclerAdapter<T,T2 extends BaseViewHolder> extends R
         if (position < getHeadCount()) {
             return itemTypeHEAD;
         }
-        if (position >= getHeadCount() + mDataList.size() && position < getItemCount()) {
+        if (position >= getHeadCount() + getRealItemCount() && position < getItemCount()) {
             return itemTypeFOOT;
         }else {
             return itemTypeITEM;
         }
     }
 
-    @Override
-    public int getItemCount() {
-        return mDataList.size()+getHeadCount()+getFootCount();
+    public int getRealItemCount() {
+
+        int itemCount = 0;
+        if (mDataList == null) {
+            itemCount = 0;
+        }else {
+            itemCount = mDataList.size();
+        }
+        return itemCount;
     }
 
-    private int getHeadCount(){
+    @Override
+    public int getItemCount() {
+        return getRealItemCount() + getHeadCount() + getFootCount();
+    }
+
+    public int getHeadCount(){
         if (mHeadGenerate != null) {
             return mHeadGenerate.HeadCount();
         }
         return 0;
     }
 
-    private int getFootCount(){
+    public int getFootCount(){
         if (mFootGenerate != null) {
             return mFootGenerate.FootCount();
         }
@@ -152,7 +179,7 @@ public abstract class BaseRecyclerAdapter<T,T2 extends BaseViewHolder> extends R
             }
         } else if (getItemViewType(position) == itemTypeFOOT) {
             if (mFootGenerate != null) {
-                int footindex = position-getHeadCount()-mDataList.size();
+                int footindex = position-getHeadCount()-getRealItemCount();
                 mFootGenerate.BindFootView(holder, footindex);
             }
         }else {
@@ -168,21 +195,65 @@ public abstract class BaseRecyclerAdapter<T,T2 extends BaseViewHolder> extends R
             onBindViewHolder(holder, position);
         }else {
             boolean needReBindView = true;
-            if (UPDATE_ITEM_HEAD.equals(payloads.get(0).toString())) {
-                if (mHeadGenerate != null) {
-                    needReBindView = mHeadGenerate.updateHeadView(holder, position);
+            String payload = payloads.get(0).toString();
+            if (NStringUtils.isNotBlank(payload)) {
+                if (UPDATE_ITEM_HEAD.equals(payload)) {
+                    if (mHeadGenerate != null) {
+                        needReBindView = mHeadGenerate.updateHeadView(holder, position);
+                    }
+                } else if (UPDATE_ITEM_FOOT.equals(payload)) {
+                    if (mFootGenerate != null) {
+                        needReBindView = mFootGenerate.updateFootView(holder, position);
+                    }
+                } else {
+                    if (mItemGenerate != null) {
+                        try {
+                            needReBindView = mItemGenerate.updateItemView(holder, position, payloads);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
                 }
-            }else if (UPDATE_ITEM_FOOT.equals(payloads.get(0).toString())) {
-                if (mFootGenerate != null) {
-                    needReBindView = mFootGenerate.updateFootView(holder, position);
-                }
-            } else if (NStringUtils.isNotBlank(payloads.get(0).toString())) {
-                needReBindView = mItemGenerate.updateItemView((T2) holder, position,payloads);
             }
             if (needReBindView) {
                 onBindViewHolder(holder, position);
             }
         }
     }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    public void setViewClick(View view, View.OnClickListener clickListener) {
+        if (view == null) {
+            return;
+        }
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isItemClickable()) {
+                    if (clickListener != null) {
+                        clickListener.onClick(v);
+                        lastClickTime = System.currentTimeMillis();
+                    }
+                }
+            }
+        });
+    }
+
+    private Long lastClickTime;
+
+    private boolean isItemClickable() {
+        if (lastClickTime != null) {
+            long curTime = System.currentTimeMillis();
+            if (curTime - lastClickTime < 500) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 }
 

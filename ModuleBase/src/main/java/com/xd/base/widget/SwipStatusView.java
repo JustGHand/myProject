@@ -28,6 +28,8 @@ public class SwipStatusView extends SwipeRefreshLayout {
     @Retention(RetentionPolicy.SOURCE)
     public @interface Status {}
 
+    private int mStatus = STATUS_EMPTY;
+
     public SwipStatusView(@NonNull Context context) {
         super(context);
         initView(context);
@@ -93,6 +95,7 @@ public class SwipStatusView extends SwipeRefreshLayout {
     }
 
     public void setStatus(@Status int status) {
+        mStatus = status;
         switch (status) {
             case STATUS_COMPLETE:
                 showMainView();
@@ -107,6 +110,10 @@ public class SwipStatusView extends SwipeRefreshLayout {
                 showMainView();
                 break;
         }
+    }
+
+    public int getCurStatus() {
+        return mStatus;
     }
 
 }

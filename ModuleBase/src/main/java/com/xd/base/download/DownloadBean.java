@@ -2,7 +2,14 @@ package com.xd.base.download;
 
 import com.xd.base.utils.NStringUtils;
 
-public class DownloadBean {
+import java.io.Serializable;
+
+public class DownloadBean implements Serializable {
+
+    DownloadBean() {
+
+    }
+
     int id;
     int status;//0:启动中；1：下载中；2：暂停；3：等待；4：结束；-1：错误
     long totalLength;
@@ -12,8 +19,17 @@ public class DownloadBean {
     String tarFilePath;
     String Tag;
     int priority;
+    boolean useTemp = false;
 
     String taskName;
+
+    public boolean isUseTemp() {
+        return useTemp;
+    }
+
+    public void setUseTemp(boolean useTemp) {
+        this.useTemp = useTemp;
+    }
 
     public String getTaskName() {
         return taskName;
@@ -117,6 +133,9 @@ public class DownloadBean {
     public String getFileName() {
         if (NStringUtils.isBlank(fileName) && NStringUtils.isNotBlank(tarFilePath)) {
             fileName = NStringUtils.getFileNameFromPath(tarFilePath);
+        }
+        if (useTemp) {
+            fileName = fileName + ".tmp";
         }
         return fileName;
     }

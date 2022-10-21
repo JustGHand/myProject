@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="speech_bg">#0f0</color>
+    <color name="speech_bg_night">#f00</color>
+    <color name="theme_color">#FE5A17</color>
+
+    <color name="nb.read.font_1">#1d1d1d</color>
+    <color name="nb.read.font_2">#404542</color>
+    <color name="nb.read.font_3">#34332f</color>
+    <color name="nb.read.font_4">#1a1a1a</color>
+    <color name="nb.read.font_5">#1e324d</color>
+    <color name="theme_leather_font">#1d1d1d</color>
+
+    <color name="nb.read.bg.night">#000000</color>
+    <color name="nb.read.font_night">#99ffffff</color>
+
+    <color name="nb.read.bg_1">#cacace</color>
+    <color name="nb.read.bg_2">#b5c6bd</color>
+    <color name="nb.read.bg_3">#d6cabd</color>
+    <color name="nb.read.bg_4">#ded2bd</color>
+    <color name="nb.read.bg_5">#cedbee</color>
+    <color name="nb.read.bg_6">#d9e1b8</color>
+    <color name="nb.read.bg_leather">#e9d1a3</color>
+
+
+    <!--用于次要文字描述(书城)-->
+    <color name="read_btn_color">#656565</color>
+</resources>

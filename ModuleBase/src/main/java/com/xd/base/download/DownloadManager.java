@@ -122,6 +122,19 @@ public class DownloadManager {
             @Override
             public void taskEnd(@NonNull DownloadTask task, @NonNull EndCause cause, @Nullable Exception realCause, @NonNull SpeedCalculator taskSpeed) {
                 if (cause == EndCause.COMPLETED) {
+                    String donwloadFilePath = downloadBean.getTarFilePath()+File.separator+task.getFilename();
+                    if (NStringUtils.isNotBlank(donwloadFilePath)) {
+                        File file = task.getFile();
+                        if (file.exists()&&file.getAbsolutePath().endsWith(".tmp")) {
+                            try {
+                                String finalPath = file.getAbsolutePath().split(".tmp")[0];
+                                File finalFile = new File(finalPath);
+                                file.renameTo(finalFile);
+                            } catch (Exception e) {
+
+                            }
+                        }
+                    }
                     downloadBean.setStatus(4);
                 } else if (cause == EndCause.CANCELED) {
                     downloadBean.setStatus(2);
@@ -164,7 +177,6 @@ public class DownloadManager {
     }
 
     public DownloadBean syncTask(DownloadBean downloadBean) {
-
         BreakpointInfo info = StatusUtil.getCurrentInfo(downloadBean.getUrl(), downloadBean.getTarFilePath(), downloadBean.getFileName());
         if (info != null) {
             long totallength = info.getTotalLength();

@@ -6,6 +6,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Rect;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
@@ -331,5 +333,19 @@ public class DeviceUtils {
      */
     public static boolean hasNotchAtOPPO(Context context) {
         return  context.getPackageManager().hasSystemFeature("com.oppo.feature.screen.heteromorphism");
+    }
+
+
+    /**
+     * 获取wifi IP地址
+     * @param context
+     * @return
+     */
+    public static String getWifiIpAddress(Context context) {
+        WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+        WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+        int ipAddress = wifiInfo.getIpAddress();
+        String ipStr = NStringUtils.intToIp(ipAddress);
+        return ipStr;
     }
 }

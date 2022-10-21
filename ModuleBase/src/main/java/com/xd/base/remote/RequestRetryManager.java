@@ -1,11 +1,11 @@
 package com.xd.base.remote;
 
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.xd.base.file.FileUtils;
-
-import org.greenrobot.greendao.annotation.NotNull;
 
 import java.io.File;
 import java.io.IOException;
@@ -55,7 +55,7 @@ public class RequestRetryManager {
      * 初始化
      * @param tarFilePath 存储数据文件路径
      */
-    public  void init(@NotNull String tarFilePath,RequestListener requestListener) {
+    public  void init(@NonNull String tarFilePath, RequestListener requestListener) {
         mTarFilePath = tarFilePath;
         mRequestListener = requestListener;
         varifyRequestList();

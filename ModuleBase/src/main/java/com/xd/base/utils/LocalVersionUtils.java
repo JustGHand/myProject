@@ -31,6 +31,9 @@ public class LocalVersionUtils {
      * 获取本地软件版本号名称
      */
     public static String getLocalVersionName(Context ctx) {
+        if (ctx == null) {
+            return "";
+        }
         String localVersion = "";
         try {
             PackageInfo packageInfo = ctx.getApplicationContext()
@@ -56,9 +59,9 @@ public class LocalVersionUtils {
         String[] lastVStrs = version.split("\\.");
 
         for (int i=0; i< lastVStrs.length; i++){
-            if (Integer.parseInt(lastVStrs[i])>Integer.parseInt(localVStrs[i])){
+            if (Integer.parseInt(lastVStrs[i]) > Integer.parseInt(localVStrs[i])) {
                 return true;
-            }else if (Integer.parseInt(lastVStrs[i])<Integer.parseInt(localVStrs[i])){
+            } else if (Integer.parseInt(lastVStrs[i]) < Integer.parseInt(localVStrs[i])) {
                 return false;
             }
         }

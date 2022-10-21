@@ -29,10 +29,7 @@
         <attr name="vertical_Space" format="dimension"></attr>
         <attr name="isFull" format="boolean"></attr>
         <attr name="maxLines" format="integer"></attr><!--  0表示无限制-->
-    </declare-styleable>
-
-    <declare-styleable name="ExpandableTextView">
-        <attr name="trimLength" format="integer" />
+        <attr name="expandviewId" format="reference"></attr>
     </declare-styleable>
 
     <declare-styleable name="CustomScrollView">
@@ -41,11 +38,37 @@
         <attr name="validDistance" format="integer" />
     </declare-styleable>
 
+    <declare-styleable name="YDXSeekBar">
+        <attr name="seekbarNightmode" format="boolean" />
+        <attr name="android:thumb"/>
+        <attr name="android:progressDrawable"/>
+        <attr name="android:layout_width"/>
+        <attr name="progressHight" format="dimension"/>
+        <attr name="thumbSize" format="dimension"/>
+        <attr name="showProgresstext" format="boolean"/>
+        <attr name="showAnchor" format="boolean"/>
+        <attr name="anchorSize" format="dimension"/>
+        <attr name="anchorDrawable" format="reference"/>
+        <attr name="anchorNightDrawable" format="reference"/>
+        <attr name="progressDrawableLeftSize" format="dimension"/>
+        <attr name="progressDrawableRightSize" format="dimension"/>
+        <attr name="progressDrawableLeft" format="reference"/>
+        <attr name="progressDrawableRight" format="reference"/>
+        <attr name="progressDrawableLeftNight" format="reference"/>
+        <attr name="progressDrawableRightNight" format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="DayNightView">
+        <attr name="cutLineNightmode" format="boolean"/>
+        <attr name="cutlineColor" format="reference" />
+        <attr name="cutlineNightColor" format="reference" />
+    </declare-styleable>
 
     <declare-styleable name="DayNightTextView">
         <attr name="textNightmode" format="boolean"/>
         <attr name="nightTextColor" format="color"/>
         <attr name="nightText" format="string"/>
+        <attr name="dayText" format="string"/>
         <attr name="nightBackground" format="reference"/>
         <attr name="nightDrawableLeft" format="reference"/>
         <attr name="nightDrawableRight" format="reference"/>
@@ -90,5 +113,57 @@
 
     <declare-styleable name="StyleTextView">
         <attr name="readStyle" format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="ExpandableTextView">
+        <attr name="maxCollapsedLines" format="integer"/>
+        <attr name="animDuration" format="integer"/>
+        <attr name="animAlphaStart" format="float"/>
+        <attr name="expandIndicator" format="reference"/>
+        <attr name="collapseIndicator" format="reference"/>
+        <attr name="expandToggleType" format="enum">
+            <enum name="ImageButton" value="0"/>
+            <enum name="TextView" value="1"/>
+            <enum name="Container" value="2"/>
+        </attr>
+        <attr name="expandableTextId" format="reference"/>
+        <attr name="expandCollapseToggleId" format="reference"/>
+        <attr name="expandToggleOnTextClick" format="boolean"/>
+    </declare-styleable>
+
+
+    <declare-styleable name="FastScrollRecyclerView">
+        <attr name="fastScrollThumbColor" format="reference|color" />
+        <attr name="fastScrollTrackColor" format="reference|color" />
+        <attr name="fastScrollPopupBgColor" format="reference|color" />
+        <attr name="fastScrollPopupTextColor" format="reference|color" />
+        <attr name="fastScrollPopupTextSize" format="reference|dimension" />
+        <attr name="fastScrollPopupBackgroundSize" format="reference|dimension" />
+        <attr name="fastScrollPopupPosition" format="enum">
+            <enum name="adjacent" value="0"/>
+            <enum name="center" value="1"/>
+        </attr>
+        <attr name="fastScrollAutoHide" format="reference|boolean" />
+        <attr name="fastScrollAutoHideDelay" format="reference|integer" />
+        <attr name="fastScrollThumbInactiveColor" format="reference|boolean" />
+        <attr name="fastScrollThumbDrawable" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="YDXRatingBar" >
+        <!--默认图片-->
+        <attr name="statrNormal" format="reference"/>
+        <!--选中图片-->
+        <attr name="statrFocus" format="reference"/>
+        <!--星星总数量-->
+        <attr name="totalNumner" format="integer"/>
+        <!--星间隔-->
+        <attr name="intervalNumner" format="dimension"/>
+        <!--是否可以选中-->
+        <attr name="isSelect" format="boolean"/>
+        <!--选中星星数量-->
+        <attr name="selectNumber" format="integer"/>
+        <!--图片尺寸-->
+        <attr name="starWidth" format="dimension"/>
+        <attr name="starHeight" format="dimension"/>
     </declare-styleable>
 </resources>

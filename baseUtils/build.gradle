@@ -36,6 +36,9 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
+    compileOnly "io.reactivex.rxjava2:rxandroid:2.0.0"
+    compileOnly "io.reactivex.rxjava2:rxjava:2.0.0"
+
     implementation 'dev.dworks.libs:volleyplus:0.1.4'
     implementation 'com.google.code.gson:gson:2.8.6'
 }

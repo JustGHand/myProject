@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/activity_back"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="250dp"
+        android:background="@color/theme_color"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <com.pw.codeset.weidgt.ActivityHeaderView
+        android:id="@+id/activity_header"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:title_text="@string/bookshelf_title"
+        app:showmenu="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="spread_inside"/>
+
+    <ImageView
+        android:id="@+id/lb_wifi_icon"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:src="@mipmap/icon_wifi_large"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activity_header"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="32dp"
+        />
+
+    <TextView
+        android:id="@+id/lb_wifi_tip"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/leadbook_tip"
+        android:textColor="@color/white"
+        android:lineSpacingExtra="4dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/lb_wifi_icon"
+        app:layout_constraintTop_toTopOf="@id/lb_wifi_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/lb_wifi_icon"
+        android:layout_marginRight="32dp"
+        android:layout_marginLeft="12dp"
+        />
+
+    <LinearLayout
+        android:id="@+id/lb_wifi_content"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/back_white_radiusall"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lb_wifi_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="40dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/leadbook_wifi_title"
+            android:textStyle="bold"
+            android:textColor="@color/normal_title_color"
+            android:layout_gravity="left"
+            android:layout_marginTop="14dp"
+            android:layout_marginLeft="14dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/leadbook_wifi_tip"
+            android:textColor="@color/normal_text_color"
+            android:layout_marginTop="14dp"
+            />
+
+        <TextView
+            android:id="@+id/lb_wifi_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="http://"
+            android:textSize="19sp"
+            android:textColor="@color/normal_import_color"
+            android:gravity="center"
+            android:layout_marginTop="12dp"
+            />
+
+        <TextView
+            android:id="@+id/lb_wifi_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/leadbook_btn_wifi"
+            android:textColor="@color/white"
+            android:textSize="19sp"
+            android:textStyle="bold"
+            android:background="@drawable/btn_back_support"
+            android:paddingTop="7dp"
+            android:paddingBottom="7dp"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="14dp"
+            />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/lb_local_content"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/back_white_radiusall"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lb_wifi_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="40dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/leadbook_local_title"
+            android:textStyle="bold"
+            android:textColor="@color/normal_title_color"
+            android:layout_gravity="left"
+            android:layout_marginTop="14dp"
+            android:layout_marginLeft="14dp"
+            />
+
+        <TextView
+            android:id="@+id/lb_local_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/leadbook_btn_local"
+            android:textColor="@color/white"
+            android:textSize="19sp"
+            android:textStyle="bold"
+            android:background="@drawable/btn_back_support"
+            android:paddingTop="7dp"
+            android:paddingBottom="7dp"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="14dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/leadbook_locak_tip"
+            android:gravity="center"
+            android:textColor="@color/normal_text_color"
+            android:layout_marginBottom="14dp"
+            />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

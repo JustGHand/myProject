@@ -354,7 +354,7 @@ public class NStringUtils {
         sb.append(ipInt & 0xFF).append(".");
         sb.append(ipInt >> 8 & 0xFF).append(".");
         sb.append(ipInt >> 16 & 0xFF).append(".");
-        sb.append(ipInt >> 24 & 0xFF).append(".");
+        sb.append(ipInt >> 24 & 0xFF);
         return sb.toString();
     }
 

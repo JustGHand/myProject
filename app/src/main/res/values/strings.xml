@@ -1,0 +1,81 @@
+<resources>
+    <string name="app_name">MyTool</string>
+
+    <string name="main_activity">MyTool</string>
+    <string name="bezier_activity">贝塞尔曲线</string>
+    <string name="touch_activity">触摸控件</string>
+    <string name="login_mvp_activity">登录(MVP)</string>
+    <string name="games_activity">GAMEs</string>
+    <string name="pc_connect_activity">PC交互</string>
+
+    <string name="loading">加载中</string>
+
+    <!-- dialog-->
+    <string name="dialog_default_confirm">确认</string>
+    <string name="dialog_default_cancel">取消</string>
+
+    <string name="dialog_default_title">标题</string>
+    <string name="dialog_default_content">内容</string>
+
+
+
+    <string name="login_username_title">用户名</string>
+    <string name="login_username_hint">请输入用户名</string>
+    <string name="login_password_title">密码</string>
+    <string name="login_password_hint">请输入密码</string>
+    <string name="login_btn">登录</string>
+
+
+
+    <string name="game_block">争霸艾泽拉斯</string>
+
+
+    <string name="game_minesweep">扫雷</string>
+    <string name="game_minesweep_tip">单击标记；双击打开</string>
+
+<!--  备忘录  -->
+    <string name="notes_activity">备忘录</string>
+    <string name="notes_edit_activity">编辑备忘录</string>
+    <string name="notes_edit_title">标题</string>
+    <string name="notes_edit_title_hint">备忘录</string>
+    <string name="notes_edit_date">日期</string>
+    <string name="notes_edit_content">内容</string>
+    <string name="notes_edit_content_hint">无</string>
+    <string name="notes_edit_state">状态</string>
+
+    <string name="notes_dialog_title">确认完成？</string>
+
+
+    <string name="pc_wifi_error">请正确连接WIFI</string>
+
+<!--    read-->
+    <string name="read_act">阅读</string>
+    <string name="bookshelf_title">书架</string>
+
+<!--    book-->
+    <string name="book_default_name">标题</string>
+
+<!--    leadBook-->
+    <string name="leadbook_title">书籍导入</string>
+    <string name="leadbook_tip">请取保您的手机和传输设备在同一局域网内，传输过程中请勿关闭此页面</string>
+    <string name="leadbook_wifi_title">WIFI导入</string>
+    <string name="leadbook_wifi_tip">在电脑浏览器中访问以下地址</string>
+    <string name="leadbook_btn_wifi">复制地址</string>
+
+    <string name="leadbook_local_title">本地上传</string>
+    <string name="leadbook_btn_local">一键上传</string>
+    <string name="leadbook_locak_tip">仅支持TXT、EPUB格式</string>
+
+    <string name="leadbook_wifi_error">请正确连接WIFI</string>
+
+
+
+
+<!--    iconfont-->
+    <string name="iconfont_add">&#xe609;</string>
+    <string name="iconfont_refresh">&#xe622;</string>
+    <string name="iconfont_undo">&#xe62b;</string>
+    <string name="iconfont_back">&#xe601;</string>
+    <string name="iconfont_menu">&#xe620;</string>
+    <string name="iconfont_correct">&#xe6aa;</string>
+</resources>

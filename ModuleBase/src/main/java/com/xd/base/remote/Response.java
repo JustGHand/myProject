@@ -3,6 +3,7 @@ public class Response<T> {
 
     private int code; // 返回的code
     private T data; // 具体的数据结果
+    private long time;
     private String msg; // message 可用来返回接口的说明
 
     public int getCode() {
@@ -27,5 +28,13 @@ public class Response<T> {
 
     public void setMsg(String msg) {
         this.msg = msg;
+    }
+
+    public long getTime() {
+        return time;
+    }
+
+    public void setTime(long time) {
+        this.time = time;
     }
 }

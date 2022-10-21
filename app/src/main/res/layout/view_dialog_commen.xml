@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/view_defaultmargin_double"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@drawable/back_alpha_white_radiusall"
+        >
+
+        <TextView
+            android:id="@+id/centerdialog_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/dialog_default_title"
+            android:textSize="@dimen/title_textsize"
+            android:textColor="@color/normal_title_color"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_margin="@dimen/view_defaultmargin"
+            android:visibility="visible"
+            />
+
+        <TextView
+            android:id="@+id/centerdialog_content"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/dialog_default_content"
+            android:textSize="@dimen/normal_textsize"
+            android:textColor="@color/normal_text_color"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/centerdialog_title"
+            android:layout_marginTop="@dimen/view_defaultmargin"
+            android:visibility="visible"
+            />
+
+        <TextView
+            android:id="@+id/centerdialog_cancel"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/clickable_minsize"
+            android:text="@string/dialog_default_cancel"
+            android:textColor="@color/normal_support_color"
+            android:textSize="@dimen/btn_textsize"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/centerdialog_confirm"
+            app:layout_constraintTop_toBottomOf="@id/centerdialog_content"
+            app:layout_goneMarginTop="@dimen/view_defaultmargin"
+            android:visibility="gone"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="0dp"
+            />
+
+        <View
+            android:id="@+id/centerdialog_deliverline1"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/cutline_width"
+            android:background="@color/border_color"
+            app:layout_constraintStart_toStartOf="@id/centerdialog_cancel"
+            app:layout_constraintEnd_toEndOf="@id/centerdialog_confirm"
+            app:layout_constraintTop_toTopOf="@+id/centerdialog_confirm"
+            app:layout_constraintBottom_toTopOf="@id/centerdialog_confirm"
+            />
+        <View
+            android:id="@+id/centerdialog_deliverline2"
+            android:layout_width="@dimen/cutline_width"
+            android:layout_height="0dp"
+            android:background="@color/border_color"
+            app:layout_constraintStart_toEndOf="@id/centerdialog_cancel"
+            app:layout_constraintEnd_toStartOf="@id/centerdialog_confirm"
+            app:layout_constraintTop_toTopOf="@id/centerdialog_confirm"
+            app:layout_constraintBottom_toBottomOf="@id/centerdialog_confirm"
+            />
+
+        <TextView
+            android:id="@+id/centerdialog_confirm"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/clickable_minsize"
+            android:text="@string/dialog_default_confirm"
+            android:textColor="@color/normal_import_color"
+            android:textSize="@dimen/btn_textsize"
+            android:gravity="center"
+            app:layout_constraintStart_toEndOf="@id/centerdialog_cancel"
+            app:layout_constraintTop_toTopOf="@id/centerdialog_cancel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_goneMarginTop="@dimen/view_defaultmargin"
+            app:layout_goneMarginLeft="0dp"
+            android:layout_marginRight="0dp"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

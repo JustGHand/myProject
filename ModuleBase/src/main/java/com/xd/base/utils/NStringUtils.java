@@ -5,6 +5,7 @@ import android.content.ClipboardManager;
 import android.content.Context;
 
 import androidx.annotation.StringRes;
+import androidx.core.text.HtmlCompat;
 
 import java.text.DateFormat;
 import java.text.DecimalFormat;
@@ -81,53 +82,58 @@ public class NStringUtils {
         return finalDate;
     }
 
+    public static String getTimeStr(int second) {
+        if (second <= 0) {
+            return "";
+        }
+        if (second < 60) {
+            return second + "秒";
+        }
+        if (second < (60 * 60)) {
+            return (second / 60) + "分钟";
+        }
+        if (second < (60 * 60 * 24)) {
+            return (second / (60 * 60)) + "小时";
+        }
+        return (second / (60 * 60 * 24)) + "天";
+    }
+
     //将日期转换成昨天、今天、明天
     public static String dateConvert(String source,String pattern){
+        if (isBlank(source)) {
+            return "很久以前";
+        }
         DateFormat format = new SimpleDateFormat(pattern);
-        Calendar calendar = Calendar.getInstance();
         try {
             Date date = format.parse(source);
-            long curTime = calendar.getTimeInMillis();
-            calendar.setTime(date);
+            if (date == null || date.getTime() <= 0) {
+                return "很久以前";
+            }
+            long curTime = System.currentTimeMillis();
             //将MISC 转换成 sec
             long difSec = Math.abs((curTime - date.getTime())/1000);
-            long difMin =  difSec/60;
-            long difHour = difMin/60;
-            long difDate = difHour/60;
-            int oldHour = calendar.get(Calendar.HOUR);
-            //如果没有时间
-            if (oldHour == 0){
-                //比日期:昨天今天和明天
-                if (difDate == 0){
-                    return "今天";
-                }
-                else if (difDate < DAY_OF_YESTERDAY){
-                    return "昨天";
-                }
-                else {
-                    DateFormat convertFormat = new SimpleDateFormat("yyyy-MM-dd");
-                    String value = convertFormat.format(date);
-                    return value;
-                }
-            }
 
-            if (difSec < TIME_UNIT){
-                return difSec+"秒前";
+            int defNum = 0;
+            String defUnit = null;
+            if (difSec < 60) {
+                return "刚刚";
+            } else if (difSec < 60 * 60) {
+                defNum = (int) (difSec / 60);
+                defUnit = "分钟";
+            } else if (difSec < 60 * 60 * 24) {
+                defNum = (int) (difSec / (60 * 60));
+                defUnit = "小时";
+            } else if (difSec < 60 * 60 * 24 * 30) {
+                defNum = (int) (difSec / (60 * 60 * 24));
+                defUnit = "天";
+            } else if (difSec < 60 * 60 * 24 * 30*12) {
+                defNum = (int) (difSec / (60 * 60 * 24 * 30));
+                defUnit = "月";
+            } else {
+                defNum = (int) (difSec / (60 * 60 * 24 * 30*12));
+                defUnit = "年";
             }
-            else if (difMin < TIME_UNIT){
-                return difMin+"分钟前";
-            }
-            else if (difHour < HOUR_OF_DAY){
-                return difHour+"小时前";
-            }
-            else if (difDate < DAY_OF_YESTERDAY){
-                return "昨天";
-            }
-            else {
-                DateFormat convertFormat = new SimpleDateFormat("yyyy-MM-dd");
-                String value = convertFormat.format(date);
-                return value;
-            }
+            return defNum + defUnit+"前";
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -135,59 +141,6 @@ public class NStringUtils {
     }
 
 
-    //将日期转换成昨天、今天、明天
-    public static String timeConvert(Long time,String pattern){
-        DateFormat format = new SimpleDateFormat(pattern);
-        Calendar calendar = Calendar.getInstance();
-        String source = dateConvert(time, pattern);
-        try {
-            Date date = format.parse(source);
-            long curTime = calendar.getTimeInMillis();
-            calendar.setTime(date);
-            //将MISC 转换成 sec
-            long difSec = Math.abs((curTime - date.getTime())/1000);
-            long difMin =  difSec/60;
-            long difHour = difMin/60;
-            long difDate = difHour/60;
-            int oldHour = calendar.get(Calendar.HOUR);
-            //如果没有时间
-            if (oldHour == 0){
-                //比日期:昨天今天和明天
-                if (difDate == 0){
-                    return "今天";
-                }
-                else if (difDate < DAY_OF_YESTERDAY){
-                    return "昨天";
-                }
-                else {
-                    DateFormat convertFormat = new SimpleDateFormat("yyyy-MM-dd");
-                    String value = convertFormat.format(date);
-                    return value;
-                }
-            }
-
-            if (difSec < TIME_UNIT){
-                return difSec+"秒前";
-            }
-            else if (difMin < TIME_UNIT){
-                return difMin+"分钟前";
-            }
-            else if (difHour < HOUR_OF_DAY){
-                return difHour+"小时前";
-            }
-            else if (difDate < DAY_OF_YESTERDAY){
-                return "昨天";
-            }
-            else {
-                DateFormat convertFormat = new SimpleDateFormat("yyyy-MM-dd");
-                String value = convertFormat.format(date);
-                return value;
-            }
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return source;
-    }
 
     public static String toFirstCapital(String str){
         return str.substring(0,1).toUpperCase()+str.substring(1);
@@ -394,4 +347,36 @@ public class NStringUtils {
         }
         return path.substring(path.lastIndexOf("/")+1,path.length());
     }
+
+    public static String getFileSuffix(String path) {
+        if (isBlank(path)) {
+            return null;
+        }
+        return path.substring(path.lastIndexOf(".") + 1, path.length());
+    }
+
+    public static boolean isFileReadable(String filePath) {
+        if (isBlank(filePath)) {
+            return false;
+        }
+        String suffix = getFileSuffix(filePath);
+        if (NStringUtils.isNotBlank(suffix)
+                &&(suffix.equalsIgnoreCase("txt")
+                                || suffix.equalsIgnoreCase("epub"))) {
+            return true;
+        }
+        return false;
+    }
+
+
+
+    public static String intToIp(int ipInt) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(ipInt & 0xFF).append(".");
+        sb.append(ipInt >> 8 & 0xFF).append(".");
+        sb.append(ipInt >> 16 & 0xFF).append(".");
+        sb.append(ipInt >> 24 & 0xFF);
+        return sb.toString();
+    }
+
 }

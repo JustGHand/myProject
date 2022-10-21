@@ -10,4 +10,12 @@ public class BaseViewHolder extends RecyclerView.ViewHolder{
     public BaseViewHolder(@NonNull View itemView) {
         super(itemView);
     }
+
+    public void onSelected(boolean selected) {
+
+    }
+
+    public boolean dragAble() {
+        return false;
+    }
 }

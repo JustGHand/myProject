@@ -1,0 +1,31 @@
+html { margin: 0px; padding: 0px; overflow: visible; }
+body { padding: 0px;margin: 0px; overflow: hidden; font-size: 14px; font-family:tahoma,  宋体, Arial, "MS Trebuchet", sans-serif; background: #4280B5}
+#wrapper { display: flex; justify-content: center; align-items: center; }
+#content { box-sizing: border-box; display: flex; justify-content: space-between; width: 950px; height: 100vh; padding-top: 115px;}
+#left { margin: 0px 0px 0px 50px; }
+#logo { position: absolute; top: 114px;}
+#logo .title { display: flex; align-items: center; }
+#logo .title .name { margin-left: 13px; }
+.hint { margin-top: 80px; font-size: 18px; color: #FFFFFF; }
+.file_upload { cursor: pointer; position: absolute; top:0px; left:-250px; width:500px; height:500px;font-size: 500px; opacity: 0; -moz-opacity: 0; filter:alpha(opacity=0); }
+#right { display: flex; flex-direction: column; width: 520px; height: 74vh; }
+#right .content_title { padding: 22px 20px 15px; border-top-left-radius: 12px; border-top-right-radius: 12px; background: #7DAED9; color: #FFFFFF; font-size: 24px; font-weight: 500;}
+#right .table_header { padding: 17px 0 18px 20px; background: #DBEEFF; font-size: 18px; color: #4E4E4E;}
+#right .table_header .column { float: left; }
+#right .table_header .filename { width: 240px; }
+#right .table_header .size { width: 130px; text-align: center;}
+#right .table_header .operate { width: 130px; text-align:center; }
+#right .files { flex: 1; border-bottom-left-radius: 12px; border-bottom-right-radius: 12px; background: #FFFFFF; width:520px; overflow: auto;}
+#right .file { height: 60px; padding-left: 20px; line-height: 60px; color:#1B1B1B; font-size: 18px; position: relative; }
+#right .progress_wrapper { color:#FFF; background-image: url('../images/progress_bg.jpg'); background-repeat: repeat-x;}
+#right .progress { position: absolute; top:0px; left:0px; height: 60px; width: 0px;  background-image: url('../images/progress.jpg'); background-repeat: repeat-x; z-index: 1; }
+#right .files .odd { background-color: #F5F5F5; }
+#right .files .column { position:relative; float: left; height: 60px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; word-wrap: normal; z-index:2; }
+#right .files .filename { width: 240px; }
+#right .files .size { width: 130px; text-align: center; }
+#right .files .precent { width: 75px; text-align: right;}
+#right .files .trash { margin-left: 25px; width:20px; height: 60px; background-position: center; background-repeat: no-repeat; background-image: url('../images/trash.png'); cursor: pointer; }
+#right .files .trash_white { margin-left: 0px; width:20px; height: 60px; background-position: center; background-repeat: no-repeat; background-image: url('../images/trash_white.png'); cursor: pointer; }
+#right .files .download { margin-left: 35px; width: 20px; height: 60px; background-position: right; background-repeat: no-repeat; background-image: url('../images/download.png'); cursor: pointer; }
+
+#drag_area { width:257px; height:221px; margin-top: 88px; background-image: url("../images/bg_drag.png"); background-repeat:no-repeat; background-size: 100%; }

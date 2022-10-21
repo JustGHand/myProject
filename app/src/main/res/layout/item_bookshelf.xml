@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/item_bs_book_cover"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/image_bookcover_default"
+        android:adjustViewBounds="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/item_bs_book_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/book_default_name"
+        android:textColor="@color/normal_title_color"
+        android:textSize="@dimen/title_textsize"
+        android:textStyle="bold"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/item_bs_book_cover"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="@dimen/view_defaultpadding_double"
+        android:layout_marginBottom="@dimen/view_defaultpadding_double"
+        />
+
+    <ImageView
+        android:id="@+id/item_bs_selector"
+        android:layout_width="@dimen/clickable_minsize"
+        android:layout_height="@dimen/clickable_minsize"
+        android:scaleType="centerInside"
+        android:adjustViewBounds="true"
+        android:src="@drawable/icon_selector_selector"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
