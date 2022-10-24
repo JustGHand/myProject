@@ -82,7 +82,7 @@ public class ReadView extends FrameLayout {
     public void nextChapter() {
         int nextChapterPos = mCurChapterPos + 1;
         if (nextChapterPos<mChapterList.size()) {
-            toChapter(nextChapterPos);
+            toChapter(nextChapterPos,true);
         }else {
             Toast.makeText(getContext(),"已经是最后一章了",Toast.LENGTH_SHORT).show();
         }
@@ -90,14 +90,18 @@ public class ReadView extends FrameLayout {
 
     public void preChapter() {
         int preChapterPos = mCurChapterPos - 1;
-        if (preChapterPos>0){
-            toChapter(preChapterPos);
-        }else {
-            Toast.makeText(getContext(),"已经是第一章了",Toast.LENGTH_SHORT).show();
+        if (preChapterPos >= 0) {
+            toChapter(preChapterPos, false);
+        } else {
+            Toast.makeText(getContext(), "已经是第一章了", Toast.LENGTH_SHORT).show();
         }
     }
 
     public void toChapter(int chapterPos) {
+        toChapter(chapterPos,true);
+    }
+
+    public void toChapter(int chapterPos,boolean isNext) {
         if (mChapterList == null || mChapterList.size() <= 0) {
             return;
         }
@@ -107,10 +111,14 @@ public class ReadView extends FrameLayout {
                 BufferedReader br = mData.getChapterReader(chaptersBean);
                 try {
                     if (br != null) {
-                        mCurPagePos = 0;
                         mCurChapterPageList = PageDrawManager.getInstance().loadPages(chaptersBean, 0, br, getContext());
 
                         if (mCurChapterPageList != null && mCurChapterPageList.size() > 0) {
+                            if (isNext) {
+                                mCurPagePos = 0;
+                            }else {
+                                mCurPagePos = mCurChapterPageList.size() - 1;
+                            }
                             mCurChapterPos = chapterPos;
                             mCurPage = getPage();
                             mCurPage.setContent(mCurChapterPageList.get(mCurPagePos));
