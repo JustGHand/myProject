@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="daymode_progress_progresscolor">#1A000000</color>
+    <color name="nightmode_progress_progresscolor">#1A000000</color>
+
+    <!--    绿色-->
+    <color name="read_pagestyle_green_dialogback">#E1F5E0</color>
+    <color name="read_pagestyle_green_fontcolor">#1A3119</color>
+    <color name="read_pagestyle_green_pageback">#CDE8CA</color>
+    <color name="read_pagestyle_green_highlightback">#0b78e5</color>
+    <color name="read_pagestyle_green_highlighttextcolor">#ffffff</color>
+    <color name="read_pagestyle_green_progress_progresscolor">@color/daymode_progress_progresscolor</color>
+    <color name="read_pagestyle_green_progress_backcolor">#FFCDE8CA</color>
+    <color name="read_pagestyle_green_progress_thumbcolor">@color/read_pagestyle_green_dialogback</color>
+
+
+</resources>

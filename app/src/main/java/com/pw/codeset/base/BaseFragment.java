@@ -1,28 +1,32 @@
 package com.pw.codeset.base;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import com.pw.codeset.R;
-import com.pw.codeset.application.MyApp;
 import com.pw.codeset.weidgt.ActivityHeaderView;
 import com.pw.codeset.weidgt.MyProgressDialog;
 
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseFragment extends Fragment {
+
+    View mRootView;
 
     private static final int HANDLER_HIDE_DIALOG = 1;
     private static final int HANDLER_FINISH_DATA = 11;
@@ -39,17 +43,32 @@ public abstract class BaseActivity extends AppCompatActivity {
     private Animation mBottomOutAnim;
     private Animation mBottomInAnim;
 
+    @Nullable
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(getContentId());
-        initHeader();
-        initView();
-        isCreating = true;
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        if (mRootView == null) {
+            mRootView = LayoutInflater.from(getContext()).inflate(getContentId(), null,false);
+            isCreating = true;
+        }
+        return mRootView;
     }
 
-    private void initHeader() {
-        mHeader = findViewById(R.id.activity_header);
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        if (isCreating) {
+            initHeader(view);
+            initView(view);
+        }
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    private void initHeader(View view) {
+        mHeader = view.findViewById(R.id.activity_header);
         if (mHeader != null) {
             mHeader.setOnBackClick(new View.OnClickListener() {
                 @Override
@@ -71,8 +90,9 @@ public abstract class BaseActivity extends AppCompatActivity {
     private boolean isCreating = false;
 
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
+
         if (isCreating) {
 //            showLoading();
             startDataThread();
@@ -89,8 +109,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onAttachedToWindow() {
-        super.onAttachedToWindow();
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
         Log.e("BaseActivity", "onAttachedToWindow");
         haveAttachedToWindow = true;
         try {
@@ -100,15 +120,15 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
-
     @Override
-    protected void onDestroy() {
+    public void onDestroy() {
         handler.removeCallbacksAndMessages(null);
         handler = null;
         if (mResumeThread != null && mResumeThread.isAlive()) {
             mResumeThread.interrupt();
             mResumeThread = null;
         }
+        mRootView = null;
         super.onDestroy();
     }
 
@@ -121,7 +141,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     private void startDataThread() {
-        showLoading();
         mResumeThread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -148,13 +167,12 @@ public abstract class BaseActivity extends AppCompatActivity {
         if (handler != null) {
             handler.sendEmptyMessage(HANDLER_FINISH_DATA);
         }
-        hideLoading();
     }
 
 
     protected abstract int getContentId();
 
-    protected abstract void initView();
+    protected abstract void initView(View view);
 
     /**
      * run on new thread
@@ -167,7 +185,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     protected void onBackClick(View view) {
-        finish();
+
     }
 
     protected void onMenuClick(View view) {
@@ -186,13 +204,13 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     public void showProgressDialog(String title,boolean cancelAble) {
         if (progressDialog == null) {
-            progressDialog = new MyProgressDialog(this, title, cancelAble);
+            progressDialog = new MyProgressDialog(getActivity(), title, cancelAble);
         }else {
             progressDialog.setContentText(title);
             progressDialog.setCancelable(cancelAble);
             progressDialog.setCanceledOnTouchOutside(cancelAble);
         }
-        if (!this.isFinishing()) {
+        if (!this.getActivity().isFinishing()) {
             showDialogTime = System.currentTimeMillis();
             progressDialog.show();
         }
@@ -251,8 +269,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     @SuppressLint("ResourceType")
     private void initAnim() {
 
-        mBottomInAnim = AnimationUtils.loadAnimation(this, R.animator.slide_top_in);
-        mBottomOutAnim = AnimationUtils.loadAnimation(this, R.animator.slide_top_out);
+        mBottomInAnim = AnimationUtils.loadAnimation(getContext(), R.animator.slide_top_in);
+        mBottomOutAnim = AnimationUtils.loadAnimation(getContext(), R.animator.slide_top_out);
         mBottomOutAnim.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {

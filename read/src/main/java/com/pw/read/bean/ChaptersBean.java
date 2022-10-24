@@ -1,4 +1,4 @@
-package com.pw.codeset.databean;
+package com.pw.read.bean;
 
 import java.io.Serializable;
 

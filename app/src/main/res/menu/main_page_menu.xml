@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/main_menu_notes"
+        android:icon="@drawable/selector_icon_notes"
+        android:title="@string/notes_activity"
+        />
+
+    <item
+        android:id="@+id/main_menu_read"
+        android:icon="@drawable/selector_icon_read"
+        android:title="@string/read_act"
+        />
+
+    <item
+        android:id="@+id/main_menu_games"
+        android:icon="@drawable/selector_icon_game"
+        android:title="@string/games_activity"
+        />
+
+</menu>

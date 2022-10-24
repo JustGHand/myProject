@@ -4,7 +4,7 @@ import android.app.Activity;
 
 import com.pw.codeset.activity.read.BookManager;
 import com.pw.codeset.databean.BookBean;
-import com.pw.codeset.databean.ChaptersBean;
+import com.pw.read.bean.ChaptersBean;
 import com.pw.codeset.utils.FileUtil;
 import com.pw.codeset.utils.IOUtils;
 import com.pw.codeset.utils.MD5Utils;

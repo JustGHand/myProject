@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:padding="@dimen/view_defaultpadding_double"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
@@ -21,7 +22,7 @@
         android:layout_height="wrap_content"
         android:text="@string/book_default_name"
         android:textColor="@color/normal_title_color"
-        android:textSize="@dimen/title_textsize"
+        android:textSize="@dimen/normal_textsize"
         android:textStyle="bold"
         android:gravity="center"
         app:layout_constraintStart_toStartOf="parent"

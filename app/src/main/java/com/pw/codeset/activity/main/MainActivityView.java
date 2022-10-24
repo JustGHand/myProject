@@ -1,11 +1,16 @@
 package com.pw.codeset.activity.main;
 
 import android.content.Intent;
+import android.view.MenuItem;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.pw.codeset.R;
 import com.pw.codeset.activity.bezier.BezierCurveActivity;
 import com.pw.codeset.activity.games.GamesActivity;
@@ -24,14 +29,6 @@ import java.util.List;
 
 public class MainActivityView extends BaseActivity {
 
-    private String FUNC_BAZIER;
-    private String FUNC_TOUCHVIEW;
-    private String FUNC_MVP_LOGIN;
-    private String FUNC_PC_CONNECT;
-    private String FUNC_GAMES;
-    private String FUNC_NOTES;
-    private String FUNC_READ;
-
     public static MainActivityView mInstance;
 
     public static MainActivityView getInstance() {
@@ -44,112 +41,60 @@ public class MainActivityView extends BaseActivity {
         return R.layout.activity_main;
     }
 
-    RecyclerView mBtnList;
-    MainSupportFuncAdapter mAdapter;
-    List<String> mSupportFuncList;
+    ViewPager mViewPager;
+    FragmentPagerAdapter mViewPagerAdapter;
+    BottomNavigationView mBottomView;
 
     @Override
     protected void initView() {
 
-        mAdapter = new MainSupportFuncAdapter(this);
-        mAdapter.setItemCLickListener(new BaseRecyclerAdapter.onItemClickListener<String>() {
+        mViewPagerAdapter = new MainPageAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_SET_USER_VISIBLE_HINT);
+        mViewPager = findViewById(R.id.main_viewpager);
+        mViewPager.setAdapter(mViewPagerAdapter);
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void onClick(String data, int pos) {
-                if (NStringUtils.isNotBlank(data)) {
-                    if (data.equals(FUNC_BAZIER)) {
-                        toBazier(null);
-                    } else if (data.equals(FUNC_TOUCHVIEW)) {
-                        toTouchView(null);
-                    } else if (data.equals(FUNC_MVP_LOGIN)) {
-                        toLoginMvp(null);
-                    } else if (data.equals(FUNC_GAMES)) {
-                        toGames(null);
-                    } else if (data.equals(FUNC_PC_CONNECT)) {
-                        toPcConnect(null);
-                    } else if (data.equals(FUNC_NOTES)) {
-                        toNotes(null);
-                    } else if (data.equals(FUNC_READ)) {
-                        toRead(null);
-                    }else {
-                        MyApp.getInstance().showToast("未知错误");
-                    }
-                }
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
             }
 
             @Override
-            public boolean onLongClick(String data, int pos) {
-                return false;
+            public void onPageSelected(int position) {
+                mBottomView.getMenu().getItem(position).setChecked(true);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
             }
         });
 
-        mBtnList = findViewById(R.id.main_btn_list);
-        mBtnList.setLayoutManager(new GridLayoutManager(this, 3));
-        mBtnList.setAdapter(mAdapter);
+        mBottomView = findViewById(R.id.main_bottom_menu);
+        mBottomView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.main_menu_notes:
+                        mViewPager.setCurrentItem(0);
+                        break;
+
+                    case R.id.main_menu_read:
+                        mViewPager.setCurrentItem(1);
+                        break;
+
+                    case R.id.main_menu_games:
+                        mViewPager.setCurrentItem(2);
+                        break;
+
+                }
+                return true;
+            }
+        });
+        mBottomView.setItemIconTintList(null);
     }
 
     @Override
     protected void dealWithData() {
 
-        initSupportFunc();
-        mAdapter.setData(mSupportFuncList);
-    }
-
-    private void initSupportFunc() {
-        if (mSupportFuncList == null) {
-            mSupportFuncList = new ArrayList<>();
-        }
-        if (!mSupportFuncList.isEmpty()) {
-            mSupportFuncList.clear();
-        }
-
-//        FUNC_BAZIER = getResources().getString(R.string.bezier_activity);
-//        mSupportFuncList.add(FUNC_BAZIER);
-//
-//        FUNC_TOUCHVIEW = getResources().getString(R.string.touch_activity);
-//        mSupportFuncList.add(FUNC_TOUCHVIEW);
-//
-//        FUNC_MVP_LOGIN = getResources().getString(R.string.login_mvp_activity);
-//        mSupportFuncList.add(FUNC_MVP_LOGIN);
-//
-//        FUNC_PC_CONNECT = getResources().getString(R.string.pc_connect_activity);
-//        mSupportFuncList.add(FUNC_PC_CONNECT);
-
-        FUNC_GAMES = getResources().getString(R.string.games_activity);
-        mSupportFuncList.add(FUNC_GAMES);
-
-        FUNC_NOTES = getResources().getString(R.string.notes_activity);
-        mSupportFuncList.add(FUNC_NOTES);
-
-        FUNC_READ = getResources().getString(R.string.read_act);
-        mSupportFuncList.add(FUNC_READ);
-    }
-
-    public void toBazier(View view) {
-        startActivity(new Intent(MainActivityView.this, BezierCurveActivity.class));
-    }
-
-    public void toTouchView(View view) {
-        startActivity(new Intent(MainActivityView.this, TouchViewAct.class));
-    }
-
-    public void toLoginMvp(View view) {
-        startActivity(new Intent(MainActivityView.this, UserLoginActivity.class));
-    }
-
-    public void toGames(View view) {
-        startActivity(new Intent(MainActivityView.this, GamesActivity.class));
-    }
-
-    public void toPcConnect(View view) {
-        startActivity(new Intent(MainActivityView.this, ActivityPcConnect.class));
-    }
-
-    public void toNotes(View view) {
-        startActivity(new Intent(MainActivityView.this, NotesActivity.class));
-    }
-
-    public void toRead(View view) {
-        startActivity(new Intent(MainActivityView.this, BookShelfActivity.class));
     }
 
 }

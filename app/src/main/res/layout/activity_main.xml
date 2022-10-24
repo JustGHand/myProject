@@ -6,64 +6,30 @@
     android:layout_height="match_parent"
     tools:context=".activity.main.MainActivityView">
 
-    <com.pw.codeset.weidgt.ActivityHeaderView
-        android:id="@+id/activity_header"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:title_text="@string/main_activity"
-        app:showback="false"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-<!--    <Button-->
-<!--        android:id="@+id/main_to_bazier"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="@string/bezier_activity"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/activity_header"-->
-<!--        android:onClick="toBazier"/>-->
-
-<!--    <Button-->
-<!--        android:id="@+id/main_to_touchview"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="@string/touch_activity"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/main_to_bazier"-->
-<!--        android:onClick="toTouchView"/>-->
-<!--    <Button-->
-<!--        android:id="@+id/main_to_loginmvp"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="@string/login_mvp_activity"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/main_to_touchview"-->
-<!--        android:onClick="toLoginMvp"/>-->
-
-<!--    <Button-->
-<!--        android:id="@+id/main_to_games"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="@string/games_activity"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/main_to_loginmvp"-->
-<!--        android:onClick="toGames"/>-->
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/main_btn_list"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/main_viewpager"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/activity_header"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/main_bottom_menu"
+        >
 
+    </androidx.viewpager.widget.ViewPager>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/main_bottom_menu"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:menu="@menu/main_page_menu"
+        app:itemTextColor="@color/selector_theme_import"
+        app:itemIconTint="@null"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

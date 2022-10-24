@@ -20,7 +20,7 @@ import com.koushikdutta.async.http.server.AsyncHttpServerResponse;
 import com.pw.codeset.R;
 import com.pw.codeset.activity.wifitransfer.Constants;
 import com.pw.codeset.base.BaseActivity;
-import com.pw.codeset.databean.ChaptersBean;
+import com.pw.read.bean.ChaptersBean;
 import com.pw.codeset.utils.Constant;
 import com.pw.codeset.utils.FileUtil;
 import com.pw.codeset.utils.fileParase.TxtParser;

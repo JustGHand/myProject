@@ -3,7 +3,7 @@ package com.pw.codeset.activity.read;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.pw.codeset.databean.BookBean;
-import com.pw.codeset.databean.ChaptersBean;
+import com.pw.read.bean.ChaptersBean;
 import com.pw.codeset.utils.FileUtil;
 import com.pw.codeset.utils.MD5Utils;
 import com.pw.codeset.utils.SaveFileUtils;

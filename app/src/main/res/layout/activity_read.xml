@@ -18,7 +18,6 @@
         android:id="@+id/activity_header"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:title_text="@string/notes_activity"
         app:menutext="@string/iconfont_menu"
         app:showmenu="true"
         app:layout_constraintStart_toStartOf="parent"
