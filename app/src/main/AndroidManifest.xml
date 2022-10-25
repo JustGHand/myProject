@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:requestLegacyExternalStorage="true"
         android:theme="@style/Theme.MyApplication">
-        <activity android:name=".activity.main.MainActivityView">
+        <activity android:name=".abilities.main.MainActivityView">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,45 +27,45 @@
         </activity>
 
         <!--贝塞尔曲线-->
-        <activity android:name=".activity.bezier.BezierCurveActivity">
+        <activity android:name=".abilities.bezier.BezierCurveActivity">
 
         </activity>
 
         <!--触摸view-->
-        <activity android:name=".activity.touchview.TouchViewAct">
+        <activity android:name=".abilities.touchview.TouchViewAct">
 
         </activity>
         <!--mvp架构登录页面-->
-        <activity android:name=".activity.login_mvp.UserLoginActivity">
+        <activity android:name=".abilities.login_mvp.UserLoginActivity">
 
         </activity>
         <!--游戏列表-->
-        <activity android:name=".activity.games.GamesActivity">
+        <activity android:name=".abilities.games.GamesActivity">
 
         </activity>
         <!--黑白格-->
-        <activity android:name=".activity.games.block.BlockGameActivity"
+        <activity android:name=".abilities.games.block.BlockGameActivity"
             android:windowSoftInputMode="adjustResize"
             >
 
         </activity>
 
-        <activity android:name=".activity.pc_connect.ActivityPcConnect"
+        <activity android:name=".abilities.pc_connect.ActivityPcConnect"
             />
 
-        <activity android:name=".activity.notes.NotesActivity" />
-        <activity android:name=".activity.notes.NotesEditActivity" />
-        <activity android:name=".activity.read.bookshelf.BookShelfActivity" />
+        <activity android:name=".abilities.notes.NotesActivity" />
+        <activity android:name=".abilities.notes.NotesEditActivity" />
+        <activity android:name=".abilities.read.bookshelf.BookShelfActivity" />
 
 
-        <activity android:name=".activity.read.leadbook.LeadBookActivity" />
+        <activity android:name=".abilities.read.leadbook.LeadBookActivity" />
 
-        <service android:name=".activity.read.leadbook.wifitransfer.WebService"
+        <service android:name=".abilities.read.leadbook.wifitransfer.WebService"
             android:enabled="true"
             android:exported="true"
             tools:ignore="WrongManifestParent"></service>
 
-        <activity android:name=".activity.read.read.ReadActivity" />
+        <activity android:name=".abilities.read.read.ReadActivity" />
     </application>
 
 </manifest>

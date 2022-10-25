@@ -1,7 +1,6 @@
 package com.pw.codeset.base;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -15,7 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.pw.codeset.R;
-import com.pw.codeset.application.MyApp;
+import com.pw.codeset.utils.AnimUtils;
 import com.pw.codeset.weidgt.ActivityHeaderView;
 import com.pw.codeset.weidgt.MyProgressDialog;
 
@@ -35,9 +34,6 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     ActivityHeaderView mHeader;
     boolean isHeadVisible;
-
-    private Animation mBottomOutAnim;
-    private Animation mBottomInAnim;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -64,7 +60,6 @@ public abstract class BaseActivity extends AppCompatActivity {
                 }
             });
             isHeadVisible = mHeader.getVisibility() == View.VISIBLE;
-            initAnim();
         }
     }
 
@@ -247,50 +242,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
-
-    @SuppressLint("ResourceType")
-    private void initAnim() {
-
-        mBottomInAnim = AnimationUtils.loadAnimation(this, R.animator.slide_top_in);
-        mBottomOutAnim = AnimationUtils.loadAnimation(this, R.animator.slide_top_out);
-        mBottomOutAnim.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                if (mHeader != null) {
-                    mHeader.setVisibility(View.GONE);
-                }
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-
-            }
-        });
-        mBottomInAnim.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                if (mHeader != null) {
-                    mHeader.setVisibility(View.VISIBLE);
-                }
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-
-            }
-        });
-    }
-
     public void toggleHeaderVisible() {
         if (isHeadVisible) {
             hideHeader();
@@ -300,16 +251,18 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     public void hideHeader() {
+        isHeadVisible = false;
         if (mHeader != null) {
-            mHeader.startAnimation(mBottomOutAnim);
-            isHeadVisible = false;
+            mHeader.setVisibility(View.GONE);
+            AnimUtils.TopOut(mHeader);
         }
     }
 
     public void showHeader() {
+        isHeadVisible = true;
         if (mHeader != null) {
-            mHeader.startAnimation(mBottomInAnim);
-            isHeadVisible = true;
+            mHeader.setVisibility(View.VISIBLE);
+            AnimUtils.TopIn(mHeader);
         }
     }
 

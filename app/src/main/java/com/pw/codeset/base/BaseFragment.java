@@ -266,11 +266,10 @@ public abstract class BaseFragment extends Fragment {
     }
 
 
-    @SuppressLint("ResourceType")
     private void initAnim() {
 
-        mBottomInAnim = AnimationUtils.loadAnimation(getContext(), R.animator.slide_top_in);
-        mBottomOutAnim = AnimationUtils.loadAnimation(getContext(), R.animator.slide_top_out);
+        mBottomInAnim = AnimationUtils.loadAnimation(getContext(), R.anim.slide_top_in);
+        mBottomOutAnim = AnimationUtils.loadAnimation(getContext(), R.anim.slide_top_out);
         mBottomOutAnim.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {

@@ -16,4 +16,23 @@
         <attr name="backView" format="reference"></attr>
     </declare-styleable>
 
+    <declare-styleable name="MySeekBar">
+        <attr name="seekbarNightmode" format="boolean" />
+        <attr name="android:thumb"/>
+        <attr name="android:progressDrawable"/>
+        <attr name="android:layout_width"/>
+        <attr name="progressHight" format="dimension"/>
+        <attr name="thumbSize" format="dimension"/>
+        <attr name="showProgresstext" format="boolean"/>
+        <attr name="showAnchor" format="boolean"/>
+        <attr name="anchorSize" format="dimension"/>
+        <attr name="anchorDrawable" format="reference"/>
+        <attr name="anchorNightDrawable" format="reference"/>
+        <attr name="progressDrawableLeftSize" format="dimension"/>
+        <attr name="progressDrawableRightSize" format="dimension"/>
+        <attr name="progressDrawableLeft" format="reference"/>
+        <attr name="progressDrawableRight" format="reference"/>
+        <attr name="progressDrawableLeftNight" format="reference"/>
+        <attr name="progressDrawableRightNight" format="reference"/>
+    </declare-styleable>
 </resources>

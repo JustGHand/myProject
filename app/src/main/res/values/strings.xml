@@ -52,6 +52,10 @@
     <string name="read_act">阅读</string>
     <string name="bookshelf_title">书架</string>
 
+    <string name="read_menu_catelog">目录</string>
+    <string name="read_menu_layout">布局</string>
+    <string name="read_menu_style">样式</string>
+
 <!--    book-->
     <string name="book_default_name">标题</string>
 

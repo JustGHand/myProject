@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/bookshelf_manager"
+        android:title="书籍管理"
+        android:icon="@mipmap/icon_bookshelf_manager"
+        />
+    <item
+        android:id="@+id/bookshelf_history"
+        android:title="阅读历史"
+        android:icon="@mipmap/icon_bookshelf_history"
+        />
+</menu>

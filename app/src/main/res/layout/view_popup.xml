@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/mypop_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/shape_pop_top_white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/pop_container"
+        android:layout_marginTop="@dimen/view_defaultpadding"
+        app:layout_constraintHorizontal_bias="0.8"
+        />
+    <LinearLayout
+        android:id="@+id/pop_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="left"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mypop_top"
+        app:layout_constraintBottom_toTopOf="@id/mypop_bottom"
+        android:background="@drawable/back_alpha_white_radiusall"
+        android:paddingLeft="@dimen/view_defaultpadding_double"
+        android:paddingRight="@dimen/view_defaultpadding_double"
+        >
+
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/mypop_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/shape_pop_top_white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pop_container"
+        android:layout_marginBottom="@dimen/view_defaultpadding"
+        app:layout_constraintHorizontal_bias="0.8"
+        android:visibility="gone"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

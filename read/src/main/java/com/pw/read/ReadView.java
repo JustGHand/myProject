@@ -2,11 +2,11 @@ package com.pw.read;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
-import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -47,6 +47,7 @@ public class ReadView extends FrameLayout {
 
     private List<ChaptersBean> mChapterList;
     private ReadDataInterface mData;
+    private ReadTouchInterface mTouchListener;
 
     private int mCurPagePos;
     private PageView mCurPage;
@@ -73,10 +74,35 @@ public class ReadView extends FrameLayout {
         mCurPagePos = 0;
         PageDrawManager.getInstance().init(getContext());
         LayoutMode layoutMode = new LayoutMode(10, 20, 20, 1, 40, 0, 0);
-        PageDrawManager.getInstance().setParams(40, layoutMode, null, false, 0);
+        PageDrawManager.getInstance().setParams(ScreenUtils.spToPx(getContext(),16), layoutMode, null, false, 0);
         PageStyle style = new PageStyle(R.color.read_pagestyle_green_fontcolor, R.color.read_pagestyle_green_pageback,R.color.read_pagestyle_green_highlightback,R.color.read_pagestyle_green_highlighttextcolor,0);
         PageDrawManager.getInstance().setPageStyle(style);
         PageDrawManager.getInstance().updateWH(ScreenUtils.getAppSize(getContext())[0],ScreenUtils.getAppSize(getContext())[1]);
+    }
+
+    public void setTouchListener(ReadTouchInterface touchInterface) {
+        mTouchListener = touchInterface;
+    }
+
+
+    public void setTextSize(int textSize) {
+        PageDrawManager.getInstance().setUpTextParams(ScreenUtils.spToPx(getContext(), textSize));
+        toPage(mCurChapterPos,mCurPage.getCurPage().getStartCharPos());
+    }
+
+
+    public int getCurChapterPos() {
+        return mCurChapterPos;
+    }
+
+    public int getCurPageCharPos() {
+        if (mCurPage != null) {
+            TxtPage curPage = mCurPage.getCurPage();
+            if (curPage != null) {
+                return curPage.getStartCharPos();
+            }
+        }
+        return 0;
     }
 
     public void nextChapter() {
@@ -134,6 +160,44 @@ public class ReadView extends FrameLayout {
 
     }
 
+    public void toPage(int chapterPos, int charPos) {
+
+        if (mChapterList == null || mChapterList.size() <= 0) {
+            return;
+        }
+        if (chapterPos >= 0 && chapterPos < mChapterList.size()) {
+            ChaptersBean chaptersBean = mChapterList.get(chapterPos);
+            if (mData != null) {
+                BufferedReader br = mData.getChapterReader(chaptersBean);
+                try {
+                    if (br != null) {
+                        mCurChapterPageList = PageDrawManager.getInstance().loadPages(chaptersBean, 0, br, getContext());
+
+                        if (mCurChapterPageList != null && mCurChapterPageList.size() > 0) {
+
+                            for (int i = 0; i < mCurChapterPageList.size(); i++) {
+                                TxtPage page = mCurChapterPageList.get(i);
+                                if (page.isCharInPage(charPos)) {
+                                    mCurPagePos = i;
+                                    break;
+                                }
+                            }
+
+                            mCurChapterPos = chapterPos;
+                            mCurPage = getPage();
+                            mCurPage.setContent(mCurChapterPageList.get(mCurPagePos));
+                            addView(mCurPage);
+                        }
+                    }
+                    br.close();
+                } catch (Exception e) {
+
+                }
+            }
+        }
+
+    }
+
     public void prePage() {
         mCurPagePos--;
         if (mCurPagePos>=0) {
@@ -154,10 +218,6 @@ public class ReadView extends FrameLayout {
         }
     }
 
-    @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-    }
 
     private PageView getPage() {
         if (mCurPage != null) {
@@ -166,34 +226,57 @@ public class ReadView extends FrameLayout {
         }
         PageView page = new PageView(getContext());
         page.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-        page.setTouchInterface(new ReadTouchInterface() {
-            @Override
-            public boolean onTouch(MotionEvent event) {
-
-
-
-                return false;
-            }
-
-            @Override
-            public void onClick() {
-                nextPage();
-            }
-        });
         return page;
     }
 
     boolean isMove;
     int mStartX;
     int mStartY;
+    int mMoveY;
+    int mMoveX;
+
+    boolean canTouch = true;
 
     int mViewWidth;
     int mViewHeight;
 
     private RectF mCenterRect = null;
+
+    private boolean touchAble() {
+        if (mTouchListener != null) {
+            return mTouchListener.touchAble();
+        }
+        return true;
+    }
+
+    private void onCenterClick() {
+        if (mTouchListener != null) {
+            mTouchListener.onCenterClick();
+        }
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if (ev.getAction() == MotionEvent.ACTION_DOWN) {
+            int x = (int) ev.getX();
+            int y = (int) ev.getY();
+            mStartX = x;
+            mStartY = y;
+            isMove = false;
+            canTouch = touchAble();
+        }
+        return super.dispatchTouchEvent(ev);
+    }
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         super.onTouchEvent(event);
+
+        if (mTouchListener != null) {
+            if (!mTouchListener.touchAble()) {
+                return true;
+            }
+        }
 
         if (event.getAction() == MotionEvent.ACTION_DOWN){
             isMove = false;
@@ -204,6 +287,7 @@ public class ReadView extends FrameLayout {
 
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
+                mCurPage.startTouch(mStartX,mStartY);
                 break;
             case MotionEvent.ACTION_MOVE:
                 // 判断是否大于最小滑动值。
@@ -216,10 +300,13 @@ public class ReadView extends FrameLayout {
 
                 // 如果滑动了，则进行翻页。
                 if (isMove) {
+                    mMoveX = x;
+                    mMoveY = y;
+                    mCurPage.drawMove(mStartX, mStartY, mMoveX, mMoveY);
                 }
                 break;
             case MotionEvent.ACTION_UP:
-
+                mCurPage.touchEnd(mStartX, mStartY, mMoveX, mMoveY);
                 if (!isMove) {
                     //设置中间区域范围
                     if (mCenterRect == null) {
@@ -229,7 +316,7 @@ public class ReadView extends FrameLayout {
 
                     //是否点击了中间
                     if (mCenterRect.contains(x, y)) {
-
+                        onCenterClick();
                         return true;
                     }
                 }
@@ -248,12 +335,12 @@ public class ReadView extends FrameLayout {
     }
 
     private boolean isTouchNext(int x, int y) {
+
+        if (isMove) {
+            return x - mStartX < 0;
+        }
+
         boolean isNext = false;
-//        if (x < mScreenWidth / 2){
-//            isNext = false;
-//        }else{
-//            isNext = true;
-//        }
         if (x < mViewWidth / 4) {//点击左半边
             isNext = false;
         } else if ((x < (mViewWidth * 3 / 4)) && (y < mViewHeight / 5)) {//点击菜单区域上部分
@@ -263,6 +350,13 @@ public class ReadView extends FrameLayout {
         }
         return isNext;
     }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+    }
+
+
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
@@ -270,4 +364,6 @@ public class ReadView extends FrameLayout {
         mViewHeight = h;
 
     }
+
+
 }

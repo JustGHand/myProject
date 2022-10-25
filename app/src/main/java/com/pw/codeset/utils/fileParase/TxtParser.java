@@ -2,7 +2,7 @@ package com.pw.codeset.utils.fileParase;
 
 import android.app.Activity;
 
-import com.pw.codeset.activity.read.BookManager;
+import com.pw.codeset.abilities.read.manager.BookManager;
 import com.pw.codeset.databean.BookBean;
 import com.pw.read.bean.ChaptersBean;
 import com.pw.codeset.utils.FileUtil;

@@ -15,6 +15,7 @@ public class SaveFileUtils {
     public static final String SAVE_FILE_BOOKS_FILE = "books";
     public static final String SAVE_FILE_CHAPTERS_FILE = "chapters";
     public static final String SAVE_FILE_READCONFIG_FILE = "readConfig";
+    public static final String SAVE_FILE_READRECORD_FILE = "readRecord";
 
 
     /**
@@ -113,6 +114,35 @@ public class SaveFileUtils {
 
     private static String getBookShelfFilePath() {
         return getBaseFileFolder() + SAVE_FILE_BOOKSHELF_FILE + SAVE_FILE_JSON_SUFFIX;
+    }
+
+    /*
+    read record
+     */
+
+    public static void saveReadRecord(String recordStr) {
+        if (NStringUtils.isBlank(recordStr)) {
+            recordStr = "";
+        }
+        File recordFile = getRecordFile();
+        FileUtil.saveFile(recordStr, recordFile);
+    }
+
+    public static String getReadRecordStr() {
+        File readRecordFile = getRecordFile();
+        if (readRecordFile != null && readRecordFile.exists()) {
+            return FileUtil.getFileContent(readRecordFile);
+        }
+        return null;
+    }
+
+    public static File getRecordFile() {
+        File recordFile = FileUtil.getFile(getRecordFilePath());
+        return recordFile;
+    }
+
+    private static String getRecordFilePath() {
+        return getBaseFileFolder() + SAVE_FILE_READRECORD_FILE + SAVE_FILE_JSON_SUFFIX;
     }
 
     /*

@@ -15,4 +15,6 @@ public interface ReadDataInterface {
      * @return
      */
     public abstract BufferedReader getChapterReader(ChaptersBean chapter);
+
+    public abstract void onRecordSave(int chapterPos, int charPos);
 }

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/swipstatus_parent" xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <View
+        android:id="@+id/seek_back"
+        android:background="#ffe"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_centerInParent="true"
+        />
+
+    <View
+        android:id="@+id/seek_progress_back"
+        android:layout_width="20dp"
+        android:layout_height="30dp"
+        android:background="#ffd"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        />
+
+    <ImageView
+        android:id="@+id/seek_left_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="centerInside"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"/>
+    <ImageView
+        android:id="@+id/seek_right_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="centerInside"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"/>
+
+    <View
+        android:id="@+id/seek_progress_thumb_anchor"
+        android:layout_width="10dp"
+        android:layout_height="20dp"
+        android:background="#aaa"
+        android:layout_alignLeft="@id/seek_progress_back"
+        android:layout_centerVertical="true"/>
+
+
+    <View
+        android:id="@+id/seek_progress_thumb"
+        android:layout_width="10dp"
+        android:layout_height="20dp"
+        android:background="#aaa"
+        android:layout_alignRight="@id/seek_progress_back"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="1dp"/>
+
+
+
+    <TextView
+        android:id="@+id/seek_progress_text"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:minWidth="10dp"
+        android:text="0"
+        android:gravity="center"
+        android:lines="1"
+        android:overScrollMode="always"
+        android:autoSizeTextType="uniform"
+        android:layout_alignRight="@id/seek_progress_back"
+        android:layout_centerVertical="true"
+        />
+
+    <SeekBar
+        android:id="@+id/seek"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:padding="20dp"
+        android:progress="30"
+        android:background="@null"
+        android:progressDrawable="@null"
+        android:thumb="@null" />
+
+
+</RelativeLayout>

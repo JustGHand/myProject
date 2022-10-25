@@ -200,4 +200,37 @@ public class TxtPage implements Serializable {
 
     }
 
+    public int getStartCharPos() {
+        if (lineInfos != null && lineInfos.size() > 0) {
+            LineInfo firstLine = lineInfos.get(0);
+            int startCharPos = firstLine.getmStartPos();
+            return startCharPos;
+        }
+        return 0;
+    }
+
+    public int getEndCharPos() {
+        if (lineInfos != null && lineInfos.size() > 0) {
+            LineInfo lastLine = lineInfos.get(lineInfos.size() - 1);
+            int endCharPos = lastLine.getmStartPos() + lastLine.getmCharCount();
+            return endCharPos;
+        }
+        return 0;
+    }
+
+    public boolean isCharInPage(int charPos) {
+        if (lineInfos != null && lineInfos.size() > 0) {
+            LineInfo firstLine = lineInfos.get(0);
+            int startCharPos = firstLine.getmStartPos();
+            if (startCharPos <= charPos) {
+                LineInfo lastLine = lineInfos.get(lineInfos.size() - 1);
+                int endCharPos = lastLine.getmStartPos() + lastLine.getmCharCount();
+                if (endCharPos > charPos) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
 }

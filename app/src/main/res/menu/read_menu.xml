@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/read_menu_catelog"
+        android:icon="@mipmap/icon_read_catalogue"
+        android:title="@string/read_menu_catelog"
+        />
+    <item android:id="@+id/read_menu_layout"
+        android:icon="@drawable/selector_rm_set_icon"
+        android:title="@string/read_menu_layout"
+        />
+    <item android:id="@+id/read_menu_style"
+        android:icon="@drawable/selector_rm_light_icon"
+        android:title="@string/read_menu_style"
+        />
+
+
+
+</menu>
