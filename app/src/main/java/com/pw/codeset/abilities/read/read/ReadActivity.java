@@ -1,9 +1,7 @@
 package com.pw.codeset.abilities.read.read;
 
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.Animation;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -20,9 +18,10 @@ import com.pw.codeset.utils.AnimUtils;
 import com.pw.codeset.utils.Constant;
 import com.pw.codeset.utils.fileParase.TxtParser;
 import com.pw.read.ReadView;
+import com.pw.read.ReadViewPager;
 import com.pw.read.bean.ChaptersBean;
-import com.pw.read.manager.ReadDataInterface;
-import com.pw.read.manager.ReadTouchInterface;
+import com.pw.read.interfaces.ReadDataInterface;
+import com.pw.read.interfaces.ReadTouchInterface;
 import com.xd.baseutils.others.recycle.BaseRecyclerAdapter;
 import com.xd.baseutils.utils.NStringUtils;
 
@@ -35,7 +34,7 @@ public class ReadActivity extends BaseActivity {
         return R.layout.activity_read;
     }
 
-    ReadView mReadView;
+    ReadViewPager mReadView;
     BottomNavigationView mBottomView;
     View mMenuBackView;
     RecyclerView mCatelogView;
@@ -69,7 +68,7 @@ public class ReadActivity extends BaseActivity {
                         toggleCatelog();
                         break;
                     case R.id.read_menu_layout:
-                        mReadView.setTextSize(20);
+//                        mReadView.setTextSize(20);
                         break;
                 }
                 return true;
@@ -102,9 +101,9 @@ public class ReadActivity extends BaseActivity {
             mBook = BookManager.getInstance().getBook(mBookId);
             if (mBook != null) {
                 setActTitle(mBook.getBookName());
+                getChapterList();
             }
         }
-        hideHeader();
     }
 
     @Override
@@ -131,6 +130,7 @@ public class ReadActivity extends BaseActivity {
     @Override
     protected void finishData() {
         super.finishData();
+        hideHeader();
         int tarChapterPos = 0;
         int tarCharPos = 0;
         RecordBean recordBean = BookRecordManager.getInstance().getBookRecord(mBookId);

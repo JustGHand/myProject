@@ -25,7 +25,7 @@ public class MainActivityView extends BaseActivity {
     }
 
     ViewPager mViewPager;
-    FragmentPagerAdapter mViewPagerAdapter;
+    MainPageAdapter mViewPagerAdapter;
     BottomNavigationView mBottomView;
 
     @Override

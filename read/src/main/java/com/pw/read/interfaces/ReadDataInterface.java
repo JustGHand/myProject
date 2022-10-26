@@ -1,4 +1,4 @@
-package com.pw.read.manager;
+package com.pw.read.interfaces;
 
 import com.pw.read.bean.ChaptersBean;
 

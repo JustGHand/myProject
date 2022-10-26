@@ -2,8 +2,6 @@ package com.pw.read;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -19,9 +17,10 @@ import com.pw.read.bean.ChaptersBean;
 import com.pw.read.bean.LayoutMode;
 import com.pw.read.bean.PageStyle;
 import com.pw.read.bean.TxtPage;
+import com.pw.read.interfaces.PageAnimCallback;
 import com.pw.read.manager.PageDrawManager;
-import com.pw.read.manager.ReadDataInterface;
-import com.pw.read.manager.ReadTouchInterface;
+import com.pw.read.interfaces.ReadDataInterface;
+import com.pw.read.interfaces.ReadTouchInterface;
 import com.xd.baseutils.utils.ScreenUtils;
 
 import java.io.BufferedReader;
@@ -166,36 +165,37 @@ public class ReadView extends FrameLayout {
             return;
         }
         if (chapterPos >= 0 && chapterPos < mChapterList.size()) {
-            ChaptersBean chaptersBean = mChapterList.get(chapterPos);
-            if (mData != null) {
-                BufferedReader br = mData.getChapterReader(chaptersBean);
-                try {
-                    if (br != null) {
-                        mCurChapterPageList = PageDrawManager.getInstance().loadPages(chaptersBean, 0, br, getContext());
-
-                        if (mCurChapterPageList != null && mCurChapterPageList.size() > 0) {
-
-                            for (int i = 0; i < mCurChapterPageList.size(); i++) {
-                                TxtPage page = mCurChapterPageList.get(i);
-                                if (page.isCharInPage(charPos)) {
-                                    mCurPagePos = i;
-                                    break;
-                                }
-                            }
-
-                            mCurChapterPos = chapterPos;
-                            mCurPage = getPage();
-                            mCurPage.setContent(mCurChapterPageList.get(mCurPagePos));
-                            addView(mCurPage);
-                        }
+            mCurChapterPos = chapterPos;
+            ChaptersBean chaptersBean = mChapterList.get(mCurChapterPos);
+            mCurChapterPageList = getChapterPageList(chaptersBean);
+            if (mCurChapterPageList != null && mCurChapterPageList.size() > 0) {
+                for (int i = 0; i < mCurChapterPageList.size(); i++) {
+                    TxtPage page = mCurChapterPageList.get(i);
+                    if (page.isCharInPage(charPos)) {
+                        mCurPagePos = i;
+                        break;
                     }
-                    br.close();
-                } catch (Exception e) {
-
                 }
+                setCurPage();
             }
         }
 
+    }
+
+    private List<TxtPage> getChapterPageList(ChaptersBean chaptersBean) {
+        if (mData != null) {
+            BufferedReader br = mData.getChapterReader(chaptersBean);
+            try {
+                if (br != null) {
+                    List<TxtPage> pageList = PageDrawManager.getInstance().loadPages(chaptersBean, 0, br, getContext());
+                    br.close();
+                    return pageList;
+                }
+            } catch (Exception e) {
+
+            }
+        }
+        return null;
     }
 
     public void prePage() {
@@ -218,6 +218,15 @@ public class ReadView extends FrameLayout {
         }
     }
 
+    private void setPrePage() {
+
+    }
+
+    private void setCurPage() {
+        mCurPage = getPage();
+        mCurPage.setContent(mCurChapterPageList.get(mCurPagePos));
+        addView(mCurPage);
+    }
 
     private PageView getPage() {
         if (mCurPage != null) {
@@ -226,6 +235,17 @@ public class ReadView extends FrameLayout {
         }
         PageView page = new PageView(getContext());
         page.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        page.setAnimCallBack(new PageAnimCallback() {
+            @Override
+            public void onAnimStart() {
+
+            }
+
+            @Override
+            public void onAnimFinish() {
+
+            }
+        });
         return page;
     }
 
@@ -362,6 +382,12 @@ public class ReadView extends FrameLayout {
         super.onSizeChanged(w, h, oldw, oldh);
         mViewWidth = w;
         mViewHeight = h;
+
+    }
+
+
+    private void test() {
+        ReadViewPager viewPager = new ReadViewPager(getContext());
 
     }
 

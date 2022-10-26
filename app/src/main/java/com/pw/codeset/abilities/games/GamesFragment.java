@@ -24,6 +24,7 @@ public class GamesFragment extends BaseFragment {
         GAME_BLOCK = this.getString(R.string.game_block);
         mGameList = new ArrayList<>();
         mGameList.add(GAME_BLOCK);
+
     }
 
     @Override
