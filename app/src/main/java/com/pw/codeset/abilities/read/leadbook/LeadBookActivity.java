@@ -15,14 +15,14 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.pw.codeset.R;
-import com.pw.codeset.abilities.read.manager.BookManager;
+import com.pw.codeset.manager.BookManager;
 import com.pw.codeset.abilities.read.leadbook.wifitransfer.Constants;
 import com.pw.codeset.abilities.read.leadbook.wifitransfer.WebService;
 import com.pw.codeset.application.MyApp;
 import com.pw.codeset.base.BaseActivity;
 import com.pw.codeset.databean.BookBean;
 import com.pw.codeset.event.LeadBookEvent;
-import com.pw.codeset.utils.FileUtil;
+import com.xd.baseutils.utils.FileUtil;
 import com.pw.codeset.utils.LogToastUtils;
 import com.pw.codeset.utils.MD5Utils;
 import com.pw.codeset.utils.fileParase.TxtParser;

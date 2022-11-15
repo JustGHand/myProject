@@ -27,6 +27,7 @@ import com.pw.read.bean.TxtPage;
 import com.pw.read.interfaces.ReadDataInterface;
 import com.pw.read.interfaces.ReadTouchInterface;
 import com.pw.read.manager.PageDrawManager;
+import com.pw.read.manager.ReadConfigManager;
 import com.xd.baseutils.utils.ScreenUtils;
 
 import java.io.BufferedReader;
@@ -77,8 +78,10 @@ public class ReadViewPager extends ConstraintLayout {
 
     private void initView(Context context) {
         PageDrawManager.getInstance().init(getContext());
-        LayoutMode layoutMode = new LayoutMode(10, 20, 20, 1, 40, 0, 0);
-        PageDrawManager.getInstance().setParams(ScreenUtils.spToPx(getContext(),16), layoutMode, null, false, 0);
+        ReadConfigManager.getInstance().updateContext(context);
+        LayoutMode layoutMode = ReadConfigManager.getInstance().getLayoutMode();
+        int textSize = ReadConfigManager.getInstance().getFontSize();
+        PageDrawManager.getInstance().setParams(ScreenUtils.spToPx(getContext(),textSize), layoutMode, null, false, 0);
         PageStyle style = new PageStyle(R.color.read_pagestyle_green_fontcolor, R.color.read_pagestyle_green_pageback,R.color.read_pagestyle_green_highlightback,R.color.read_pagestyle_green_highlighttextcolor,0);
         PageDrawManager.getInstance().setPageStyle(style);
         PageDrawManager.getInstance().updateWH(ScreenUtils.getAppSize(getContext())[0],ScreenUtils.getAppSize(getContext())[1]);
@@ -172,6 +175,42 @@ public class ReadViewPager extends ConstraintLayout {
         mPageAdapter.notifyDataSetChanged();
     }
 
+    public void setTextSize(int textSize) {
+        PageDrawManager.getInstance().setUpTextParams(ScreenUtils.spToPx(getContext(), textSize));
+        ReadConfigManager.getInstance().setFontSize(textSize);
+        reloadPage();
+    }
+
+    public int getTextSize() {
+        return ReadConfigManager.getInstance().getFontSize();
+    }
+
+    public void setTextInterval(int textInterval) {
+        ReadConfigManager.getInstance().setTextInterval(textInterval);
+        LayoutMode layoutMode = ReadConfigManager.getInstance().getLayoutMode();
+        PageDrawManager.getInstance().setLayoutModeParm(layoutMode);
+        reloadPage();
+    }
+
+    public int getTextInterval() {
+        return ReadConfigManager.getInstance().getTextInterval();
+    }
+
+    public void setPagePadding(int pagePadding) {
+        ReadConfigManager.getInstance().setPagePadding(pagePadding);
+        LayoutMode layoutMode = ReadConfigManager.getInstance().getLayoutMode();
+        PageDrawManager.getInstance().setLayoutModeParm(layoutMode);
+        reloadPage();
+    }
+
+    public int getPagePadding() {
+        return ReadConfigManager.getInstance().getPagePadding();
+    }
+
+    public void reloadPage() {
+        toPage(mCurChapterPos,getCurPageCharPos());
+    }
+
     public void toChapter(int chapterPos) {
         toPage(chapterPos,0);
     }
@@ -263,6 +302,9 @@ public class ReadViewPager extends ConstraintLayout {
             tarChapterPos = 0;
         } else {
             if (tarChapterPos == mCurChapterPos) {
+                mCurChapterPageList = getChapterPageList(mChapterList.get(mCurChapterPos));
+                mPreChapterPageList = getChapterPageList(mChapterList.get(mCurChapterPos - 1));
+                mNextChapterPageList = getChapterPageList(mChapterList.get(mCurChapterPos + 1));
                 return;
             } else if (Math.abs(tarChapterPos - mCurChapterPos) > 1) {
                 mCurChapterPageList = getChapterPageList(mChapterList.get(tarChapterPos));
@@ -488,7 +530,8 @@ public class ReadViewPager extends ConstraintLayout {
         super.onSizeChanged(w, h, oldw, oldh);
         mViewWidth = w;
         mViewHeight = h;
-
+        PageDrawManager.getInstance().updateWH(w,h);
+        reloadPage();
     }
 
 

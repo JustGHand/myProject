@@ -16,6 +16,7 @@ import static com.pw.read.utils.Constant.KSpecialChsBegin;
 import static com.pw.read.utils.Constant.KSpecialChsEnd;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -163,6 +164,7 @@ public class PageDrawManager {
 
         DisplayMetrics dm = getContext().getResources().getDisplayMetrics();
         mScreenWidth = dm.widthPixels;
+        mScreenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
         mScreenHeight = Utils.getRealHeight(getContext());
     }
 
@@ -415,9 +417,9 @@ public class PageDrawManager {
 
                 if (curPage != null) {
                     String title = curPage.getTitle();
-                    int tiptitleStart = mMarginWidth;
+                    int tiptitleStart = mMarginWidth+mDrawLeftRightMargin;
                     if (haveDisplayCutout) {
-                        tiptitleStart = displaycutoutRight+mMarginWidth;
+                        tiptitleStart = displaycutoutRight+mMarginWidth+mDrawLeftRightMargin;
                     }
                     canvas.drawText(title, tiptitleStart, tipTop, mTipPaint);
                 }
@@ -426,7 +428,7 @@ public class PageDrawManager {
                 // 底部的字显示的位置Y
                 float y = mDisplayHeight - getTipMargin() - ScreenUtils.dpToPx(getContext(),2);
                 // 只有finish的时候采用页码
-                canvas.drawText(String.valueOf(curPage.position), mMarginWidth, y, mTipPaint);
+                canvas.drawText(String.valueOf(curPage.position), mMarginWidth+mDrawLeftRightMargin, y, mTipPaint);
 
             }
         } else {
@@ -441,7 +443,7 @@ public class PageDrawManager {
 
         /******绘制电池********/
 
-        int visibleRight = mDisplayWidth - mMarginWidth;
+        int visibleRight = mDisplayWidth - mMarginWidth+mDrawLeftRightMargin;
         int visibleBottom = mDisplayHeight - getTipMargin();
 
         int outFrameWidth = (int) mTipPaint.measureText("xxx");

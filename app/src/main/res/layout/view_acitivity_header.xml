@@ -4,6 +4,15 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <LinearLayout
+        android:id="@+id/head_fake_status_conainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/theme_color"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center" />
 
     <TextView
         android:id="@+id/activity_header_title"
@@ -15,7 +24,7 @@
         android:background="@color/activity_header_backcolor"
         android:gravity="center"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/head_fake_status_conainer"
         app:layout_constraintEnd_toEndOf="parent"
         android:paddingLeft="@dimen/activity_header_height"
         android:paddingRight="@dimen/activity_header_height"
@@ -31,7 +40,7 @@
         android:gravity="center"
         android:background="@color/activity_header_backcolor"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/head_fake_status_conainer"
         />
 
     <com.pw.codeset.weidgt.IconImageView
@@ -43,7 +52,7 @@
         android:textColor="@color/white"
         android:gravity="center"
         android:background="@color/activity_header_backcolor"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/head_fake_status_conainer"
         app:layout_constraintEnd_toEndOf="parent"
         />
 

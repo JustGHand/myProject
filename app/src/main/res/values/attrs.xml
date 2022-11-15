@@ -30,6 +30,8 @@
         <attr name="anchorNightDrawable" format="reference"/>
         <attr name="progressDrawableLeftSize" format="dimension"/>
         <attr name="progressDrawableRightSize" format="dimension"/>
+        <attr name="progressDrawableLeftMargin" format="dimension"/>
+        <attr name="progressDrawableRightMargin" format="dimension"/>
         <attr name="progressDrawableLeft" format="reference"/>
         <attr name="progressDrawableRight" format="reference"/>
         <attr name="progressDrawableLeftNight" format="reference"/>

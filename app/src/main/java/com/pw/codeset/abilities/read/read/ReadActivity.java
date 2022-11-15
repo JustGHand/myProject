@@ -1,23 +1,27 @@
 package com.pw.codeset.abilities.read.read;
 
+import android.os.Build;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.SeekBar;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.pw.codeset.R;
-import com.pw.codeset.abilities.read.manager.BookManager;
-import com.pw.codeset.abilities.read.manager.BookRecordManager;
+import com.pw.codeset.manager.BookManager;
+import com.pw.codeset.manager.BookRecordManager;
 import com.pw.codeset.base.BaseActivity;
 import com.pw.codeset.databean.BookBean;
 import com.pw.codeset.databean.RecordBean;
 import com.pw.codeset.utils.AnimUtils;
 import com.pw.codeset.utils.Constant;
 import com.pw.codeset.utils.fileParase.TxtParser;
-import com.pw.read.ReadView;
+import com.pw.codeset.weidgt.MySeekBar;
 import com.pw.read.ReadViewPager;
 import com.pw.read.bean.ChaptersBean;
 import com.pw.read.interfaces.ReadDataInterface;
@@ -37,17 +41,25 @@ public class ReadActivity extends BaseActivity {
     ReadViewPager mReadView;
     BottomNavigationView mBottomView;
     View mMenuBackView;
+
     RecyclerView mCatelogView;
     ReadCatelogAdapter mCatelogAdapter;
+
+    ConstraintLayout mMenuStyle;
+    MySeekBar mFontSeekBar;
+    MySeekBar mMarginSeekBar;
+    MySeekBar mLeftPaddingSeekBar;
 
     String mBookId ;
     BookBean mBook;
     List<ChaptersBean> mChapterList;
     boolean isCatelogShowing = false;
+    boolean isStyleShowing = false;
     boolean isMenuShowing = false;
 
     @Override
     protected void initView() {
+
         mReadView = findViewById(R.id.read_container);
         mBookId = getIntent().getStringExtra(Constant.BOOK_ID);
 
@@ -65,10 +77,19 @@ public class ReadActivity extends BaseActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.read_menu_catelog:
-                        toggleCatelog();
+                        if (!isCatelogShowing) {
+                            hideAllMenu(false);
+                            toggleCatelog();
+                        }
                         break;
                     case R.id.read_menu_layout:
-//                        mReadView.setTextSize(20);
+                        if (!isStyleShowing) {
+                            hideAllMenu(false);
+                            toggleStyleMenu();
+                        }
+                        break;
+                    case R.id.read_menu_style:
+                        hideAllMenu(false);
                         break;
                 }
                 return true;
@@ -93,6 +114,92 @@ public class ReadActivity extends BaseActivity {
         });
         mCatelogView.setAdapter(mCatelogAdapter);
 
+        mMenuStyle = findViewById(R.id.read_style_menu);
+        mFontSeekBar = findViewById(R.id.rm_font_seek);
+        mMarginSeekBar = findViewById(R.id.rm_margin_seek);
+        mLeftPaddingSeekBar = findViewById(R.id.rm_left_margin_seek);
+
+        mFontSeekBar.setProgresssTextShift(14);
+        mFontSeekBar.setMax(20);
+        mFontSeekBar.setProgress(mReadView.getTextSize()-14);
+        mFontSeekBar.setOnSeekBarChangeListener(new MySeekBar.MySeekBarListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
+                if (fromUser) {
+                    mReadView.setTextSize(14+progress);
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onAnchorClick(int progress) {
+
+            }
+        });
+        mMarginSeekBar.setProgresssTextShift(0);
+        mMarginSeekBar.setMax(40);
+        mMarginSeekBar.setProgress(40-mReadView.getTextInterval());
+        mMarginSeekBar.setOnSeekBarChangeListener(new MySeekBar.MySeekBarListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
+                if (fromUser) {
+                    mReadView.setTextInterval(40-progress);
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onAnchorClick(int progress) {
+
+            }
+        });
+        mLeftPaddingSeekBar.setProgresssTextShift(0);
+        mLeftPaddingSeekBar.setMax(40);
+        mLeftPaddingSeekBar.setProgress(40-mReadView.getPagePadding());
+        mLeftPaddingSeekBar.setOnSeekBarChangeListener(new MySeekBar.MySeekBarListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
+                if (fromUser) {
+                    mReadView.setPagePadding(40-progress);
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onAnchorClick(int progress) {
+
+            }
+        });
     }
 
     @Override
@@ -114,6 +221,7 @@ public class ReadActivity extends BaseActivity {
         AnimUtils.BottomIn(mBottomView);
         mMenuBackView.setVisibility(View.VISIBLE);
         AnimUtils.AlphaIn(mMenuBackView);
+        showStatusBar();
     }
 
     @Override
@@ -124,6 +232,7 @@ public class ReadActivity extends BaseActivity {
         AnimUtils.BottomOut(mBottomView);
         mMenuBackView.setVisibility(View.GONE);
         AnimUtils.AlphaOut(mMenuBackView);
+        hideStatusBar();
     }
 
 
@@ -169,6 +278,13 @@ public class ReadActivity extends BaseActivity {
         mCatelogAdapter.setData(getChapterList());
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.R)
+    @Override
+    protected void onResume() {
+        super.onResume();
+        hideStatusBar();
+    }
+
     @Override
     protected void onPause() {
         super.onPause();
@@ -196,9 +312,24 @@ public class ReadActivity extends BaseActivity {
         isCatelogShowing = !isCatelogShowing;
     }
 
+    private void toggleStyleMenu() {
+        if (isStyleShowing) {
+            mMenuStyle.setVisibility(View.GONE);
+            AnimUtils.BottomOut(mMenuStyle);
+        }else {
+            mMenuStyle.setVisibility(View.VISIBLE);
+            AnimUtils.BottomIn(mMenuStyle);
+        }
+        isStyleShowing = !isStyleShowing;
+    }
+
     private boolean hideCurMenu() {
         if (isCatelogShowing) {
             toggleCatelog();
+            return true;
+        }
+        if (isStyleShowing) {
+            toggleStyleMenu();
             return true;
         }
         if (isMenuShowing) {
@@ -209,10 +340,17 @@ public class ReadActivity extends BaseActivity {
     }
 
     private void hideAllMenu() {
+        hideAllMenu(true);
+    }
+
+    private void hideAllMenu(boolean hideMainMenu) {
         if (isCatelogShowing) {
             toggleCatelog();
         }
-        if (isMenuShowing) {
+        if (isStyleShowing) {
+            toggleStyleMenu();
+        }
+        if (isMenuShowing && hideMainMenu) {
             hideHeader();
         }
     }
@@ -232,4 +370,18 @@ public class ReadActivity extends BaseActivity {
         }
         return 0;
     }
+
+    private void hideStatusBar() {
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                |View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                | View.SYSTEM_UI_FLAG_FULLSCREEN);
+    }
+
+    private void showStatusBar() {
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                |View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+    }
+
 }

@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.pw.codeset.R;
-import com.pw.codeset.abilities.read.manager.BookManager;
+import com.pw.codeset.manager.BookManager;
 import com.pw.codeset.abilities.read.leadbook.LeadBookActivity;
 import com.pw.codeset.abilities.read.read.ReadActivity;
 import com.pw.codeset.base.BaseFragment;

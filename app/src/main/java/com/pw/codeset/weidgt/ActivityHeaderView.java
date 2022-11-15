@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatViewInflater;
@@ -13,7 +14,9 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.pw.codeset.R;
 import com.xd.baseutils.others.click.DeclaredOnClickListener;
+import com.xd.baseutils.utils.DeviceUtils;
 import com.xd.baseutils.utils.NStringUtils;
+import com.xd.baseutils.utils.StatusBarUtil;
 
 public class ActivityHeaderView extends ConstraintLayout {
 
@@ -46,6 +49,10 @@ public class ActivityHeaderView extends ConstraintLayout {
         mBackView = this.findViewById(R.id.activity_header_backview);
         mMenuView = this.findViewById(R.id.activity_header_menuview);
         mTitleTextView = this.findViewById(R.id.activity_header_title);
+        LayoutParams layoutParams = (LayoutParams) this.findViewById(R.id.head_fake_status_conainer).getLayoutParams();
+        layoutParams.height = DeviceUtils.getStatusBarHeight(this.getContext());
+        this.findViewById(R.id.head_fake_status_conainer).setLayoutParams(layoutParams);
+
     }
 
     public IconImageView getmBackView() {
@@ -81,6 +88,7 @@ public class ActivityHeaderView extends ConstraintLayout {
             mMenuView.setOnClickListener(new DeclaredOnClickListener(mMenuView, menuClick));
         }
     }
+
 
     public void setBackViewVisiable(int visiable) {
         if (mBackView!=null) {

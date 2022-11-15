@@ -22,7 +22,7 @@ import com.pw.codeset.abilities.wifitransfer.Constants;
 import com.pw.codeset.base.BaseActivity;
 import com.pw.read.bean.ChaptersBean;
 import com.pw.codeset.utils.Constant;
-import com.pw.codeset.utils.FileUtil;
+import com.xd.baseutils.utils.FileUtil;
 import com.pw.codeset.utils.fileParase.TxtParser;
 import com.xd.baseutils.utils.DeviceUtils;
 import com.xd.baseutils.utils.NStringUtils;

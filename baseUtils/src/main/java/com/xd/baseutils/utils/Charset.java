@@ -1,4 +1,4 @@
-package com.pw.codeset.utils.fileParase;
+package com.xd.baseutils.utils;
 
 /**
  * 编码类型

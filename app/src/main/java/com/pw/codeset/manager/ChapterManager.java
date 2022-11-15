@@ -1,4 +1,4 @@
-package com.pw.codeset.abilities.read.manager;
+package com.pw.codeset.manager;
 
 public class ChapterManager {
     public static ChapterManager mInstance;

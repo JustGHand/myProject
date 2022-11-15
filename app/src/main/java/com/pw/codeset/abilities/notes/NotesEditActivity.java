@@ -6,6 +6,7 @@ import android.widget.EditText;
 import com.pw.codeset.R;
 import com.pw.codeset.base.BaseActivity;
 import com.pw.codeset.databean.NotesBean;
+import com.pw.codeset.manager.NotesManager;
 import com.pw.codeset.utils.Constant;
 import com.xd.baseutils.utils.NStringUtils;
 

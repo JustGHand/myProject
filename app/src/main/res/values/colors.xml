@@ -23,4 +23,11 @@
     <color name="border_color">#B4B4B4</color>
     <color name="alpha_border_color">#26000000</color>
     <color name="alpha_back_color">#10000000</color>
+
+    <color name="ydx_readmenu_default_back">#FFE1F5E0</color>
+
+    <color name="ydx_seekbar_back_default">#FFCDE8CA</color>
+    <color name="ydx_seekbar_progress_default">#1A000000</color>
+    <color name="ydx_seekbar_progress_night_default">#1AF2F2F2</color>
+    <color name="ydx_seekbar_thumb_default">#FFE1F5E0</color>
 </resources>

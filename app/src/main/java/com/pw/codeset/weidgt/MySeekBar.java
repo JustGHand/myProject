@@ -55,6 +55,8 @@ public class MySeekBar extends RelativeLayout {
 
     int leftImageSize ;
     int rightImageSize;
+    int leftImageMargin;
+    int rightImageMargin;
     Drawable leftDrawable;
     Drawable rightDrawable;
     Drawable leftDrawableNight;
@@ -83,6 +85,8 @@ public class MySeekBar extends RelativeLayout {
 
         leftImageSize = (int) typedArray.getDimension(R.styleable.MySeekBar_progressDrawableLeftSize,20);
         rightImageSize = (int) typedArray.getDimension(R.styleable.MySeekBar_progressDrawableRightSize,20);
+        leftImageMargin = (int) typedArray.getDimension(R.styleable.MySeekBar_progressDrawableLeftMargin,0);
+        rightImageMargin = (int) typedArray.getDimension(R.styleable.MySeekBar_progressDrawableRightMargin,0);
 
         showAnchor = typedArray.getBoolean(R.styleable.MySeekBar_showAnchor, false);
         anchorDrawableDaymode = typedArray.getDrawable(R.styleable.MySeekBar_anchorDrawable);
@@ -353,6 +357,7 @@ public class MySeekBar extends RelativeLayout {
             LayoutParams layoutParams1 = (LayoutParams) mLeftImage.getLayoutParams();;
             layoutParams1.width = leftImageSize;
             layoutParams1.height = leftImageSize;
+            layoutParams1.leftMargin = leftImageMargin;
             mLeftImage.setLayoutParams(layoutParams1);
         }else {
             mLeftImage.setVisibility(GONE);
@@ -364,6 +369,7 @@ public class MySeekBar extends RelativeLayout {
             LayoutParams layoutParams2 = (LayoutParams) mRightImage.getLayoutParams();
             layoutParams2.width = rightImageSize;
             layoutParams2.height = rightImageSize;
+            layoutParams2.rightMargin = rightImageMargin;
             mRightImage.setLayoutParams(layoutParams2);
         }else {
             mRightImage.setVisibility(GONE);

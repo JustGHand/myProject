@@ -1,10 +1,10 @@
-package com.pw.codeset.abilities.read.manager;
+package com.pw.codeset.manager;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.pw.codeset.databean.BookBean;
 import com.pw.read.bean.ChaptersBean;
-import com.pw.codeset.utils.FileUtil;
+import com.xd.baseutils.utils.FileUtil;
 import com.pw.codeset.utils.MD5Utils;
 import com.pw.codeset.utils.SaveFileUtils;
 import com.xd.baseutils.utils.NStringUtils;

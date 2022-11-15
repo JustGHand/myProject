@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.pw.codeset.R;
 import com.pw.codeset.base.BaseFragment;
 import com.pw.codeset.databean.NotesBean;
+import com.pw.codeset.manager.NotesManager;
 import com.pw.codeset.utils.Constant;
 import com.pw.codeset.weidgt.SelectDialog;
 import com.xd.baseutils.others.recycle.BaseRecyclerAdapter;

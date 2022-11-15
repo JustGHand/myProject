@@ -65,7 +65,14 @@
             android:exported="true"
             tools:ignore="WrongManifestParent"></service>
 
-        <activity android:name=".abilities.read.read.ReadActivity" />
+        <activity android:name=".abilities.read.read.ReadActivity"/>
+
+        <meta-data
+            android:name="notch.config"
+            android:value="portrait|landscape" />
+        <meta-data
+            android:name="android.notch_support"
+            android:value="true" />
     </application>
 
 </manifest>

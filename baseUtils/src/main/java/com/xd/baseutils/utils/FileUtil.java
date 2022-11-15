@@ -1,4 +1,4 @@
-package com.pw.codeset.utils;
+package com.xd.baseutils.utils;
 
 import android.annotation.SuppressLint;
 import android.content.ContentResolver;
@@ -17,14 +17,14 @@ import android.util.Log;
 
 import androidx.core.content.FileProvider;
 
-import com.pw.codeset.utils.fileParase.Charset;
+import com.xd.baseutils.utils.Charset;
+import com.xd.baseutils.utils.IOUtils;
 import com.xd.baseutils.utils.NStringUtils;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.Closeable;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

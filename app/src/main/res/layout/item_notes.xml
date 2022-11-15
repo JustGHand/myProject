@@ -48,11 +48,24 @@
             android:layout_height="wrap_content"
             android:text="@string/notes_edit_content"
             android:textSize="@dimen/min_fontsize"
+            android:ellipsize="marquee"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/item_notes_title"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginTop="@dimen/view_defaultmargin"
+            />
+
+        <com.pw.codeset.weidgt.IconImageView
+            android:id="@+id/item_notes_more_icon"
+            android:layout_width="@dimen/clickable_minsize"
+            android:layout_height="wrap_content"
+            android:gravity="center|right"
+            android:text="@string/icon_arrow_down"
+            android:textSize="@dimen/minor_textsize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:paddingRight="@dimen/view_defaultpadding"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

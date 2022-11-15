@@ -16,8 +16,14 @@ public class Constant {
     public static final char KAsciiMarkEnd = 0x2F;
     // 默认的显示参数配置
     public static final int DEFAULT_MARGIN_HEIGHT = 28;
-    public static final int DEFAULT_MARGIN_WIDTH = 15;
+    public static final int DEFAULT_MARGIN_WIDTH = 0;
     public static final int DEFAULT_TIP_SIZE = 12;
     public static final int EXTRA_TITLE_SIZE = 4;
     public static final String FORMAT_TIME = "HH:mm";
+
+
+
+    public static final int DEFAULT_FONT_SIZE = 16;
+    public static final int DEFAULT_TEXT_INTERVAL = 10;
+    public static final int DEFAULT_PAGE_PADDING = 15;
 }

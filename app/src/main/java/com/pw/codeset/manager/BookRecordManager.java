@@ -1,4 +1,4 @@
-package com.pw.codeset.abilities.read.manager;
+package com.pw.codeset.manager;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;

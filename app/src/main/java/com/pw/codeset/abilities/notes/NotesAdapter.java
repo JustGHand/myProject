@@ -52,6 +52,30 @@ public class NotesAdapter extends BaseRecyclerAdapter<NotesBean, NotesAdapter.No
             holder.dateText.setText(NStringUtils.dateConvert(data.getDate(), Constant.DATA_PARTNER_WITH_LINE));
             holder.contentText.setText(data.getContent());
             holder.itemView.setAlpha(data.haveDone() ? 0.3f : 1f);
+            holder.contentText.post(new Runnable() {
+                @Override
+                public void run() {
+                    if (holder.contentText.getLineCount() > 3) {
+                        holder.showMoreBtn.setVisibility(View.VISIBLE);
+                    }else {
+                        holder.showMoreBtn.setVisibility(View.GONE);
+                    }
+                    holder.contentText.setMaxLines(3);
+                    holder.showMoreBtn.setText(mContext.getResources().getString(R.string.icon_arrow_down));
+                }
+            });
+            holder.showMoreBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (holder.contentText.getMaxLines() == 3) {
+                        holder.contentText.setMaxLines(Integer.MAX_VALUE);
+                        holder.showMoreBtn.setText(mContext.getResources().getString(R.string.icon_arrow_up));
+                    }else {
+                        holder.contentText.setMaxLines(3);
+                        holder.showMoreBtn.setText(mContext.getResources().getString(R.string.icon_arrow_down));
+                    }
+                }
+            });
         }
     }
 
@@ -59,11 +83,13 @@ public class NotesAdapter extends BaseRecyclerAdapter<NotesBean, NotesAdapter.No
         TextView titleText;
         TextView dateText;
         TextView contentText;
+        TextView showMoreBtn;
         public NotesViewHolder(@NonNull View itemView) {
             super(itemView);
             titleText = itemView.findViewById(R.id.item_notes_title);
             dateText = itemView.findViewById(R.id.item_notes_date);
             contentText = itemView.findViewById(R.id.item_notes_content);
+            showMoreBtn = itemView.findViewById(R.id.item_notes_more_icon);
         }
     }
 

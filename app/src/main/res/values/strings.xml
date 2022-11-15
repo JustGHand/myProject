@@ -17,6 +17,12 @@
     <string name="dialog_default_title">标题</string>
     <string name="dialog_default_content">内容</string>
 
+    <string name="icon_arrow_down">&#xe621;</string>
+    <string name="icon_arrow_left">&#xe601;</string>
+    <string name="icon_arrow_left_thine">&#xe618;</string>
+    <string name="icon_arrow_up">&#xe650;</string>
+    <string name="icon_arrow_right">&#xe675;</string>
+    <string name="icon_arrow_right_thine">&#xe61e;</string>
 
 
     <string name="login_username_title">用户名</string>
