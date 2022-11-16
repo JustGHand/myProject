@@ -660,7 +660,7 @@ public class PageDrawManager {
         String str = aLine.getmLineText();
         //计算文字显示的起始点
         float strWidth = getStrWidth(aLine);
-        float start = mMarginWidth + mDrawLeftRightMargin + (mVisibleWidth - strWidth - 2 * mDrawLeftRightMargin) / 2;
+        float start = mMarginWidth + (mVisibleWidth - strWidth - 2 * mDrawLeftRightMargin) / 2;
         //进行绘制
         for (int j = 0; j < str.length(); j++) {
             String a = str.substring(j, j + 1);

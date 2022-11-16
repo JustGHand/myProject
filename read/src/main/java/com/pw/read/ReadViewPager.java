@@ -269,6 +269,11 @@ public class ReadViewPager extends ConstraintLayout {
                     @Override
                     public void run() {
                         mPageAdapter.notifyDataSetChanged();
+                        if (mCurChapterPos == 0 && mCurPagePos == 0) {
+                            mCurPagerPageIndex = 0;
+                            mViewPager.setCurrentItem(0,false);
+                            return;
+                        }
                         mCurPagerPageIndex = 1;
                         mViewPager.setCurrentItem(1,false);
                     }
@@ -325,8 +330,16 @@ public class ReadViewPager extends ConstraintLayout {
         } else {
             if (tarChapterPos == mCurChapterPos) {
                 mCurChapterPageList = getChapterPageList(mChapterList.get(mCurChapterPos));
-                mPreChapterPageList = getChapterPageList(mChapterList.get(mCurChapterPos - 1));
-                mNextChapterPageList = getChapterPageList(mChapterList.get(mCurChapterPos + 1));
+                if (mCurChapterPos == 0) {
+                    mPreChapterPageList = null;
+                } else {
+                    mPreChapterPageList = getChapterPageList(mChapterList.get(mCurChapterPos - 1));
+                }
+                if (mCurChapterPos == mChapterList.size() - 1) {
+                    mNextChapterPageList = null;
+                } else {
+                    mNextChapterPageList = getChapterPageList(mChapterList.get(mCurChapterPos + 1));
+                }
                 return;
             } else if (Math.abs(tarChapterPos - mCurChapterPos) > 1) {
                 mCurChapterPageList = getChapterPageList(mChapterList.get(tarChapterPos));
