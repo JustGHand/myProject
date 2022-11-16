@@ -443,7 +443,7 @@ public class PageDrawManager {
 
         /******绘制电池********/
 
-        int visibleRight = mDisplayWidth - mMarginWidth+mDrawLeftRightMargin;
+        int visibleRight = mDisplayWidth - mMarginWidth-mDrawLeftRightMargin;
         int visibleBottom = mDisplayHeight - getTipMargin();
 
         int outFrameWidth = (int) mTipPaint.measureText("xxx");
@@ -1594,6 +1594,7 @@ public class PageDrawManager {
             bgBitmap.recycle();
             bgBitmap = null;
         }
+        mContext = null;
         mInstance = null;
     }
 }

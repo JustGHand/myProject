@@ -1,6 +1,9 @@
 package com.pw.read;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -158,8 +161,27 @@ public class ReadViewPager extends ConstraintLayout {
             }
         });
         mViewPager.setAdapter(mPageAdapter);
+
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(Intent.ACTION_BATTERY_CHANGED);
+        intentFilter.addAction(Intent.ACTION_TIME_TICK);
+        getContext().registerReceiver(mReceiver, intentFilter);
     }
 
+    // 接收电池信息和时间更新的广播
+    private BroadcastReceiver mReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equals(Intent.ACTION_BATTERY_CHANGED)) {
+                int level = intent.getIntExtra("level", 0);
+                PageDrawManager.getInstance().setmBatteryLevel(level);
+            }
+            // 监听分钟的变化
+            else if (intent.getAction().equals(Intent.ACTION_TIME_TICK)) {
+                reloadPage();
+            }
+        }
+    };
     public void setTouchListener(ReadTouchInterface touchInterface) {
         mTouchListener = touchInterface;
     }
@@ -539,5 +561,19 @@ public class ReadViewPager extends ConstraintLayout {
         if (mTouchListener != null) {
             mTouchListener.onCenterClick();
         }
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        try {
+            if (mReceiver != null){
+                getContext().unregisterReceiver(mReceiver);
+            }
+        }catch (Exception e){
+        }
+        mReceiver = null;
+        PageDrawManager.getInstance().destroy();
+        ReadConfigManager.getInstance().destroy();
     }
 }

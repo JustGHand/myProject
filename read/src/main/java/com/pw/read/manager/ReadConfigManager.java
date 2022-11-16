@@ -99,7 +99,11 @@ public class ReadConfigManager {
     }
 
 
-
+    public void destroy() {
+        mConfig = null;
+        mContext = null;
+        mInstance = null;
+    }
 
 
 
