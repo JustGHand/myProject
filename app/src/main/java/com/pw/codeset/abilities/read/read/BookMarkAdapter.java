@@ -9,15 +9,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.pw.codeset.R;
-import com.pw.read.bean.ChaptersBean;
+import com.pw.codeset.databean.BookMarkBean;
 import com.xd.baseutils.others.recycle.BaseRecyclerAdapter;
 import com.xd.baseutils.others.recycle.BaseViewHolder;
 
 import java.util.List;
 
-public class ReadCatelogAdapter extends BaseRecyclerAdapter<ChaptersBean, ReadCatelogAdapter.ReadCatelogViewHolder> {
+public class BookMarkAdapter extends BaseRecyclerAdapter<BookMarkBean, BookMarkAdapter.ReadCatelogViewHolder> {
 
-    public ReadCatelogAdapter(Context mContext) {
+    public BookMarkAdapter(Context mContext) {
         super(mContext);
     }
 
@@ -30,25 +30,26 @@ public class ReadCatelogAdapter extends BaseRecyclerAdapter<ChaptersBean, ReadCa
 
     @Override
     public ItemGenerate GenerateItem() {
-        return new ItemGenerate<ChaptersBean, ReadCatelogAdapter.ReadCatelogViewHolder>() {
+        return new ItemGenerate<BookMarkBean, BookMarkAdapter.ReadCatelogViewHolder>() {
             @Override
-            public void BindItemView(ChaptersBean data, ReadCatelogAdapter.ReadCatelogViewHolder holder, int postion) {
+            public void BindItemView(BookMarkBean data, BookMarkAdapter.ReadCatelogViewHolder holder, int postion) {
+                holder.mCatelogTitle.setText("");
+                holder.mContentTextView.setText("");
                 if (data != null) {
-                    holder.mCatelogTitle.setText(data.getTitle());
+                    holder.mCatelogTitle.setText(data.getChapterTitle());
+                    holder.mContentTextView.setText(data.getLineContent());
                 }
-                holder.mCatelogTitle.setSelected(data.getIndex()==mCurChapterIndex);
-                holder.mContentTextView.setVisibility(View.GONE);
             }
 
             @Override
-            public ReadCatelogAdapter.ReadCatelogViewHolder creatItemHolder(@NonNull ViewGroup parent, int viewType) {
+            public BookMarkAdapter.ReadCatelogViewHolder creatItemHolder(@NonNull ViewGroup parent, int viewType) {
                 View view = LayoutInflater.from(mContext).inflate(R.layout.item_read_catelog, parent, false);
                 ReadCatelogViewHolder viewHolder = new ReadCatelogViewHolder(view);
                 return viewHolder;
             }
 
             @Override
-            public boolean updateItemView(ReadCatelogAdapter.ReadCatelogViewHolder holder, int position, List payloads) {
+            public boolean updateItemView(BookMarkAdapter.ReadCatelogViewHolder holder, int position, List payloads) {
                 return false;
             }
         };

@@ -17,6 +17,7 @@ public class SaveFileUtils {
     public static final String SAVE_FILE_CHAPTERS_FILE = "chapters";
     public static final String SAVE_FILE_READCONFIG_FILE = "readConfig";
     public static final String SAVE_FILE_READRECORD_FILE = "readRecord";
+    public static final String SAVE_FILE_BOOKMARK_FILE = "bookMark";
 
 
     /**
@@ -147,6 +148,35 @@ public class SaveFileUtils {
     }
 
     /*
+    book mark
+     */
+
+    public static void saveBookMark(String bookMarkStr) {
+        if (NStringUtils.isBlank(bookMarkStr)) {
+            bookMarkStr = "";
+        }
+        File bookMarkFile = getBookMarkFile();
+        FileUtil.saveFile(bookMarkStr, bookMarkFile);
+    }
+
+    public static String getBookMarkStr() {
+        File bookMarkFile = getBookMarkFile();
+        if (bookMarkFile != null && bookMarkFile.exists()) {
+            return FileUtil.getFileContent(bookMarkFile);
+        }
+        return null;
+    }
+
+    public static File getBookMarkFile() {
+        File bookMarkFile = FileUtil.getFile(getBookMarkFilePath());
+        return bookMarkFile;
+    }
+
+    private static String getBookMarkFilePath() {
+        return getBaseFileFolder() + SAVE_FILE_BOOKMARK_FILE + SAVE_FILE_JSON_SUFFIX;
+    }
+
+    /*
     read config
      */
 
@@ -175,7 +205,7 @@ public class SaveFileUtils {
 
 
 
-    private static String getBaseFileFolder() {
+    public static String getBaseFileFolder() {
         String folder = MyApp.getInstance().getFilesDir().getAbsolutePath();
         String name = SAVE_FILE_BASE_FOLDER;
         return folder + File.separator + name + File.separator;

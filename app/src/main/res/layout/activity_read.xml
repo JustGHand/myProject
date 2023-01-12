@@ -5,15 +5,85 @@
     android:fitsSystemWindows="false"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.pw.read.ReadViewPager
-        android:id="@+id/read_container"
+    <View
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="@color/theme_color"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/read_bookmark_tip"
+        android:layout_width="0dp"
+        android:layout_height="200px"
+        android:text="下拉添加书签"
+        android:textColor="@color/white"
+        android:textSize="@dimen/btn_textsize"
+        android:gravity="center"
+        android:padding="@dimen/view_defaultpadding_double"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/view_defaultmargin"
+        />
+
+    <TextView
+        android:id="@+id/read_quit_tip"
+        android:layout_width="0dp"
+        android:layout_height="200px"
+        android:text="上滑退出阅读"
+        android:textColor="@color/white"
+        android:textSize="@dimen/btn_textsize"
+        android:gravity="center"
+        android:padding="@dimen/view_defaultpadding_double"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginBottom="@dimen/view_defaultmargin"
         />
+
+
+    <ImageView
+        android:id="@+id/read_bookmark_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/selector_bookmarkicon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginRight="@dimen/view_defaultmargin" />
+
+    <com.pw.codeset.weidgt.CustomScrollView
+        android:id="@+id/read_overscroll"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:maxY="300"
+        app:validDistance="200"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
+
+        <com.pw.read.ReadView
+            android:id="@+id/read_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+    </com.pw.codeset.weidgt.CustomScrollView>
+
+
+    <ImageView
+        android:id="@+id/read_bookmark_sel_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/icon_read_bookmark_sel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginRight="@dimen/view_defaultmargin" />
 
     <View
         android:id="@+id/read_menu_back"
@@ -49,7 +119,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         />
 
-    <androidx.recyclerview.widget.RecyclerView
+    <androidx.viewpager.widget.ViewPager
         android:id="@+id/read_catelog_listview"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -61,6 +131,7 @@
         app:layout_constraintBottom_toTopOf="@id/read_bottom_view"
         android:visibility="gone"
         />
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/read_style_menu"

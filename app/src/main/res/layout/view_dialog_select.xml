@@ -37,10 +37,9 @@
         android:id="@+id/mBtn_Cancel"
         android:layout_width="match_parent"
         android:layout_height="@dimen/clickable_minsize"
-        android:background="@color/white"
         android:text="@string/dialog_default_cancel"
         android:gravity="center"
-        android:textColor="@color/normal_title_color"
+        android:textColor="@color/white"
         android:textSize="18sp" />
 
 </LinearLayout>

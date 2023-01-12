@@ -27,6 +27,7 @@ import com.pw.read.bean.LayoutMode;
 import com.pw.read.bean.LineInfo;
 import com.pw.read.bean.PageStyle;
 import com.pw.read.bean.TxtPage;
+import com.pw.read.interfaces.ReadCallBack;
 import com.pw.read.interfaces.ReadDataInterface;
 import com.pw.read.interfaces.ReadTouchInterface;
 import com.pw.read.manager.PageDrawManager;
@@ -37,14 +38,14 @@ import java.io.BufferedReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReadViewPager extends ConstraintLayout {
+public class ReadView extends ConstraintLayout {
 
-    public ReadViewPager(@NonNull Context context) {
+    public ReadView(@NonNull Context context) {
         super(context);
         initView(context);
     }
 
-    public ReadViewPager(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public ReadView(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         initView(context);
     }
@@ -52,6 +53,8 @@ public class ReadViewPager extends ConstraintLayout {
     private List<ChaptersBean> mChapterList;
     private ReadDataInterface mData;
     private ReadTouchInterface mTouchListener;
+
+    private ReadCallBack mCallBack;
 
     ViewPager2 mViewPager;
     ReadPageAdapter mPageAdapter;
@@ -144,17 +147,7 @@ public class ReadViewPager extends ConstraintLayout {
                         public void run() {
                             changePagePos(mCurPagePos + pageTurnShif);
                             mPageAdapter.notifyDataSetChanged();
-                            if (mCurPagerPageIndex == 0 ) {
-                                if (mCurPagePos == 0 && mCurChapterPos == 0) {
-                                    return;
-                                }
-                                mCurPagerPageIndex = 1;
-                                mViewPager.setCurrentItem(1, false);
-                            }
-                            if (mCurPagerPageIndex > 1) {
-                                mCurPagerPageIndex = 1;
-                                mViewPager.setCurrentItem(1,false);
-                            }
+                            updatePage();
                         }
                     });
                 }
@@ -166,6 +159,10 @@ public class ReadViewPager extends ConstraintLayout {
         intentFilter.addAction(Intent.ACTION_BATTERY_CHANGED);
         intentFilter.addAction(Intent.ACTION_TIME_TICK);
         getContext().registerReceiver(mReceiver, intentFilter);
+    }
+
+    public void setReadCallBack(ReadCallBack callBack) {
+        mCallBack = callBack;
     }
 
     // 接收电池信息和时间更新的广播
@@ -269,18 +266,37 @@ public class ReadViewPager extends ConstraintLayout {
                     @Override
                     public void run() {
                         mPageAdapter.notifyDataSetChanged();
-                        if (mCurChapterPos == 0 && mCurPagePos == 0) {
-                            mCurPagerPageIndex = 0;
-                            mViewPager.setCurrentItem(0,false);
-                            return;
-                        }
-                        mCurPagerPageIndex = 1;
-                        mViewPager.setCurrentItem(1,false);
+                        updatePage();
                     }
                 });
             }
         }
 
+    }
+
+    private void updatePage() {
+        if (mCurPagerPageIndex == 0 ) {
+            if (mCurPagePos == 0 && mCurChapterPos == 0) {
+                return;
+            }
+            mCurPagerPageIndex = 1;
+            mViewPager.setCurrentItem(1, false);
+        }
+        if (mCurPagerPageIndex > 1) {
+            mCurPagerPageIndex = 1;
+            mViewPager.setCurrentItem(1,false);
+        } else if (mCurPagerPageIndex == 1) {
+            if (mCurChapterPos == 0 && mCurPagePos == 0) {
+                mCurPagerPageIndex = 0;
+                mViewPager.setCurrentItem(0,false);
+                return;
+            }
+            mCurPagerPageIndex = 1;
+            mViewPager.setCurrentItem(1,false);
+        }
+        if (mCallBack != null) {
+            mCallBack.onPageChange();
+        }
     }
 
     private TxtPage getPage(int pos) {
@@ -374,7 +390,7 @@ public class ReadViewPager extends ConstraintLayout {
         mCurChapterPos = tarChapterPos;
     }
 
-    private TxtPage getCurPage() {
+    public TxtPage getCurPage() {
         List<TxtPage> curChapterPageList = getCurChapterPageList();
         if (curChapterPageList != null && curChapterPageList.size() > mCurPagePos) {
             return curChapterPageList.get(mCurPagePos);
@@ -483,6 +499,7 @@ public class ReadViewPager extends ConstraintLayout {
         return pageList;
     }
 
+
     public int getCurPagePos() {
         return mCurPagePos;
     }
@@ -498,6 +515,14 @@ public class ReadViewPager extends ConstraintLayout {
             if (curPage != null) {
                 return curPage.getStartCharPos();
             }
+        }
+        return 0;
+    }
+
+    public int getCurPageCharCount() {
+        TxtPage curPage = getCurPage();
+        if (curPage != null) {
+            return curPage.pageCharCount();
         }
         return 0;
     }

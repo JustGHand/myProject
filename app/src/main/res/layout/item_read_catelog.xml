@@ -18,7 +18,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/item_read_catelog_content"
         />
+
+    <TextView
+        android:id="@+id/item_read_catelog_content"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/dialog_default_title"
+        android:textSize="@dimen/minor_textsize"
+        android:textColor="@color/normal_support_color"
+        android:gravity="center|left"
+        android:paddingLeft="@dimen/view_defaultpadding_double"
+        android:paddingRight="@dimen/view_defaultpadding_double"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/item_read_catelog_name"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginLeft="@dimen/view_defaultpadding_double"
+        android:layout_marginBottom="@dimen/view_defaultmargin"
+        />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

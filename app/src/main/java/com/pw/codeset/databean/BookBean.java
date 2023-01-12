@@ -12,6 +12,8 @@ public class BookBean {
     String bookName;
     Long lastReadTime;
 
+    int totalCharCount;
+
     public BookBean() {
     }
 
@@ -60,5 +62,13 @@ public class BookBean {
 
     public void setLastReadTime(Long lastReadTime) {
         this.lastReadTime = lastReadTime;
+    }
+
+    public int getTotalCharCount() {
+        return totalCharCount;
+    }
+
+    public void setTotalCharCount(int totalCharCount) {
+        this.totalCharCount = totalCharCount;
     }
 }
