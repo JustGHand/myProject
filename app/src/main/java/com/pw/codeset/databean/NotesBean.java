@@ -14,12 +14,14 @@ public class NotesBean {
     long date;
     String content;
     int state;
+    Integer pwCalendarId;
 
     public NotesBean() {
         date = System.currentTimeMillis();
         int randomNum = (int) (Math.random() * 1000);
         String idTxt = NStringUtils.dateConvert(date, Constant.DATA_PARTNER_WITH_LINE_TILE_SECOND) + randomNum;
         id = MD5Utils.strToMd5By16(idTxt);
+        pwCalendarId = -1;
     }
 
     public String getId() {
@@ -60,6 +62,17 @@ public class NotesBean {
 
     public void setState(int state) {
         this.state = state;
+    }
+
+    public int getPwCalendarId() {
+        if (pwCalendarId == null) {
+            pwCalendarId = -1;
+        }
+        return pwCalendarId;
+    }
+
+    public void setPwCalendarId(int pwCalendarId) {
+        this.pwCalendarId = pwCalendarId;
     }
 
     public boolean haveDone() {

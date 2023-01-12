@@ -45,35 +45,6 @@
         />
 
     <TextView
-        android:id="@+id/notes_edit_date_title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/notes_edit_date"
-        android:textColor="@color/normal_title_color"
-        android:textSize="@dimen/title_textsize"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/notes_edit_title_edit"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:padding="@dimen/view_defaultpadding_double"
-        android:layout_marginTop="@dimen/view_defaultmargin"
-        />
-
-    <EditText
-        android:id="@+id/notes_edit_date_edit"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="@string/notes_edit_date"
-        android:enabled="false"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/notes_edit_date_title"
-        android:background="@drawable/back_alpha_radiusall"
-        android:padding="@dimen/view_defaultpadding"
-        android:layout_margin="@dimen/view_defaultmargin"
-        />
-
-    <TextView
         android:id="@+id/notes_edit_content_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -82,7 +53,7 @@
         android:textSize="@dimen/title_textsize"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/notes_edit_date_edit"
+        app:layout_constraintTop_toBottomOf="@id/notes_edit_title_edit"
         app:layout_constraintEnd_toEndOf="parent"
         android:padding="@dimen/view_defaultpadding_double"
         android:layout_marginTop="@dimen/view_defaultmargin"
@@ -103,4 +74,51 @@
         android:layout_margin="@dimen/view_defaultmargin"
         />
 
+    <Button
+        android:id="@+id/notes_add_calendar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="添加日历提醒"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/notes_edit_content_edit"
+        android:layout_marginLeft="@dimen/view_defaultmargin"
+        android:layout_marginTop="@dimen/view_defaultmargin"
+        android:onClick="addCalendar"
+        />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/notes_calendar_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="notes_edit_date_title,notes_edit_date_edit"
+        android:visibility="visible"/>
+
+    <TextView
+        android:id="@+id/notes_edit_date_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/notes_edit_date"
+        android:textColor="@color/normal_title_color"
+        android:textSize="@dimen/title_textsize"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/notes_add_calendar"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="@dimen/view_defaultpadding_double"
+        android:layout_marginTop="@dimen/view_defaultmargin"
+        />
+
+    <TextView
+        android:id="@+id/notes_edit_date_edit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/notes_edit_date"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/notes_edit_date_title"
+        android:background="@drawable/back_alpha_radiusall"
+        android:padding="@dimen/view_defaultpadding"
+        android:layout_margin="@dimen/view_defaultmargin"
+        android:onClick="addCalendar"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

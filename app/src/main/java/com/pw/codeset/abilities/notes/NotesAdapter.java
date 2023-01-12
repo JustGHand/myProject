@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import com.pw.codeset.R;
 import com.pw.codeset.databean.NotesBean;
 import com.pw.codeset.utils.Constant;
+import com.pw.codeset.weidgt.IconImageView;
 import com.xd.baseutils.others.recycle.BaseRecyclerAdapter;
 import com.xd.baseutils.others.recycle.BaseViewHolder;
 import com.xd.baseutils.utils.NStringUtils;
@@ -48,6 +49,7 @@ public class NotesAdapter extends BaseRecyclerAdapter<NotesBean, NotesAdapter.No
 
     private void notifyView(NotesBean data, NotesViewHolder holder, int pos) {
         if (data != null) {
+            holder.alarmIcon.setVisibility(data.getPwCalendarId() >= 0?View.VISIBLE:View.GONE);
             holder.titleText.setText(data.getTitle());
             holder.dateText.setText(NStringUtils.dateConvert(data.getDate(), Constant.DATA_PARTNER_WITH_LINE));
             holder.contentText.setText(data.getContent());
@@ -84,12 +86,14 @@ public class NotesAdapter extends BaseRecyclerAdapter<NotesBean, NotesAdapter.No
         TextView dateText;
         TextView contentText;
         TextView showMoreBtn;
+        IconImageView alarmIcon;
         public NotesViewHolder(@NonNull View itemView) {
             super(itemView);
             titleText = itemView.findViewById(R.id.item_notes_title);
             dateText = itemView.findViewById(R.id.item_notes_date);
             contentText = itemView.findViewById(R.id.item_notes_content);
             showMoreBtn = itemView.findViewById(R.id.item_notes_more_icon);
+            alarmIcon = itemView.findViewById(R.id.item_notes_alarm);
         }
     }
 

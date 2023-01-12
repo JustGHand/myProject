@@ -42,6 +42,16 @@
             app:layout_constraintBottom_toBottomOf="@id/item_notes_title"
             />
 
+        <com.pw.codeset.weidgt.IconImageView
+            android:id="@+id/item_notes_alarm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="&#xe607;"
+            app:layout_constraintTop_toTopOf="@id/item_notes_date"
+            app:layout_constraintEnd_toStartOf="@id/item_notes_date"
+            android:layout_marginRight="@dimen/view_defaultpadding"
+            />
+
         <TextView
             android:id="@+id/item_notes_content"
             android:layout_width="0dp"
