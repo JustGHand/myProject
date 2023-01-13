@@ -590,19 +590,6 @@ public class ReadActivity extends BaseActivity {
         return 0;
     }
 
-    private void hideStatusBar() {
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                |View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                | View.SYSTEM_UI_FLAG_FULLSCREEN);
-    }
-
-    private void showStatusBar() {
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                |View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
-    }
-
     private void showDeleteDialog(BookMarkBean bookMarkBean) {
         if (bookMarkBean == null) {
             return;

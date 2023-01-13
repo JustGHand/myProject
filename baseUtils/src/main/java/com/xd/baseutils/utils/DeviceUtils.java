@@ -1,5 +1,6 @@
 package com.xd.baseutils.utils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
@@ -17,8 +18,19 @@ public class DeviceUtils {
         return ipStr;
     }
 
-
     public static int getStatusBarHeight(Context context) {
+        int statusBarHeight = getStatusBarHeightByReflection(context);
+        if (statusBarHeight!=0){
+            return statusBarHeight;
+        }
+        int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            return context.getResources().getDimensionPixelSize(resourceId);
+        }
+        return 0;
+    }
+
+    public static int getStatusBarHeightByReflection(Context context) {
         int statusBarHeight = 0;
         try {
             Class<?> c = Class.forName("com.android.internal.R$dimen");
