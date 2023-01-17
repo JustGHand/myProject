@@ -12,6 +12,7 @@ public class SaveFileUtils {
 
     public static final String SAVE_FILE_BASE_FOLDER = "pw_code";
     public static final String SAVE_FILE_NOTES_FILE = "notes";
+    public static final String SAVE_FILE_NOTES_LABEL_FILE = "notes_label";
     public static final String SAVE_FILE_BOOKSHELF_FILE = "bookshelf";
     public static final String SAVE_FILE_BOOKS_FILE = "books";
     public static final String SAVE_FILE_CHAPTERS_FILE = "chapters";
@@ -47,6 +48,35 @@ public class SaveFileUtils {
 
     private static String getNotesFilePath() {
         return getBaseFileFolder() + SAVE_FILE_NOTES_FILE + SAVE_FILE_JSON_SUFFIX;
+    }
+
+    /**
+     * 备忘录标签
+     */
+
+    public static String getNotesLabelListStr() {
+        File notesLabelFile = getNotesLabelFile();
+        if (notesLabelFile != null && notesLabelFile.exists()) {
+            return FileUtil.getFileContent(notesLabelFile);
+        }
+        return null;
+    }
+
+    public static void saveNotesLabelList(String notesLabelListStr) {
+        if (NStringUtils.isBlank(notesLabelListStr)) {
+            notesLabelListStr = "";
+        }
+        File notesLabelFile = getNotesLabelFile();
+        FileUtil.saveFile(notesLabelListStr, notesLabelFile);
+    }
+
+    public static File getNotesLabelFile() {
+        File notesLabelFile = FileUtil.getFile(getNotesLabelFilePath());
+        return notesLabelFile;
+    }
+
+    private static String getNotesLabelFilePath() {
+        return getBaseFileFolder() + SAVE_FILE_NOTES_LABEL_FILE + SAVE_FILE_JSON_SUFFIX;
     }
 
 

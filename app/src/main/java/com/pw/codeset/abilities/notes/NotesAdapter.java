@@ -4,16 +4,20 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
 import com.pw.codeset.R;
 import com.pw.codeset.databean.NotesBean;
+import com.pw.codeset.utils.CommenUseViewUtils;
 import com.pw.codeset.utils.Constant;
 import com.pw.codeset.weidgt.IconImageView;
+import com.pw.codeset.weidgt.WarpLinearLayout;
 import com.xd.baseutils.others.recycle.BaseRecyclerAdapter;
 import com.xd.baseutils.others.recycle.BaseViewHolder;
+import com.xd.baseutils.utils.ArrayUtils;
 import com.xd.baseutils.utils.NStringUtils;
 
 import java.util.List;
@@ -54,6 +58,18 @@ public class NotesAdapter extends BaseRecyclerAdapter<NotesBean, NotesAdapter.No
             holder.dateText.setText(NStringUtils.dateConvert(data.getDate(), Constant.DATA_PARTNER_WITH_LINE));
             holder.contentText.setText(data.getContent());
             holder.itemView.setAlpha(data.haveDone() ? 0.3f : 1f);
+            List<String> labelList = data.getLabel();
+            holder.labelContainer.removeAllViews();
+            holder.labelContainer.setVisibility(View.GONE);
+            if (ArrayUtils.isArrayEnable(labelList)) {
+                for (int i = 0; i < labelList.size(); i++) {
+                    String label = labelList.get(i);
+                    CheckBox checkBox = CommenUseViewUtils.getNoteLabelView(mContext, label, true,false, null);
+                    checkBox.setEnabled(false);
+                    holder.labelContainer.addView(checkBox);
+                }
+                holder.labelContainer.setVisibility(View.VISIBLE);
+            }
             holder.contentText.post(new Runnable() {
                 @Override
                 public void run() {
@@ -87,6 +103,7 @@ public class NotesAdapter extends BaseRecyclerAdapter<NotesBean, NotesAdapter.No
         TextView contentText;
         TextView showMoreBtn;
         IconImageView alarmIcon;
+        WarpLinearLayout labelContainer;
         public NotesViewHolder(@NonNull View itemView) {
             super(itemView);
             titleText = itemView.findViewById(R.id.item_notes_title);
@@ -94,6 +111,7 @@ public class NotesAdapter extends BaseRecyclerAdapter<NotesBean, NotesAdapter.No
             contentText = itemView.findViewById(R.id.item_notes_content);
             showMoreBtn = itemView.findViewById(R.id.item_notes_more_icon);
             alarmIcon = itemView.findViewById(R.id.item_notes_alarm);
+            labelContainer = itemView.findViewById(R.id.item_notes_label_container);
         }
     }
 

@@ -1,8 +1,16 @@
 package com.pw.codeset.abilities.notes;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.drawable.GradientDrawable;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,9 +19,13 @@ import com.pw.codeset.R;
 import com.pw.codeset.base.BaseFragment;
 import com.pw.codeset.databean.NotesBean;
 import com.pw.codeset.manager.NotesManager;
+import com.pw.codeset.utils.CommenUseViewUtils;
 import com.pw.codeset.utils.Constant;
+import com.pw.codeset.utils.ResourceUtils;
 import com.pw.codeset.weidgt.SelectDialog;
+import com.pw.codeset.weidgt.WarpLinearLayout;
 import com.xd.baseutils.others.recycle.BaseRecyclerAdapter;
+import com.xd.baseutils.utils.ArrayUtils;
 import com.xd.baseutils.utils.NStringUtils;
 
 import java.util.ArrayList;
@@ -28,6 +40,10 @@ public class NotesFragment extends BaseFragment {
     RecyclerView mRecyclerView;
     NotesAdapter mAdapter;
     List<NotesBean> mDataList;
+
+    WarpLinearLayout mLabelViewContainer;
+    private List<String> mSelectedLabelList;
+    private List<String> mEnableLabelList;
 
     @Override
     protected void initView(View view) {
@@ -53,6 +69,8 @@ public class NotesFragment extends BaseFragment {
             }
         });
 
+        mLabelViewContainer = view.findViewById(R.id.notes_tag_container);
+
     }
 
     @Override
@@ -73,6 +91,23 @@ public class NotesFragment extends BaseFragment {
 
     private void refreshList() {
         mDataList = NotesManager.getInstance().getNotesList();
+        if (mDataList == null) {
+            mDataList = new ArrayList<>();
+        }
+        mEnableLabelList = NotesManager.getInstance().getLabelList();
+        mSelectedLabelList = new ArrayList<>();
+        mLabelViewContainer.removeAllViews();
+        if (mEnableLabelList != null && !mEnableLabelList.isEmpty()) {
+            mLabelViewContainer.setVisibility(View.VISIBLE);
+            for (int i = 0; i < mEnableLabelList.size(); i++) {
+                String label = mEnableLabelList.get(i);
+                if (NStringUtils.isNotBlank(label)) {
+                    addTagBtn(label);
+                }
+            }
+        }else {
+            mLabelViewContainer.setVisibility(View.GONE);
+        }
         mAdapter.setData(mDataList);
     }
 
@@ -116,5 +151,56 @@ public class NotesFragment extends BaseFragment {
             }
         }, items, -1);
         selectDialog.show();
+    }
+
+    private void addTagBtn(String label) {
+        CheckBox labelView = CommenUseViewUtils.getNoteLabelView(getContext(), label,false, new CommenUseViewUtils.onLabelCheckListener() {
+            @Override
+            public void onCheckedChange(String label, boolean isChecked) {
+                filterByLabel(label,isChecked);
+            }
+        });
+        mLabelViewContainer.addView(labelView);
+    }
+
+    private void filterByLabel(String label,boolean isChecked) {
+        if (NStringUtils.isBlank(label)) {
+            return;
+        }
+
+        if (mSelectedLabelList == null) {
+            mSelectedLabelList = new ArrayList<>();
+        }
+
+        if (isChecked) {
+            mSelectedLabelList.add(label);
+        } else {
+            if (mSelectedLabelList.contains(label)) {
+                mSelectedLabelList.remove(label);
+            }
+        }
+
+        if (NStringUtils.isBlank(label)) {
+            mAdapter.setData(mDataList);
+        }else {
+            if (mDataList != null) {
+                List<NotesBean> filterList = new ArrayList<>();
+                if (mSelectedLabelList.isEmpty()) {
+                    filterList = mDataList;
+                } else {
+                    for (int i = 0; i < mDataList.size(); i++) {
+                        NotesBean data = mDataList.get(i);
+                        if (data != null) {
+                            List<String> dataLabelList = data.getLabel();
+                            List<String> intersectionLabelList = (List<String>) ArrayUtils.getArrayIntersection(dataLabelList, mSelectedLabelList);
+                            if (ArrayUtils.isArrayEnable(intersectionLabelList)) {
+                                filterList.add(data);
+                            }
+                        }
+                    }
+                }
+                mAdapter.setData(filterList);
+            }
+        }
     }
 }

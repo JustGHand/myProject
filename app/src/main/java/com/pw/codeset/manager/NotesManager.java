@@ -15,6 +15,7 @@ public class NotesManager {
 
     public static NotesManager mInstance;
     private List<NotesBean> mNotesList;
+    private List<String> mNotesLabelList;
 
     public static NotesManager getInstance() {
         if (mInstance == null) {
@@ -70,6 +71,31 @@ public class NotesManager {
         return mNotesList;
     }
 
+    public List<String> getLabelList() {
+        if (mNotesLabelList == null) {
+            mNotesLabelList = new ArrayList<>();
+        }
+        return mNotesLabelList;
+    }
+
+    public void addLabel(String label) {
+        if (mNotesLabelList == null) {
+            mNotesLabelList = new ArrayList<>();
+        }
+        mNotesLabelList.add(label);
+        saveNoteLabelListToFile();
+    }
+
+    public void deleteLabel(String label) {
+        if (mNotesLabelList == null) {
+            mNotesLabelList = new ArrayList<>();
+        }
+        if (mNotesLabelList.contains(label)) {
+            mNotesLabelList.remove(label);
+        }
+        saveNoteLabelListToFile();
+    }
+
     public NotesBean getNote(String noteId) {
         if (mNotesList == null) {
             mNotesList = new ArrayList<>();
@@ -95,6 +121,21 @@ public class NotesManager {
         }else {
             mNotesList = new ArrayList<>();
         }
+        String noteLabelListStr = SaveFileUtils.getNotesLabelListStr();
+        if (NStringUtils.isNotBlank(noteLabelListStr)) {
+            mNotesLabelList = new Gson().fromJson(noteLabelListStr, new TypeToken<List<String>>() {
+            }.getType());
+        }else {
+            mNotesLabelList = new ArrayList<>();
+        }
+    }
+
+    private void saveNoteLabelListToFile() {
+        String notesLabelStr = "";
+        if (mNotesLabelList != null && mNotesLabelList.size() > 0) {
+            notesLabelStr = new Gson().toJson(mNotesLabelList);
+        }
+        SaveFileUtils.saveNotesLabelList(notesLabelStr);
     }
 
     private void saveNotesListToFile() {

@@ -2,7 +2,11 @@ package com.pw.codeset.databean;
 
 import com.pw.codeset.utils.Constant;
 import com.pw.codeset.utils.MD5Utils;
+import com.xd.baseutils.utils.ArrayUtils;
 import com.xd.baseutils.utils.NStringUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class NotesBean {
 
@@ -15,6 +19,7 @@ public class NotesBean {
     String content;
     int state;
     Integer pwCalendarId;
+    List<String> labelList;
 
     public NotesBean() {
         date = System.currentTimeMillis();
@@ -73,6 +78,38 @@ public class NotesBean {
 
     public void setPwCalendarId(int pwCalendarId) {
         this.pwCalendarId = pwCalendarId;
+    }
+
+    public List<String> getLabel() {
+        return labelList;
+    }
+
+    public boolean haveLabel(String label) {
+        if (ArrayUtils.isArrayEnable(labelList)) {
+            if (labelList.contains(label)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void setLabel(List<String> labelList) {
+        this.labelList = labelList;
+    }
+
+    public void addLabel(String label) {
+        if (labelList == null) {
+            labelList = new ArrayList<>();
+        }
+        if (!haveLabel(label)) {
+            labelList.add(label);
+        }
+    }
+
+    public void removeLabel(String label) {
+        if (haveLabel(label)) {
+            labelList.remove(label);
+        }
     }
 
     public boolean haveDone() {

@@ -32,4 +32,13 @@
         <item name="android:windowExitAnimation">@animator/photo_dialog_out_anim</item>
     </style>
 
+    <!--自动换行LinearLayout-->
+    <style name="WarpLinearLayoutDefault">
+        <item name="grivate">left</item>
+        <item name="horizontal_Space">20dp</item>
+        <item name="vertical_Space">20dp</item>
+        <item name="isFull">false</item>
+        <item name="android:maxLines">0</item>
+    </style>
+
 </resources>

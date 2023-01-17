@@ -5,6 +5,7 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -17,11 +18,17 @@ import com.pw.codeset.base.BaseActivity;
 import com.pw.codeset.databean.NotesBean;
 import com.pw.codeset.manager.NotesManager;
 import com.pw.codeset.utils.CalendarReminderUtils;
+import com.pw.codeset.utils.CommenUseViewUtils;
 import com.pw.codeset.utils.Constant;
 import com.pw.codeset.utils.LogToastUtils;
+import com.pw.codeset.weidgt.IconImageView;
+import com.pw.codeset.weidgt.InputDialog;
+import com.pw.codeset.weidgt.WarpLinearLayout;
+import com.xd.baseutils.utils.ArrayUtils;
 import com.xd.baseutils.utils.NStringUtils;
 
 import java.util.Calendar;
+import java.util.List;
 
 public class NotesEditActivity extends BaseActivity {
 
@@ -33,6 +40,11 @@ public class NotesEditActivity extends BaseActivity {
 
     Button mAddCalendarBtn;
     Group mCalendarGroup;
+
+    List<String> mAllLabels;
+    List<String> mSelectedLabels;
+    IconImageView mLabelAddBtn;
+    WarpLinearLayout mLabelContainer;
 
     int mCalendarId = -1;
 
@@ -51,6 +63,9 @@ public class NotesEditActivity extends BaseActivity {
         mAddCalendarBtn = findViewById(R.id.notes_add_calendar);
         mCalendarGroup = findViewById(R.id.notes_calendar_group);
 
+        mLabelAddBtn = findViewById(R.id.notes_edit_label_add);
+        mLabelContainer = findViewById(R.id.notes_edit_label_container);
+
     }
 
     @Override
@@ -64,6 +79,8 @@ public class NotesEditActivity extends BaseActivity {
             mNoteBean = new NotesBean();
         }
 
+        mAllLabels = NotesManager.getInstance().getLabelList();
+
     }
 
     @Override
@@ -74,7 +91,6 @@ public class NotesEditActivity extends BaseActivity {
 
     @Override
     protected void onMenuClick(View view) {
-        saveNote();
         finish();
     }
 
@@ -102,6 +118,33 @@ public class NotesEditActivity extends BaseActivity {
 
             varifyCalendarView();
 
+        }
+        generateLabelViews();
+    }
+
+    public void addLabel(View view) {
+        InputDialog inputDialog = new InputDialog(this, new InputDialog.DialogListener() {
+            @Override
+            public void cancel() {
+
+            }
+
+            @Override
+            public void confirm(String content) {
+                if (NStringUtils.isNotBlank(content)) {
+                    NotesManager.getInstance().addLabel(content);
+                    mAllLabels = NotesManager.getInstance().getLabelList();
+                    generateLabelViews();
+                }
+            }
+
+            @Override
+            public void editChange(String content) {
+
+            }
+        }, "输入标签", "创建标签");
+        if (!this.isFinishing()) {
+            inputDialog.show();
         }
     }
 
@@ -150,6 +193,41 @@ public class NotesEditActivity extends BaseActivity {
                 },calendar.get(Calendar.HOUR),calendar.get(Calendar.MINUTE),true).show();
             }
         },calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH)).show();
+    }
+
+    private void generateLabelViews() {
+        mLabelContainer.removeAllViews();
+        if (ArrayUtils.isArrayEnable(mAllLabels)) {
+            for (int i = 0; i < mAllLabels.size(); i++) {
+                String label = mAllLabels.get(i);
+                if (NStringUtils.isNotBlank(label)) {
+                    CheckBox labelView = CommenUseViewUtils.getNoteLabelView(this, label, isLabelSelected(label), new CommenUseViewUtils.onLabelCheckListener() {
+                        @Override
+                        public void onCheckedChange(String label, boolean isChecked) {
+                            setLabelStatus(label, isChecked);
+                        }
+                    });
+                    mLabelContainer.addView(labelView);
+                }
+            }
+        }
+    }
+
+    private void setLabelStatus(String label, boolean isChecked) {
+        if (isChecked && !isLabelSelected(label)) {
+            mNoteBean.addLabel(label);
+        } else if(!isChecked && isLabelSelected(label)){
+            mNoteBean.removeLabel(label);
+        }
+    }
+
+    private boolean isLabelSelected(String label) {
+        if (mNoteBean != null) {
+            if (mNoteBean.haveLabel(label)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void saveNote() {

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheckBox xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="@dimen/view_defaultmargin"
+    android:text="TAG"
+    android:button="@null"
+    android:gravity="center"
+    android:textSize="@dimen/minor_textsize"
+    android:background="@drawable/selector_border_all_radius"
+    android:paddingLeft="@dimen/view_defaultpadding_double"
+    android:paddingRight="@dimen/view_defaultpadding_double"
+    android:checked="false">
+
+</CheckBox>

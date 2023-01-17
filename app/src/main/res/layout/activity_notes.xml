@@ -17,6 +17,35 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="spread_inside"/>
 
+    <com.pw.codeset.weidgt.WarpLinearLayout
+        android:id="@+id/notes_tag_container"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:grivate="left"
+        app:isFull="false"
+        app:vertical_Space="@dimen/view_defaultmargin"
+        app:horizontal_Space="@dimen/view_defaultmargin"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activity_header"
+        android:padding="@dimen/view_defaultmargin"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TAG"
+            android:gravity="center"
+            android:textSize="@dimen/minor_textsize"
+            android:background="@drawable/border_gray_all_radius"
+            android:backgroundTint="@color/selector_btn_color_t_b"
+            android:paddingLeft="@dimen/view_defaultpadding_double"
+            android:paddingRight="@dimen/view_defaultpadding_double"
+            />
+
+    </com.pw.codeset.weidgt.WarpLinearLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/notes_listview"
         android:layout_width="0dp"
@@ -24,7 +53,7 @@
         android:scrollbars="vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/activity_header"
+        app:layout_constraintTop_toBottomOf="@id/notes_tag_container"
         app:layout_constraintBottom_toBottomOf="parent"
         />
 

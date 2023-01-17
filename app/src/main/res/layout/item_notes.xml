@@ -52,6 +52,26 @@
             android:layout_marginRight="@dimen/view_defaultpadding"
             />
 
+        <com.pw.codeset.weidgt.WarpLinearLayout
+            android:id="@+id/item_notes_label_container"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:grivate="left"
+            app:isFull="false"
+            app:vertical_Space="@dimen/view_defaultpadding"
+            app:horizontal_Space="@dimen/view_defaultpadding"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/item_notes_title"
+            android:layout_marginTop="@dimen/view_defaultpadding_double"
+            android:visibility="gone"
+            >
+
+        </com.pw.codeset.weidgt.WarpLinearLayout>
+
+
         <TextView
             android:id="@+id/item_notes_content"
             android:layout_width="0dp"
@@ -61,9 +81,9 @@
             android:ellipsize="marquee"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/item_notes_title"
+            app:layout_constraintTop_toBottomOf="@id/item_notes_label_container"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginTop="@dimen/view_defaultmargin"
+            android:layout_marginTop="@dimen/view_defaultpadding_double"
             />
 
         <com.pw.codeset.weidgt.IconImageView

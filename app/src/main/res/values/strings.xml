@@ -48,6 +48,7 @@
     <string name="notes_edit_content">内容</string>
     <string name="notes_edit_content_hint">无</string>
     <string name="notes_edit_state">状态</string>
+    <string name="notes_edit_label">标签</string>
 
     <string name="notes_dialog_title">确认完成？</string>
 

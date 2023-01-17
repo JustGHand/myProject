@@ -30,4 +30,17 @@
     <color name="ydx_seekbar_progress_default">#1A000000</color>
     <color name="ydx_seekbar_progress_night_default">#1AF2F2F2</color>
     <color name="ydx_seekbar_thumb_default">#FFE1F5E0</color>
+
+
+
+    <color name="tag_back_color1">#FFE5EBFA</color>
+    <color name="tag_text_color1">#FF4E5871</color>
+    <color name="tag_back_color2">#FFFFEDE8</color>
+    <color name="tag_text_color2">#FF6D2F1E</color>
+    <color name="tag_back_color3">#FFF2F3DE</color>
+    <color name="tag_text_color3">#FF3D3F0D</color>
+    <color name="tag_back_color4">#FFE5F8ED</color>
+    <color name="tag_text_color4">#FF145B32</color>
+    <color name="tag_back_color5">#FFFFF5DF</color>
+    <color name="tag_text_color5">#FFF3A700</color>
 </resources>
