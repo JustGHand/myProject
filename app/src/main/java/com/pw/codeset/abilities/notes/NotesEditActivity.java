@@ -1,9 +1,14 @@
 package com.pw.codeset.abilities.notes;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
+import android.os.Build;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
@@ -11,8 +16,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.Group;
+import androidx.core.app.ActivityCompat;
 
+import com.luck.picture.lib.PictureSelector;
+import com.luck.picture.lib.config.PictureConfig;
+import com.luck.picture.lib.config.PictureMimeType;
+import com.luck.picture.lib.engine.ImageEngine;
+import com.luck.picture.lib.entity.LocalMedia;
+import com.luck.picture.lib.listener.OnResultCallbackListener;
 import com.pw.codeset.R;
 import com.pw.codeset.base.BaseActivity;
 import com.pw.codeset.databean.NotesBean;
@@ -20,17 +33,29 @@ import com.pw.codeset.manager.NotesManager;
 import com.pw.codeset.utils.CalendarReminderUtils;
 import com.pw.codeset.utils.CommenUseViewUtils;
 import com.pw.codeset.utils.Constant;
+import com.pw.codeset.utils.GlideEngine;
+import com.pw.codeset.utils.ImageCompressEngine;
 import com.pw.codeset.utils.LogToastUtils;
+import com.pw.codeset.utils.SaveFileUtils;
 import com.pw.codeset.weidgt.IconImageView;
+import com.pw.codeset.weidgt.ImagesContainer;
 import com.pw.codeset.weidgt.InputDialog;
 import com.pw.codeset.weidgt.WarpLinearLayout;
 import com.xd.baseutils.utils.ArrayUtils;
+import com.xd.baseutils.utils.FileUtil;
 import com.xd.baseutils.utils.NStringUtils;
+import com.xd.baseutils.utils.PermissionUtils;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
 public class NotesEditActivity extends BaseActivity {
+
+    public static final int REUQEST_CODE_SPLASH_PERMISSION = 1001;
+    public static final int REUQEST_CODE_INSTALLAPK_PERMISSION = 1002;
+
 
     NotesBean mNoteBean;
 
@@ -45,6 +70,10 @@ public class NotesEditActivity extends BaseActivity {
     List<String> mSelectedLabels;
     IconImageView mLabelAddBtn;
     WarpLinearLayout mLabelContainer;
+
+    ImagesContainer mImagesContainer;
+
+    private List<String> mDeleteImages;
 
     int mCalendarId = -1;
 
@@ -65,6 +94,38 @@ public class NotesEditActivity extends BaseActivity {
 
         mLabelAddBtn = findViewById(R.id.notes_edit_label_add);
         mLabelContainer = findViewById(R.id.notes_edit_label_container);
+
+
+        mImagesContainer = findViewById(R.id.notes_edit_content_images);
+        mImagesContainer.setListener(new ImagesContainer.ImagesListener() {
+            @Override
+            public void onDelete(String url) {
+                if (mDeleteImages == null) {
+                    mDeleteImages = new ArrayList<>();
+                }
+                mDeleteImages.add(url);
+                if (mNoteBean!=null) {
+                    List<String> imageList = mNoteBean.getImageList();
+                    if (ArrayUtils.isArrayEnable(imageList)) {
+                        if (NStringUtils.isNotBlank(url)) {
+                            mNoteBean.removeImage(url);
+                            mImagesContainer.removeImage(url);
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public boolean onImageClick( String url) {
+                return false;
+            }
+
+            @Override
+            public void onAddClick() {
+                addImageToContent(null);
+            }
+        });
+
 
     }
 
@@ -120,6 +181,7 @@ public class NotesEditActivity extends BaseActivity {
 
         }
         generateLabelViews();
+        generateImages();
     }
 
     public void addLabel(View view) {
@@ -230,7 +292,115 @@ public class NotesEditActivity extends BaseActivity {
         return false;
     }
 
+    public void addImageToContent(View view) {
+        checkPermission();
+    }
+
+    private void generateImages() {
+        if (mNoteBean != null) {
+            List<String> imageList = mNoteBean.getImageList();
+            if (ArrayUtils.isArrayEnable(imageList)) {
+                for (int i = 0; i < imageList.size(); i++) {
+                    String imagePath = imageList.get(i);
+                    if (NStringUtils.isNotBlank(imagePath)) {
+                        mImagesContainer.addImage(imagePath);
+                    }
+                }
+            }
+        }
+    }
+
+    private void checkPermission() {
+
+        if (PermissionUtils.isWritePermissionGranted(this)) {
+            openFileManager();
+        }else {
+            String[] permission = new String[1];
+            permission[0] = Manifest.permission.WRITE_EXTERNAL_STORAGE;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                requestPermissions(permission,REUQEST_CODE_SPLASH_PERMISSION);
+            }else {
+                ActivityCompat.requestPermissions(this,permission,REUQEST_CODE_SPLASH_PERMISSION);
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (PermissionUtils.hasAllPermissionsGranted(grantResults)) {
+            openFileManager();
+        }else {
+            LogToastUtils.show("缺少必要权限，无法进行文件选择");
+        }
+    }
+
+    // 打开文件管理器选择文件
+    private void openFileManager() {
+        PictureSelector.create(this)
+                .openGallery(PictureMimeType.ofImage())
+                .imageEngine((ImageEngine) GlideEngine.createGlideEngine())
+                .selectionMode(PictureConfig.MULTIPLE)//单选
+                .isPreviewImage(true)//预览图片
+                .setOfAllCameraType(PictureMimeType.ofImage())//拍照，不允许录制
+                .isEditorImage(true)//编辑图片
+                .forResult(new OnResultCallbackListener<LocalMedia>() {
+                    @Override
+                    public void onResult(List<LocalMedia> result) {
+                        // onResult Callback
+                        LogToastUtils.printLog("picture selector result");
+                        if (result != null && result.size() > 0) {
+                            for (int i = 0; i < result.size(); i++) {
+                                LocalMedia media = result.get(i);
+                                if (media != null) {
+                                    String filePath = media.getRealPath();
+                                    String fileSuffix = NStringUtils.getFileSuffix(filePath);
+                                    String tarPath = SaveFileUtils.getNoteImageFileFolder() + File.separator + mNoteBean.getId() + System.currentTimeMillis() + i+"."+fileSuffix;
+                                    FileUtil.copyFile(filePath, tarPath);
+                                    mImagesContainer.addImage(tarPath);
+                                    mNoteBean.addImage(tarPath);
+                                }
+                            }
+                            saveNote();
+                        }
+                    }
+
+                    @Override
+                    public void onCancel() {
+                        // onCancel Callback
+                        LogToastUtils.printLog("picture selector cancel");
+                    }
+                });
+
+
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            switch (requestCode) {
+                case PictureConfig.CHOOSE_REQUEST:
+                    // onResult Callback
+                    List<LocalMedia> result = PictureSelector.obtainMultipleResult(data);
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+
     private void saveNote() {
+        if (ArrayUtils.isArrayEnable(mDeleteImages)) {
+            for (int i = 0; i < mDeleteImages.size(); i++) {
+                String deletedFile = mDeleteImages.get(i);
+                if (NStringUtils.isNotBlank(deletedFile)) {
+                    FileUtil.deleteFile(deletedFile);
+                }
+            }
+        }
         if (mNoteBean == null) {
             mNoteBean = new NotesBean();
         }

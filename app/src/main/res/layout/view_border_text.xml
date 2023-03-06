@@ -6,6 +6,7 @@
     android:button="@null"
     android:gravity="center"
     android:textSize="@dimen/minor_textsize"
+    android:textColor="@color/check_theme_import"
     android:background="@drawable/selector_border_all_radius"
     android:paddingLeft="@dimen/view_defaultpadding_double"
     android:paddingRight="@dimen/view_defaultpadding_double"

@@ -10,8 +10,8 @@ android {
         applicationId "com.pw.codeset"
         minSdkVersion 24
         targetSdkVersion 30
-        versionCode 2
-        versionName "1.1.2"
+        versionCode 3
+        versionName "1.1.3"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -61,8 +61,10 @@ android {
 
 dependencies {
 
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'com.google.android.material:material:1.1.0'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "androidx.appcompat:appcompat:1.3.1"
+    implementation "androidx.activity:activity:1.3.1"
+    implementation "com.google.android.material:material:1.3.0"
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
@@ -79,4 +81,7 @@ dependencies {
     implementation 'com.koushikdutta.async:androidasync:2.+'
 
     implementation 'com.google.code.gson:gson:2.8.6'
+
+
+    implementation (name: 'picture_library-release', ext: 'aar')
 }

@@ -20,6 +20,7 @@ public class NotesBean {
     int state;
     Integer pwCalendarId;
     List<String> labelList;
+    List<String> imageList;
 
     public NotesBean() {
         date = System.currentTimeMillis();
@@ -31,10 +32,6 @@ public class NotesBean {
 
     public String getId() {
         return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public long getDate() {
@@ -109,6 +106,27 @@ public class NotesBean {
     public void removeLabel(String label) {
         if (haveLabel(label)) {
             labelList.remove(label);
+        }
+    }
+
+    public List<String> getImageList() {
+        return imageList;
+    }
+
+    public void setImageList(List<String> imageList) {
+        this.imageList = imageList;
+    }
+
+    public void addImage(String imagePath) {
+        if (imageList == null) {
+            imageList = new ArrayList<>();
+        }
+        imageList.add(imagePath);
+    }
+
+    public void removeImage(String imagePath) {
+        if (imageList != null && imageList.contains(imagePath)) {
+            imageList.remove(imagePath);
         }
     }
 

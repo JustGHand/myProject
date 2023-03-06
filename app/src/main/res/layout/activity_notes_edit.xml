@@ -42,7 +42,6 @@
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 android:padding="@dimen/view_defaultpadding_double"
                 android:layout_marginTop="@dimen/view_defaultmargin"
                 />
@@ -52,55 +51,28 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:hint="@string/notes_edit_title_hint"
-                app:layout_constraintStart_toStartOf="parent"
+                android:gravity="right"
+                app:layout_constraintStart_toEndOf="@id/notes_edit_title_title"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/notes_edit_title_title"
+                app:layout_constraintTop_toTopOf="@id/notes_edit_title_title"
+                app:layout_constraintBottom_toBottomOf="@id/notes_edit_title_title"
                 android:background="@drawable/back_alpha_radiusall"
                 android:padding="@dimen/view_defaultpadding"
                 android:layout_margin="@dimen/view_defaultmargin"
                 />
 
-            <TextView
-                android:id="@+id/notes_edit_content_title"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/clickable_minsize"
-                android:gravity="center|left"
-                android:text="@string/notes_edit_content"
-                android:textColor="@color/normal_title_color"
-                android:textSize="@dimen/title_textsize"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/notes_edit_title_edit"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:padding="@dimen/view_defaultpadding_double"
-                android:layout_marginTop="@dimen/view_defaultmargin"
-                />
-
-            <EditText
-                android:id="@+id/notes_edit_content_edit"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:minHeight="200dp"
-                android:gravity="top|left"
-                android:hint="@string/notes_edit_content_hint"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/notes_edit_content_title"
-                android:background="@drawable/back_alpha_radiusall"
-                android:padding="@dimen/view_defaultpadding"
-                android:layout_margin="@dimen/view_defaultmargin"
-                />
 
             <Button
                 android:id="@+id/notes_add_calendar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="添加日历提醒"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/notes_edit_content_edit"
+                app:layout_constraintTop_toBottomOf="@id/notes_edit_title_edit"
+                app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginLeft="@dimen/view_defaultmargin"
                 android:layout_marginTop="@dimen/view_defaultmargin"
                 android:onClick="addCalendar"
+                android:visibility="gone"
                 />
 
             <androidx.constraintlayout.widget.Group
@@ -121,7 +93,6 @@
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/notes_add_calendar"
-                app:layout_constraintEnd_toEndOf="parent"
                 android:padding="@dimen/view_defaultpadding_double"
                 android:layout_marginTop="@dimen/view_defaultmargin"
                 />
@@ -131,9 +102,10 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:hint="@string/notes_edit_date"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@id/notes_edit_date_title"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/notes_edit_date_title"
+                app:layout_constraintTop_toTopOf="@id/notes_edit_date_title"
+                app:layout_constraintBottom_toBottomOf="@id/notes_edit_date_title"
                 android:background="@drawable/back_alpha_radiusall"
                 android:padding="@dimen/view_defaultpadding"
                 android:layout_margin="@dimen/view_defaultmargin"
@@ -199,6 +171,51 @@
             </com.pw.codeset.weidgt.WarpLinearLayout>
 
 
+            <TextView
+                android:id="@+id/notes_edit_content_title"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/clickable_minsize"
+                android:gravity="center|left"
+                android:text="@string/notes_edit_content"
+                android:textColor="@color/normal_title_color"
+                android:textSize="@dimen/title_textsize"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/notes_edit_label_container"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:padding="@dimen/view_defaultpadding_double"
+                android:layout_marginTop="@dimen/view_defaultmargin"
+                />
+
+            <EditText
+                android:id="@+id/notes_edit_content_edit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:minHeight="200dp"
+                android:gravity="top|left"
+                android:hint="@string/notes_edit_content_hint"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/notes_edit_content_title"
+                android:background="@drawable/back_alpha_radiusall"
+                android:padding="@dimen/view_defaultpadding"
+                android:layout_margin="@dimen/view_defaultmargin"
+                />
+
+            <com.pw.codeset.weidgt.ImagesContainer
+                android:id="@+id/notes_edit_content_images"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:editAble="true"
+                app:columnCount="3"
+                app:imageRatio="1"
+                app:horizonSpace="@dimen/view_defaultmargin"
+                app:verticalSpace="@dimen/view_defaultmargin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/notes_edit_content_edit"
+                android:layout_margin="@dimen/view_defaultmargin"
+                />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

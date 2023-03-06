@@ -191,7 +191,7 @@ public class WarpLinearLayout extends ViewGroup {
                     view.layout(left, t, left + view.getMeasuredWidth() + lastWidth / warpLine.lineView.size(), t + view.getMeasuredHeight());
                     left += view.getMeasuredWidth() + mType.horizontal_Space + lastWidth / warpLine.lineView.size();
                 } else {
-                    if (view.getTag() != null) {
+                    if (view.getTag() != null&& view.getTag() instanceof String) {
                         if (EXPANDVIEW_TAG.equals((String) view.getTag())) {
                             int expandLeft = getPaddingLeft() + getMeasuredWidth() - view.getMeasuredWidth();
                             int expandRight = expandLeft + view.getMeasuredWidth();

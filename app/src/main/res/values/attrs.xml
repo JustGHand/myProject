@@ -9,6 +9,19 @@
         <attr name="onMenuClick" format="string"></attr>
     </declare-styleable>
 
+    <declare-styleable name="ImagesContainer">
+        <attr name="editAble" format="boolean"></attr>
+        <attr name="columnCount" format="integer"></attr>
+        <attr name="imageRatio" format="float"></attr>
+        <attr name="horizonSpace" format="dimension"></attr>
+        <attr name="verticalSpace" format="dimension"></attr>
+    </declare-styleable>
+
+    <declare-styleable name="PwImageView">
+        <attr name="android:src"></attr>
+        <attr name="showDelete" format="boolean"></attr>
+    </declare-styleable>
+
     <declare-styleable name="FlipCard">
         <attr name="flipSpeed" format="integer"></attr>
         <attr name="showFront" format="boolean"></attr>

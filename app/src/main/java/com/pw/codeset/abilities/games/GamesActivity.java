@@ -22,7 +22,6 @@ public class GamesActivity extends BaseActivity {
     @Override
     protected void dealWithData() {
         try {
-            Thread.sleep(2000);
             GAME_BLOCK = this.getString(R.string.game_block);
             mGameList = new ArrayList<>();
             mGameList.add(GAME_BLOCK);

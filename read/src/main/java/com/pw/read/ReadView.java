@@ -117,6 +117,29 @@ public class ReadView extends ConstraintLayout {
 //                        pageView.drawMove(mStartX,mStartY,mTouchX,mTouchY);
 //                    }
 //                }
+                //只对[-1,1]之间处理，超过范围将属性设置为初始值
+
+                if (position < -1) { // [-Infinity,-1)
+//                    page.setPivotX(0f);
+//                    page.setScaleX(1f);
+//                    page.setTranslationX(0);
+                    page.setAlpha(1);
+                } else if (position <= 0) { // [-1,0]
+//                    page.setPivotX(0f);
+//                    page.setTranslationX(-position * page.getWidth());
+//                    page.setScaleX(position + 1);
+                    page.setAlpha(position);
+                } else if (position <= 1) { // (0,1]
+//                    page.setPivotX(page.getWidth());
+//                    page.setTranslationX(-position * page.getWidth());
+//                    page.setScaleX(1-position);
+                    page.setAlpha(position);
+                } else { // (1,+Infinity]
+//                    page.setPivotX(0f);
+//                    page.setScaleX(1f);
+//                    page.setTranslationX(0);
+                    page.setAlpha(1);
+                }
             }
         });
     }

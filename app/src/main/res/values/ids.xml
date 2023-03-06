@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <item name="activity_header" type="id"/>
+
+    <item name="tag_move_x" type="id" />
+    <item name="tag_move_y" type="id" />
+    <item name="tag_move_angle" type="id" />
 </resources>

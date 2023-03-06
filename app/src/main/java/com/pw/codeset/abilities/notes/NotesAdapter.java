@@ -1,7 +1,9 @@
 package com.pw.codeset.abilities.notes;
 
 import android.content.Context;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
@@ -13,6 +15,7 @@ import com.pw.codeset.R;
 import com.pw.codeset.databean.NotesBean;
 import com.pw.codeset.utils.CommenUseViewUtils;
 import com.pw.codeset.utils.Constant;
+import com.pw.codeset.utils.ResourceUtils;
 import com.pw.codeset.weidgt.IconImageView;
 import com.pw.codeset.weidgt.WarpLinearLayout;
 import com.xd.baseutils.others.recycle.BaseRecyclerAdapter;
@@ -64,9 +67,12 @@ public class NotesAdapter extends BaseRecyclerAdapter<NotesBean, NotesAdapter.No
             if (ArrayUtils.isArrayEnable(labelList)) {
                 for (int i = 0; i < labelList.size(); i++) {
                     String label = labelList.get(i);
-                    CheckBox checkBox = CommenUseViewUtils.getNoteLabelView(mContext, label, true,false, null);
-                    checkBox.setEnabled(false);
-                    holder.labelContainer.addView(checkBox);
+                    TextView textView = new TextView(mContext);
+                    textView.setText("#"+label);
+                    textView.setTextColor(ResourceUtils.getResColor(R.color.normal_text_color));
+                    textView.setTextSize(TypedValue.COMPLEX_UNIT_SP,11);
+                    textView.setPadding((int)ResourceUtils.getDefaultPadding(),0,(int)ResourceUtils.getDefaultPadding(),0);
+                    holder.labelContainer.addView(textView);
                 }
                 holder.labelContainer.setVisibility(View.VISIBLE);
             }

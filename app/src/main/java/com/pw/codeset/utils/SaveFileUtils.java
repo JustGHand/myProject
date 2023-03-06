@@ -12,6 +12,7 @@ public class SaveFileUtils {
 
     public static final String SAVE_FILE_BASE_FOLDER = "pw_code";
     public static final String SAVE_FILE_NOTES_FILE = "notes";
+    public static final String SAVE_FILE_NOTES_IMAGE_FILE = "notesImage";
     public static final String SAVE_FILE_NOTES_LABEL_FILE = "notes_label";
     public static final String SAVE_FILE_BOOKSHELF_FILE = "bookshelf";
     public static final String SAVE_FILE_BOOKS_FILE = "books";
@@ -19,6 +20,7 @@ public class SaveFileUtils {
     public static final String SAVE_FILE_READCONFIG_FILE = "readConfig";
     public static final String SAVE_FILE_READRECORD_FILE = "readRecord";
     public static final String SAVE_FILE_BOOKMARK_FILE = "bookMark";
+    public static final String SAVE_FILE_FILE_TRANSFER_FOLDER = "transfer";
 
 
     /**
@@ -51,6 +53,13 @@ public class SaveFileUtils {
     }
 
     /**
+     * 备忘录图片
+     */
+    public static String getNoteImageFileFolder() {
+        return getBaseFileFolder() + SAVE_FILE_NOTES_IMAGE_FILE;
+    }
+
+    /**
      * 备忘录标签
      */
 
@@ -79,6 +88,12 @@ public class SaveFileUtils {
         return getBaseFileFolder() + SAVE_FILE_NOTES_LABEL_FILE + SAVE_FILE_JSON_SUFFIX;
     }
 
+    /**
+     * 文件中转
+     */
+    public static String getFileTransferFolder() {
+        return getBaseFileFolder() + SAVE_FILE_FILE_TRANSFER_FOLDER;
+    }
 
     /*
     books

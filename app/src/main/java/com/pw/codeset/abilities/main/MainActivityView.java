@@ -1,5 +1,6 @@
 package com.pw.codeset.abilities.main;
 
+import android.util.Log;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
@@ -47,7 +48,6 @@ public class MainActivityView extends BaseActivity {
 
             @Override
             public void onPageScrollStateChanged(int state) {
-
             }
         });
 

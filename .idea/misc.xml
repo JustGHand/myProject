@@ -3,36 +3,70 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../.gradle/caches/transforms-2/files-2.1/fbc89b377cc593bb2850249a19236c43/jetified-picture_library-release/res/drawable/picture_image_placeholder.xml" value="0.38425925925925924" />
+        <entry key="app/src/main/res/drawable-v24/selector_bookmarkicon.xml" value="0.3807291666666667" />
+        <entry key="app/src/main/res/drawable/back_alpha_radius18all.xml" value="0.22083333333333333" />
+        <entry key="app/src/main/res/drawable/back_alpha_radiusall.xml" value="0.22083333333333333" />
+        <entry key="app/src/main/res/drawable/back_alpha_white_radiusall.xml" value="0.22083333333333333" />
+        <entry key="app/src/main/res/drawable/back_dark_radiusall.xml" value="0.22083333333333333" />
+        <entry key="app/src/main/res/drawable/back_theme_radiusall.xml" value="0.22083333333333333" />
         <entry key="app/src/main/res/drawable/back_white_radiusall.xml" value="0.34717948717948716" />
+        <entry key="app/src/main/res/drawable/back_white_radiustop.xml" value="0.22083333333333333" />
+        <entry key="app/src/main/res/drawable/border_checkor_all_radius.xml" value="0.22083333333333333" />
+        <entry key="app/src/main/res/drawable/border_gray_all_radius.xml" value="0.22083333333333333" />
+        <entry key="app/src/main/res/drawable/border_theme_radiusall.xml" value="0.22083333333333333" />
+        <entry key="app/src/main/res/drawable/btn_back_support.xml" value="0.22083333333333333" />
         <entry key="app/src/main/res/drawable/icon_selector_selector.xml" value="0.2015625" />
+        <entry key="app/src/main/res/drawable/selector_border_all_radius_24.xml" value="0.22083333333333333" />
+        <entry key="app/src/main/res/drawable/selector_game_block.xml" value="0.22083333333333333" />
         <entry key="app/src/main/res/drawable/selector_icon_game.xml" value="0.34717948717948716" />
         <entry key="app/src/main/res/drawable/selector_icon_notes.xml" value="0.34717948717948716" />
         <entry key="app/src/main/res/drawable/selector_icon_read.xml" value="0.34717948717948716" />
         <entry key="app/src/main/res/drawable/selector_rm_set_icon.xml" value="0.2015625" />
+        <entry key="app/src/main/res/drawable/ydx_lightseek_bg.xml" value="0.35260416666666666" />
+        <entry key="app/src/main/res/drawable/ydx_seek_progress.xml" value="0.35260416666666666" />
+        <entry key="app/src/main/res/drawable/ydx_seek_thumb_large.xml" value="0.35260416666666666" />
+        <entry key="app/src/main/res/drawable/ydx_seekbar_bg.xml" value="0.35260416666666666" />
+        <entry key="app/src/main/res/layout/act_my_test.xml" value="0.25" />
         <entry key="app/src/main/res/layout/act_read_test.xml" value="0.18541666666666667" />
+        <entry key="app/src/main/res/layout/activity_bezier.xml" value="0.33645833333333336" />
         <entry key="app/src/main/res/layout/activity_booklist.xml" value="0.18541666666666667" />
         <entry key="app/src/main/res/layout/activity_bookshelf.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/activity_file_transfer.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_game_block.xml" value="0.18541666666666667" />
         <entry key="app/src/main/res/layout/activity_game_minesweep.xml" value="0.18541666666666667" />
         <entry key="app/src/main/res/layout/activity_games.xml" value="0.18541666666666667" />
+        <entry key="app/src/main/res/layout/activity_image_detail.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/layout/activity_lead_book.xml" value="0.33645833333333336" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_notes.xml" value="0.18541666666666667" />
-        <entry key="app/src/main/res/layout/activity_notes_edit.xml" value="0.18541666666666667" />
-        <entry key="app/src/main/res/layout/activity_read.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/activity_notes.xml" value="0.5652818991097923" />
+        <entry key="app/src/main/res/layout/activity_notes_edit.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/activity_read.xml" value="0.16" />
+        <entry key="app/src/main/res/layout/activity_tools.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/layout/item_bookshelf.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/item_file_transfer.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_gamelist.xml" value="0.33645833333333336" />
+        <entry key="app/src/main/res/layout/item_notes.xml" value="0.4472361809045226" />
         <entry key="app/src/main/res/layout/item_read_catelog.xml" value="0.5" />
         <entry key="app/src/main/res/layout/item_test.xml" value="0.33645833333333336" />
+        <entry key="app/src/main/res/layout/item_toollist.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/layout/test_activity.xml" value="0.33645833333333336" />
         <entry key="app/src/main/res/layout/view_acitivity_header.xml" value="0.18541666666666667" />
         <entry key="app/src/main/res/layout/view_bookshelf_popup.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/view_border_text.xml" value="0.75" />
+        <entry key="app/src/main/res/layout/view_bubble.xml" value="0.22083333333333333" />
+        <entry key="app/src/main/res/layout/view_catelog.xml" value="0.17552083333333332" />
         <entry key="app/src/main/res/layout/view_dialog_input.xml" value="0.18541666666666667" />
+        <entry key="app/src/main/res/layout/view_dialog_select.xml" value="0.17552083333333332" />
+        <entry key="app/src/main/res/layout/view_image.xml" value="0.37604166666666666" />
+        <entry key="app/src/main/res/layout/view_images.xml" value="0.375" />
         <entry key="app/src/main/res/layout/view_my_seekbar.xml" value="0.18541666666666667" />
+        <entry key="app/src/main/res/layout/view_notes_image_content.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/layout/view_popup.xml" value="0.5" />
         <entry key="app/src/main/res/menu/bookshelf_menu.xml" value="0.33645833333333336" />
         <entry key="app/src/main/res/menu/main_page_menu.xml" value="0.33645833333333336" />
         <entry key="app/src/main/res/menu/read_menu.xml" value="0.18541666666666667" />
+        <entry key="app/src/main/res/xml/file_paths.xml" value="0.37604166666666666" />
         <entry key="base/src/main/res/drawable-v24/back_dark_radiusall.xml" value="0.35260416666666666" />
         <entry key="base/src/main/res/drawable-v24/back_white_radiusall.xml" value="0.35260416666666666" />
         <entry key="base/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.34717948717948716" />

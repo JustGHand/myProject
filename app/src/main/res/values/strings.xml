@@ -80,7 +80,15 @@
     <string name="leadbook_wifi_error">请正确连接WIFI</string>
 
 
+<!--    文件中转-->
+    <string name="file_transfer_activity_title">文件中转</string>
 
+
+<!--    tools-->
+    <string name="tools_title">工具</string>
+    <string name="tools_game">游戏</string>
+    <string name="tools_file_transfer">文件中转</string>
+    <string name="tools_develop_test">测试</string>
 
 <!--    iconfont-->
     <string name="iconfont_add">&#xe609;</string>

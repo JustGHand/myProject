@@ -16,7 +16,7 @@
     <item
         android:id="@+id/main_menu_games"
         android:icon="@drawable/selector_icon_game"
-        android:title="@string/games_activity"
+        android:title="@string/tools_title"
         />
 
 </menu>

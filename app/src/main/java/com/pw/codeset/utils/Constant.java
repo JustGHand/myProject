@@ -16,4 +16,6 @@ public class Constant {
     public static final String DATA_PARTNER_WITH_CHAR_WITHOUT_TIME = "yyyy-MM-dd";
     public static final String DATA_PARTNER_WITH_LINE_WITHOUT_TIME = "yyyy-MM-dd";
     public static final String DATA_PARTNER_WITH_LINE_TILE_SECOND = "yyyy-MM-dd HH:mm:ss";
+
+    public static final String INTENT_KEY_IMAGE_PREVIEW_URL = "image_preview_url";
 }

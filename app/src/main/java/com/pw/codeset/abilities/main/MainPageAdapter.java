@@ -8,6 +8,8 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import com.pw.codeset.abilities.games.GamesFragment;
 import com.pw.codeset.abilities.notes.NotesFragment;
 import com.pw.codeset.abilities.read.bookshelf.BookShelfFragment;
+import com.pw.codeset.abilities.tools.ToolsFragment;
+import com.pw.codeset.base.BaseFragment;
 
 public class MainPageAdapter extends FragmentPagerAdapter {
     public MainPageAdapter(@NonNull FragmentManager fm, int behavior) {
@@ -15,16 +17,18 @@ public class MainPageAdapter extends FragmentPagerAdapter {
         mNoteFragment = new NotesFragment();
         mReadFragment = new BookShelfFragment();
         mGameFragment = new GamesFragment();
+        mToolsFragment = new ToolsFragment();
     }
 
-    Fragment mNoteFragment;
-    Fragment mReadFragment;
-    Fragment mGameFragment;
+    BaseFragment mNoteFragment;
+    BaseFragment mReadFragment;
+    BaseFragment mGameFragment;
+    BaseFragment mToolsFragment;
 
     @NonNull
     @Override
-    public Fragment getItem(int position) {
-        Fragment fragment = null;
+    public BaseFragment getItem(int position) {
+        BaseFragment fragment = null;
         switch (position) {
             case 0:
                 if (mNoteFragment == null) {
@@ -39,10 +43,10 @@ public class MainPageAdapter extends FragmentPagerAdapter {
                 fragment = mReadFragment;
                 break;
             case 2:
-                if (mGameFragment == null) {
-                    mGameFragment = new GamesFragment();
+                if (mToolsFragment == null) {
+                    mToolsFragment = new ToolsFragment();
                 }
-                fragment = mGameFragment;
+                fragment = mToolsFragment;
                 break;
         }
         return fragment;
