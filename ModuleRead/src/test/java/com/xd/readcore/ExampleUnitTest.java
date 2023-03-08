@@ -1,4 +1,4 @@
-package com.xd.readcore;
+package com.pw.readcore;
 
 import org.junit.Test;
 

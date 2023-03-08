@@ -1,15 +1,15 @@
-package com.xd.readcore.manager;
+package com.pw.readcore.manager;
 
-import static com.xd.readcore.utils.Constant.DEFAULTCONFIG_AD_PAGEADENTER_Y;
-import static com.xd.readcore.utils.Constant.InsertViewType.VIEWTYPE_FULLPAGE;
-import static com.xd.readcore.utils.Constant.InsertViewType.VIEWTYPE_INSERT;
-import static com.xd.readcore.utils.Constant.InsertViewType.VIEWTYPE_TAIL_PAGEAD;
-import static com.xd.readcore.utils.Constant.STATUS_CATEGORY_EMPTY;
-import static com.xd.readcore.utils.Constant.STATUS_ERROR;
-import static com.xd.readcore.utils.Constant.STATUS_FINISH;
-import static com.xd.readcore.utils.Constant.STATUS_LOADING;
-import static com.xd.readcore.utils.Constant.STATUS_PARING;
-import static com.xd.readcore.utils.Constant.STATUS_PARSE_ERROR;
+import static com.pw.readcore.utils.Constant.DEFAULTCONFIG_AD_PAGEADENTER_Y;
+import static com.pw.readcore.utils.Constant.InsertViewType.VIEWTYPE_FULLPAGE;
+import static com.pw.readcore.utils.Constant.InsertViewType.VIEWTYPE_INSERT;
+import static com.pw.readcore.utils.Constant.InsertViewType.VIEWTYPE_TAIL_PAGEAD;
+import static com.pw.readcore.utils.Constant.STATUS_CATEGORY_EMPTY;
+import static com.pw.readcore.utils.Constant.STATUS_ERROR;
+import static com.pw.readcore.utils.Constant.STATUS_FINISH;
+import static com.pw.readcore.utils.Constant.STATUS_LOADING;
+import static com.pw.readcore.utils.Constant.STATUS_PARING;
+import static com.pw.readcore.utils.Constant.STATUS_PARSE_ERROR;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -18,23 +18,23 @@ import android.graphics.Rect;
 
 import androidx.annotation.Nullable;
 
-import com.xd.base.utils.NStringUtils;
-import com.xd.base.utils.NetworkUtils;
-import com.xd.base.utils.ScreenUtils;
-import com.xd.readcore.utils.Constant;
-import com.xd.readcore.bean.LayoutMode;
-import com.xd.readcore.bean.LineInfo;
-import com.xd.readcore.bean.PageMode;
-import com.xd.readcore.bean.PageStyle;
-import com.xd.readcore.bean.YYAdView;
-import com.xd.base.ad.YYFrame;
-import com.xd.base.ad.YYInsertView;
-import com.xd.readcore.bean.BookMarkBean;
-import com.xd.readcore.bean.BookRecordBean;
-import com.xd.readcore.bean.TxtChapter;
-import com.xd.readcore.bean.TxtPage;
-import com.xd.readcore.ReadInterface.NativeAdListener;
-import com.xd.readcore.ReadInterface.PageChangeListener;
+import com.pw.base.utils.NStringUtils;
+import com.pw.base.utils.NetworkUtils;
+import com.pw.base.utils.ScreenUtils;
+import com.pw.readcore.utils.Constant;
+import com.pw.readcore.bean.LayoutMode;
+import com.pw.readcore.bean.LineInfo;
+import com.pw.readcore.bean.PageMode;
+import com.pw.readcore.bean.PageStyle;
+import com.pw.readcore.bean.YYAdView;
+import com.pw.base.ad.YYFrame;
+import com.pw.base.ad.YYInsertView;
+import com.pw.readcore.bean.BookMarkBean;
+import com.pw.readcore.bean.BookRecordBean;
+import com.pw.readcore.bean.TxtChapter;
+import com.pw.readcore.bean.TxtPage;
+import com.pw.readcore.ReadInterface.NativeAdListener;
+import com.pw.readcore.ReadInterface.PageChangeListener;
 
 import java.io.BufferedReader;
 import java.util.List;

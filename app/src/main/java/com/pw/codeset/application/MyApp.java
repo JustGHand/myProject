@@ -8,8 +8,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.pw.annotation.Lance;
+
+
 public class MyApp extends Application {
 
+    @Lance(value = "test",id = "asd")
     private static MyApp mInstance;
 
     public static MyApp getInstance() {

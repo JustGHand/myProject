@@ -1,5 +1,5 @@
 
-package com.xd.base.widget.fastscroll;
+package com.pw.base.widget.fastscroll;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -32,7 +32,7 @@ import androidx.interpolator.view.animation.FastOutLinearInInterpolator;
 import androidx.interpolator.view.animation.LinearOutSlowInInterpolator;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.xd.base.R;
+import com.pw.base.R;
 
 public class FastScroller {
 

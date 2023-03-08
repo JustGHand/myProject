@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.pw.codeset.R;
 import com.pw.codeset.abilities.games.block.BlockGameActivity;
 import com.pw.codeset.base.BaseActivity;
-import com.xd.baseutils.others.recycle.BaseRecyclerAdapter;
-import com.xd.baseutils.utils.NStringUtils;
+import com.pw.baseutils.others.recycle.BaseRecyclerAdapter;
+import com.pw.baseutils.utils.NStringUtils;
 
 import java.util.ArrayList;
 import java.util.List;

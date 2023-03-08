@@ -1,4 +1,4 @@
-package com.xd.base.widget;
+package com.pw.base.widget;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -25,7 +25,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.xd.base.R;
+import com.pw.base.R;
 
 
 public class ExpandableTextView extends ConstraintLayout implements View.OnClickListener {

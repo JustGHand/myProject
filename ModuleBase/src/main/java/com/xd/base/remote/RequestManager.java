@@ -1,4 +1,4 @@
-package com.xd.base.remote;
+package com.pw.base.remote;
 
 import java.util.concurrent.TimeUnit;
 

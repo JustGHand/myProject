@@ -11,8 +11,8 @@ import androidx.annotation.NonNull;
 
 import com.pw.codeset.R;
 import com.pw.codeset.databean.BookBean;
-import com.xd.baseutils.others.recycle.BaseRecyclerAdapter;
-import com.xd.baseutils.others.recycle.BaseViewHolder;
+import com.pw.baseutils.others.recycle.BaseRecyclerAdapter;
+import com.pw.baseutils.others.recycle.BaseViewHolder;
 
 import java.util.List;
 

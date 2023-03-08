@@ -1,7 +1,7 @@
-package com.xd.readcore.manager;
+package com.pw.readcore.manager;
 
-import com.xd.readcore.bean.PageMode;
-import com.xd.readcore.bean.PageStyle;
+import com.pw.readcore.bean.PageMode;
+import com.pw.readcore.bean.PageStyle;
 
 public class ReadConfigManager {
 

@@ -1,4 +1,4 @@
-package com.xd.base.widget;
+package com.pw.base.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -13,7 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.LayoutRes;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.xd.base.R;
+import com.pw.base.R;
 
 
 /**

@@ -1,4 +1,4 @@
-package com.xd.base.widget.datnightWidget;
+package com.pw.base.widget.datnightWidget;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -13,7 +13,7 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.ColorRes;
 import androidx.annotation.Nullable;
 
-import com.xd.base.R;
+import com.pw.base.R;
 
 public class DayNightRadioButton extends androidx.appcompat.widget.AppCompatRadioButton {
     public DayNightRadioButton(Context context) {

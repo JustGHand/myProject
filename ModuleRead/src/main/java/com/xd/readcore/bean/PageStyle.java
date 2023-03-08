@@ -1,9 +1,9 @@
-package com.xd.readcore.bean;
+package com.pw.readcore.bean;
 
 import androidx.annotation.ColorRes;
 import androidx.annotation.DrawableRes;
 
-import com.xd.readcore.R;
+import com.pw.readcore.R;
 
 import java.io.Serializable;
 

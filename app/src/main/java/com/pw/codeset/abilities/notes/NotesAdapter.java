@@ -3,25 +3,22 @@ package com.pw.codeset.abilities.notes;
 import android.content.Context;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
 import com.pw.codeset.R;
 import com.pw.codeset.databean.NotesBean;
-import com.pw.codeset.utils.CommenUseViewUtils;
 import com.pw.codeset.utils.Constant;
 import com.pw.codeset.utils.ResourceUtils;
 import com.pw.codeset.weidgt.IconImageView;
 import com.pw.codeset.weidgt.WarpLinearLayout;
-import com.xd.baseutils.others.recycle.BaseRecyclerAdapter;
-import com.xd.baseutils.others.recycle.BaseViewHolder;
-import com.xd.baseutils.utils.ArrayUtils;
-import com.xd.baseutils.utils.NStringUtils;
+import com.pw.baseutils.others.recycle.BaseRecyclerAdapter;
+import com.pw.baseutils.others.recycle.BaseViewHolder;
+import com.pw.baseutils.utils.ArrayUtils;
+import com.pw.baseutils.utils.NStringUtils;
 
 import java.util.List;
 

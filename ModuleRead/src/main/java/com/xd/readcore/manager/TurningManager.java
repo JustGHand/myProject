@@ -1,19 +1,19 @@
-package com.xd.readcore.manager;
+package com.pw.readcore.manager;
 
-import static com.xd.readcore.utils.Constant.STATUS_EMPTY;
-import static com.xd.readcore.utils.Constant.STATUS_ERROR;
-import static com.xd.readcore.utils.Constant.STATUS_FINISH;
-import static com.xd.readcore.utils.Constant.STATUS_LOADING;
-import static com.xd.readcore.utils.Utils.clearList;
+import static com.pw.readcore.utils.Constant.STATUS_EMPTY;
+import static com.pw.readcore.utils.Constant.STATUS_ERROR;
+import static com.pw.readcore.utils.Constant.STATUS_FINISH;
+import static com.pw.readcore.utils.Constant.STATUS_LOADING;
+import static com.pw.readcore.utils.Utils.clearList;
 
-import com.xd.base.utils.NStringUtils;
-import com.xd.base.utils.RxUtils;
-import com.xd.readcore.bean.LineInfo;
-import com.xd.readcore.bean.BookMarkBean;
-import com.xd.readcore.bean.BookRecordBean;
-import com.xd.readcore.bean.PageMode;
-import com.xd.readcore.bean.TxtChapter;
-import com.xd.readcore.bean.TxtPage;
+import com.pw.base.utils.NStringUtils;
+import com.pw.base.utils.RxUtils;
+import com.pw.readcore.bean.LineInfo;
+import com.pw.readcore.bean.BookMarkBean;
+import com.pw.readcore.bean.BookRecordBean;
+import com.pw.readcore.bean.PageMode;
+import com.pw.readcore.bean.TxtChapter;
+import com.pw.readcore.bean.TxtPage;
 
 import java.io.BufferedReader;
 import java.util.ArrayList;

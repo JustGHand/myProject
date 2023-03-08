@@ -22,13 +22,13 @@ import com.pw.codeset.application.MyApp;
 import com.pw.codeset.base.BaseActivity;
 import com.pw.codeset.databean.BookBean;
 import com.pw.codeset.event.LeadBookEvent;
-import com.xd.baseutils.utils.FileUtil;
+import com.pw.baseutils.utils.FileUtil;
 import com.pw.codeset.utils.LogToastUtils;
 import com.pw.codeset.utils.MD5Utils;
 import com.pw.codeset.utils.fileParase.TxtParser;
-import com.xd.baseutils.others.rxbus.RxBus;
-import com.xd.baseutils.utils.DeviceUtils;
-import com.xd.baseutils.utils.NStringUtils;
+import com.pw.baseutils.others.rxbus.RxBus;
+import com.pw.baseutils.utils.DeviceUtils;
+import com.pw.baseutils.utils.NStringUtils;
 
 import java.io.File;
 

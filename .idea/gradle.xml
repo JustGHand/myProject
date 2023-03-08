@@ -10,14 +10,15 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/annotation" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/baseUtils" />
+            <option value="$PROJECT_DIR$/compiler" />
             <option value="$PROJECT_DIR$/read" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
       </GradleProjectSettings>
     </option>
-    <option name="offlineMode" value="true" />
   </component>
 </project>

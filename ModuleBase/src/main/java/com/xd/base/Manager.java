@@ -1,4 +1,4 @@
-package com.xd.base;
+package com.pw.base;
 
 public class Manager {
     public void init() {

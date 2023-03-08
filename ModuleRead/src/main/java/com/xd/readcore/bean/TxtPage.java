@@ -1,8 +1,8 @@
-package com.xd.readcore.bean;
+package com.pw.readcore.bean;
 
 
-import com.xd.base.ad.YYFrame;
-import com.xd.base.utils.NStringUtils;
+import com.pw.base.ad.YYFrame;
+import com.pw.base.utils.NStringUtils;
 
 import java.io.Serializable;
 import java.util.ArrayList;

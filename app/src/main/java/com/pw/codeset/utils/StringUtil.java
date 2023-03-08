@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
 
-import com.xd.baseutils.utils.FileUtil;
+import com.pw.baseutils.utils.FileUtil;
 
 import java.io.File;
 import java.io.FileOutputStream;

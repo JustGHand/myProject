@@ -1,7 +1,6 @@
 package com.pw.codeset.abilities.read.read;
 
 import android.os.Build;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,7 +28,6 @@ import com.pw.codeset.databean.RecordBean;
 import com.pw.codeset.utils.AnimUtils;
 import com.pw.codeset.utils.Constant;
 import com.pw.codeset.utils.LogToastUtils;
-import com.pw.codeset.utils.SaveFileUtils;
 import com.pw.codeset.utils.fileParase.TxtParser;
 import com.pw.codeset.weidgt.CustomScrollView;
 import com.pw.codeset.weidgt.MySeekBar;
@@ -42,13 +40,10 @@ import com.pw.read.bean.TxtPage;
 import com.pw.read.interfaces.ReadCallBack;
 import com.pw.read.interfaces.ReadDataInterface;
 import com.pw.read.interfaces.ReadTouchInterface;
-import com.xd.baseutils.others.recycle.BaseRecyclerAdapter;
-import com.xd.baseutils.utils.AssetsUtils;
-import com.xd.baseutils.utils.FileUtil;
-import com.xd.baseutils.utils.NStringUtils;
+import com.pw.baseutils.others.recycle.BaseRecyclerAdapter;
+import com.pw.baseutils.utils.NStringUtils;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -13,8 +13,8 @@ import com.pw.codeset.databean.NotesBean;
 import com.pw.codeset.manager.NotesManager;
 import com.pw.codeset.utils.Constant;
 import com.pw.codeset.weidgt.SelectDialog;
-import com.xd.baseutils.others.recycle.BaseRecyclerAdapter;
-import com.xd.baseutils.utils.NStringUtils;
+import com.pw.baseutils.others.recycle.BaseRecyclerAdapter;
+import com.pw.baseutils.utils.NStringUtils;
 
 import java.util.ArrayList;
 import java.util.List;

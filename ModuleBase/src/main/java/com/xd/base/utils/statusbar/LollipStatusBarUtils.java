@@ -1,4 +1,4 @@
-package com.xd.base.utils.statusbar;
+package com.pw.base.utils.statusbar;
 
 import android.annotation.TargetApi;
 import android.app.Activity;

@@ -1,6 +1,6 @@
-package com.xd.base.download;
+package com.pw.base.download;
 
-import com.xd.base.utils.NStringUtils;
+import com.pw.base.utils.NStringUtils;
 
 import java.io.Serializable;
 

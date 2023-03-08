@@ -2,21 +2,16 @@ package com.pw.codeset.weidgt;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatViewInflater;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.pw.codeset.R;
-import com.xd.baseutils.others.click.DeclaredOnClickListener;
-import com.xd.baseutils.utils.DeviceUtils;
-import com.xd.baseutils.utils.NStringUtils;
-import com.xd.baseutils.utils.StatusBarUtil;
+import com.pw.baseutils.others.click.DeclaredOnClickListener;
+import com.pw.baseutils.utils.DeviceUtils;
+import com.pw.baseutils.utils.NStringUtils;
 
 public class ActivityHeaderView extends ConstraintLayout {
 

@@ -1,8 +1,8 @@
-package com.xd.readcore.ReadInterface;
+package com.pw.readcore.ReadInterface;
 
-import com.xd.readcore.bean.YYAdView;
-import com.xd.base.ad.YYFrame;
-import com.xd.base.ad.YYInsertView;
+import com.pw.readcore.bean.YYAdView;
+import com.pw.base.ad.YYFrame;
+import com.pw.base.ad.YYInsertView;
 
 public interface NativeAdListener {
 

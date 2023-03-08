@@ -1,4 +1,4 @@
-package com.xd.base.widget.datnightWidget;
+package com.pw.base.widget.datnightWidget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -9,7 +9,7 @@ import android.util.AttributeSet;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatSeekBar;
 
-import com.xd.base.R;
+import com.pw.base.R;
 
 public class DayNightSeekBar extends AppCompatSeekBar {
     public DayNightSeekBar(Context context) {

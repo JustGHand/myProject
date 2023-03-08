@@ -1,4 +1,4 @@
-package com.xd.base.download;
+package com.pw.base.download;
 
 import android.app.Activity;
 import android.app.Notification;
@@ -30,8 +30,8 @@ import com.liulishuo.okdownload.core.breakpoint.BreakpointInfo;
 import com.liulishuo.okdownload.core.cause.EndCause;
 import com.liulishuo.okdownload.core.cause.ResumeFailedCause;
 import com.liulishuo.okdownload.core.dispatcher.DownloadDispatcher;
-import com.xd.base.R;
-import com.xd.base.file.FileUtils;
+import com.pw.base.R;
+import com.pw.base.file.FileUtils;
 
 import java.io.File;
 import java.util.ArrayList;

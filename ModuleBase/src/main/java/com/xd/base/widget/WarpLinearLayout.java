@@ -1,4 +1,4 @@
-package com.xd.base.widget;
+package com.pw.base.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.xd.base.R;
+import com.pw.base.R;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.xd.base.base;
+package com.pw.base.base;
 
 /**
  * Created by newbiechen on 17-4-25.

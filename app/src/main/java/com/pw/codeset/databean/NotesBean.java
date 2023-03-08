@@ -2,8 +2,8 @@ package com.pw.codeset.databean;
 
 import com.pw.codeset.utils.Constant;
 import com.pw.codeset.utils.MD5Utils;
-import com.xd.baseutils.utils.ArrayUtils;
-import com.xd.baseutils.utils.NStringUtils;
+import com.pw.baseutils.utils.ArrayUtils;
+import com.pw.baseutils.utils.NStringUtils;
 
 import java.util.ArrayList;
 import java.util.List;

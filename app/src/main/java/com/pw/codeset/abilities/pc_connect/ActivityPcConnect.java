@@ -22,10 +22,10 @@ import com.pw.codeset.abilities.wifitransfer.Constants;
 import com.pw.codeset.base.BaseActivity;
 import com.pw.read.bean.ChaptersBean;
 import com.pw.codeset.utils.Constant;
-import com.xd.baseutils.utils.FileUtil;
+import com.pw.baseutils.utils.FileUtil;
 import com.pw.codeset.utils.fileParase.TxtParser;
-import com.xd.baseutils.utils.DeviceUtils;
-import com.xd.baseutils.utils.NStringUtils;
+import com.pw.baseutils.utils.DeviceUtils;
+import com.pw.baseutils.utils.NStringUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;

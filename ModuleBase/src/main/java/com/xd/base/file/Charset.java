@@ -1,4 +1,4 @@
-package com.xd.base.file;
+package com.pw.base.file;
 
 /**
  * 编码类型

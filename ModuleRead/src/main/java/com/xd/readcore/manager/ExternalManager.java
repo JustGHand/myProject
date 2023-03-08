@@ -1,10 +1,10 @@
-package com.xd.readcore.manager;
+package com.pw.readcore.manager;
 
-import com.xd.readcore.bean.LayoutMode;
-import com.xd.readcore.bean.PageMode;
-import com.xd.readcore.bean.PageStyle;
-import com.xd.readcore.bean.BookRecordBean;
-import com.xd.readcore.bean.TxtChapter;
+import com.pw.readcore.bean.LayoutMode;
+import com.pw.readcore.bean.PageMode;
+import com.pw.readcore.bean.PageStyle;
+import com.pw.readcore.bean.BookRecordBean;
+import com.pw.readcore.bean.TxtChapter;
 
 import java.io.BufferedReader;
 import java.util.List;

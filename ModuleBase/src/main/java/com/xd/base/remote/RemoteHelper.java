@@ -1,11 +1,11 @@
-package com.xd.base.remote;
+package com.pw.base.remote;
 
 
 import android.util.Base64;
 
 import androidx.annotation.NonNull;
 
-import com.xd.base.utils.XorEncryptUtil2;
+import com.pw.base.utils.XorEncryptUtil2;
 
 import java.io.IOException;
 import java.nio.charset.Charset;

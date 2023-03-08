@@ -1,5 +1,5 @@
-package com.xd.base.utils.statusbar;
-import static com.xd.base.utils.statusbar.XiaoMiStatusBarTextFontUtils.MIUISetStatusBarLightMode;
+package com.pw.base.utils.statusbar;
+import static com.pw.base.utils.statusbar.XiaoMiStatusBarTextFontUtils.MIUISetStatusBarLightMode;
 
 import android.app.Activity;
 import android.content.res.Resources;

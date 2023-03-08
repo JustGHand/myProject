@@ -19,7 +19,7 @@ import com.pw.codeset.abilities.read.leadbook.LeadBookActivity;
 import com.pw.codeset.base.BaseActivity;
 import com.pw.codeset.databean.BookBean;
 import com.pw.codeset.utils.LogToastUtils;
-import com.xd.baseutils.others.recycle.BaseRecyclerAdapter;
+import com.pw.baseutils.others.recycle.BaseRecyclerAdapter;
 
 import java.util.List;
 

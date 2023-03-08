@@ -1,4 +1,4 @@
-package com.xd.base.base;
+package com.pw.base.base;
 
 import io.reactivex.Observable;
 import io.reactivex.subjects.PublishSubject;

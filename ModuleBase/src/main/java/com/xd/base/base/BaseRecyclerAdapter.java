@@ -1,4 +1,4 @@
-package com.xd.base.base;
+package com.pw.base.base;
 
 import android.view.View;
 import android.view.ViewGroup;
@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.xd.base.utils.NStringUtils;
+import com.pw.base.utils.NStringUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;

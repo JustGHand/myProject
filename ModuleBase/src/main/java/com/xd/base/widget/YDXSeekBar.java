@@ -1,4 +1,4 @@
-package com.xd.base.widget;
+package com.pw.base.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -19,8 +19,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.xd.base.R;
-import com.xd.base.widget.datnightWidget.DayNightImageView;
+import com.pw.base.R;
+import com.pw.base.widget.datnightWidget.DayNightImageView;
 
 public class YDXSeekBar extends RelativeLayout {
     public YDXSeekBar(@NonNull Context context) {

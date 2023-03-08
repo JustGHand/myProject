@@ -1,4 +1,4 @@
-package com.xd.base.jsbridge;
+package com.pw.base.jsbridge;
 
 public class DefaultHandler implements BridgeHandler{
 

@@ -1,4 +1,4 @@
-package com.xd.base.widget.datnightWidget;
+package com.pw.base.widget.datnightWidget;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -24,8 +24,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
-import com.xd.base.R;
-import com.xd.base.utils.NStringUtils;
+import com.pw.base.R;
+import com.pw.base.utils.NStringUtils;
 
 import java.util.ArrayList;
 import java.util.List;

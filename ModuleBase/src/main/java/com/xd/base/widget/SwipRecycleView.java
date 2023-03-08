@@ -1,4 +1,4 @@
-package com.xd.base.widget;
+package com.pw.base.widget;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.xd.base.R;
+import com.pw.base.R;
 
 public class SwipRecycleView extends SwipStatusView {
     public SwipRecycleView(@NonNull Context context) {

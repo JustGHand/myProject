@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 
-package com.xd.base.widget.fastscroll;
+package com.pw.base.widget.fastscroll;
 
 import android.annotation.TargetApi;
 import android.content.res.Resources;

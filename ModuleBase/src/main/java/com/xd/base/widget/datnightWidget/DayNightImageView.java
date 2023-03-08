@@ -1,4 +1,4 @@
-package com.xd.base.widget.datnightWidget;
+package com.pw.base.widget.datnightWidget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -8,7 +8,7 @@ import android.util.AttributeSet;
 
 import androidx.annotation.Nullable;
 
-import com.xd.base.R;
+import com.pw.base.R;
 
 public class DayNightImageView extends androidx.appcompat.widget.AppCompatImageView {
     public DayNightImageView(Context context) {

@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -17,7 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.pw.codeset.R;
-import com.xd.baseutils.utils.NStringUtils;
+import com.pw.baseutils.utils.NStringUtils;
 
 
 public class MyDialog extends Dialog {

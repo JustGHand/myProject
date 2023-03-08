@@ -1,4 +1,4 @@
-package com.xd.base.widget.datnightWidget;
+package com.pw.base.widget.datnightWidget;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -10,7 +10,7 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.widget.SeekBar;
 
-import com.xd.base.R;
+import com.pw.base.R;
 
 public class DayNightIndicatorSeekBar extends DayNightSeekBar{
 

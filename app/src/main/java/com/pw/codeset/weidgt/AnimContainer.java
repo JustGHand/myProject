@@ -15,9 +15,8 @@ import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.pw.codeset.R;
-import com.xd.baseutils.utils.ColorUtil;
-import com.xd.baseutils.utils.DeviceUtils;
-import com.xd.baseutils.utils.ScreenUtils;
+import com.pw.baseutils.utils.ColorUtil;
+import com.pw.baseutils.utils.ScreenUtils;
 
 import java.util.ArrayList;
 import java.util.List;

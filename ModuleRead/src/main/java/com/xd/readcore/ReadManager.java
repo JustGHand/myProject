@@ -1,25 +1,25 @@
-package com.xd.readcore;
+package com.pw.readcore;
 
-import static com.xd.readcore.utils.Constant.STATUS_FINISH;
+import static com.pw.readcore.utils.Constant.STATUS_FINISH;
 
 import android.content.Context;
 
 import androidx.annotation.Nullable;
 
-import com.xd.base.ad.YYInsertView;
-import com.xd.readcore.ReadInterface.NativeAdListener;
-import com.xd.readcore.ReadInterface.PageChangeListener;
-import com.xd.readcore.bean.BookMarkBean;
-import com.xd.readcore.bean.BookRecordBean;
-import com.xd.readcore.bean.LayoutMode;
-import com.xd.readcore.bean.LineInfo;
-import com.xd.readcore.bean.PageMode;
-import com.xd.readcore.bean.PageStyle;
-import com.xd.readcore.bean.TxtChapter;
-import com.xd.readcore.bean.TxtPage;
-import com.xd.readcore.manager.ExternalManager;
-import com.xd.readcore.manager.PageView;
-import com.xd.readcore.manager.ReadDispatch;
+import com.pw.base.ad.YYInsertView;
+import com.pw.readcore.ReadInterface.NativeAdListener;
+import com.pw.readcore.ReadInterface.PageChangeListener;
+import com.pw.readcore.bean.BookMarkBean;
+import com.pw.readcore.bean.BookRecordBean;
+import com.pw.readcore.bean.LayoutMode;
+import com.pw.readcore.bean.LineInfo;
+import com.pw.readcore.bean.PageMode;
+import com.pw.readcore.bean.PageStyle;
+import com.pw.readcore.bean.TxtChapter;
+import com.pw.readcore.bean.TxtPage;
+import com.pw.readcore.manager.ExternalManager;
+import com.pw.readcore.manager.PageView;
+import com.pw.readcore.manager.ReadDispatch;
 
 import java.util.ArrayList;
 import java.util.List;

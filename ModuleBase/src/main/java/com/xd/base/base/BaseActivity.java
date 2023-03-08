@@ -1,4 +1,4 @@
-package com.xd.base.base;
+package com.pw.base.base;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,10 +17,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 
-import com.xd.base.R;
-import com.xd.base.event.NetworkChangeEvent;
-import com.xd.base.receiver.NetworkChangeReceiver;
-import com.xd.base.utils.statusbar.StatusBarUtils;
+import com.pw.base.R;
+import com.pw.base.event.NetworkChangeEvent;
+import com.pw.base.receiver.NetworkChangeReceiver;
+import com.pw.base.utils.statusbar.StatusBarUtils;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;

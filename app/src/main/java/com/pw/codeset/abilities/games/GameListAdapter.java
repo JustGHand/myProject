@@ -10,9 +10,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.pw.codeset.R;
-import com.xd.baseutils.others.recycle.BaseRecyclerAdapter;
-import com.xd.baseutils.others.recycle.BaseViewHolder;
-import com.xd.baseutils.utils.NStringUtils;
+import com.pw.baseutils.others.recycle.BaseRecyclerAdapter;
+import com.pw.baseutils.others.recycle.BaseViewHolder;
+import com.pw.baseutils.utils.NStringUtils;
 
 import java.util.List;
 

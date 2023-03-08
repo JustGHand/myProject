@@ -1,4 +1,4 @@
-package com.xd.readcore.bean;
+package com.pw.readcore.bean;
 
 /**
  * Created by YYSky on 2019/2/22.

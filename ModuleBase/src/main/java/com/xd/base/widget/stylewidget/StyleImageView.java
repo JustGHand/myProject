@@ -1,4 +1,4 @@
-package com.xd.base.widget.stylewidget;
+package com.pw.base.widget.stylewidget;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -13,7 +13,7 @@ import androidx.annotation.StyleRes;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 
-import com.xd.base.R;
+import com.pw.base.R;
 
 public class StyleImageView extends AppCompatImageView {
     public StyleImageView(@NonNull Context context) {

@@ -13,7 +13,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.bumptech.glide.Glide;
 import com.pw.codeset.R;
-import com.xd.baseutils.utils.NStringUtils;
+import com.pw.baseutils.utils.NStringUtils;
 
 public class PwImageView extends ConstraintLayout {
     public PwImageView(@NonNull Context context) {

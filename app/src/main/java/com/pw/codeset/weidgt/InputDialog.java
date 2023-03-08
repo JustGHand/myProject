@@ -17,7 +17,7 @@ import androidx.annotation.NonNull;
 
 import com.pw.codeset.R;
 import com.pw.codeset.utils.LogToastUtils;
-import com.xd.baseutils.utils.NStringUtils;
+import com.pw.baseutils.utils.NStringUtils;
 
 /**
  * Created by developer on 2019/7/17.

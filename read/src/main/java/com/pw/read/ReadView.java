@@ -6,25 +6,19 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.RectF;
 import android.util.AttributeSet;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.viewpager.widget.ViewPager;
-import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.pw.read.bean.ChaptersBean;
 import com.pw.read.bean.LayoutMode;
-import com.pw.read.bean.LineInfo;
 import com.pw.read.bean.PageStyle;
 import com.pw.read.bean.TxtPage;
 import com.pw.read.interfaces.ReadCallBack;
@@ -32,7 +26,7 @@ import com.pw.read.interfaces.ReadDataInterface;
 import com.pw.read.interfaces.ReadTouchInterface;
 import com.pw.read.manager.PageDrawManager;
 import com.pw.read.manager.ReadConfigManager;
-import com.xd.baseutils.utils.ScreenUtils;
+import com.pw.baseutils.utils.ScreenUtils;
 
 import java.io.BufferedReader;
 import java.util.ArrayList;

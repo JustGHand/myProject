@@ -1,4 +1,4 @@
-package com.xd.base.jsbridge;
+package com.pw.base.jsbridge;
 
 import android.content.Context;
 import android.webkit.WebView;

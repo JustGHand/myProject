@@ -1,4 +1,4 @@
-package com.xd.base.remote;
+package com.pw.base.remote;
 public class Response<T> {
 
     private int code; // 返回的code

@@ -2,18 +2,10 @@ package com.pw.read.utils;
 
 import android.content.Context;
 
-import com.xd.baseutils.utils.FileUtil;
-import com.xd.baseutils.utils.NStringUtils;
+import com.pw.baseutils.utils.FileUtil;
+import com.pw.baseutils.utils.NStringUtils;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Reader;
-import java.io.Writer;
 
 public class FileSaveUtils {
     public static final String SAVE_FILE_BASE_FOLDER = "pw_read";

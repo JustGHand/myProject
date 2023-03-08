@@ -1,4 +1,4 @@
-package com.xd.base.utils;
+package com.pw.base.utils;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;

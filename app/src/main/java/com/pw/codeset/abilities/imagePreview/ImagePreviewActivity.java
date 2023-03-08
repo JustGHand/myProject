@@ -7,7 +7,7 @@ import com.bumptech.glide.Glide;
 import com.pw.codeset.R;
 import com.pw.codeset.base.BaseActivity;
 import com.pw.codeset.utils.Constant;
-import com.xd.baseutils.utils.NStringUtils;
+import com.pw.baseutils.utils.NStringUtils;
 
 public class ImagePreviewActivity extends BaseActivity {
     @Override

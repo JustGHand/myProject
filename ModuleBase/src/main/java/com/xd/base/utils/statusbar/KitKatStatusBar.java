@@ -1,4 +1,4 @@
-package com.xd.base.utils.statusbar;
+package com.pw.base.utils.statusbar;
 
 import android.app.Activity;
 import android.graphics.Color;
@@ -14,7 +14,7 @@ import android.widget.FrameLayout;
 import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 
-import com.xd.base.R;
+import com.pw.base.R;
 
 
 /**

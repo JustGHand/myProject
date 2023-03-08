@@ -1,7 +1,7 @@
 package com.pw.codeset.abilities.login_mvp;
 
 import com.pw.codeset.databean.UserInfoBean;
-import com.xd.baseutils.utils.NStringUtils;
+import com.pw.baseutils.utils.NStringUtils;
 
 public class UserLogin implements UserLoginModel.LoginModel {
 

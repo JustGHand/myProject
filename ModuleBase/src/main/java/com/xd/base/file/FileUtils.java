@@ -1,4 +1,4 @@
-package com.xd.base.file;
+package com.pw.base.file;
 
 import android.annotation.SuppressLint;
 import android.content.ContentResolver;
@@ -19,8 +19,8 @@ import android.util.Log;
 
 import androidx.core.content.FileProvider;
 
-import com.xd.base.utils.IOUtils;
-import com.xd.base.utils.NStringUtils;
+import com.pw.base.utils.IOUtils;
+import com.pw.base.utils.NStringUtils;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;

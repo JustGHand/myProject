@@ -1,6 +1,6 @@
-package com.xd.readcore.ReadInterface;
+package com.pw.readcore.ReadInterface;
 
-import com.xd.readcore.bean.TxtChapter;
+import com.pw.readcore.bean.TxtChapter;
 
 import java.util.List;
 

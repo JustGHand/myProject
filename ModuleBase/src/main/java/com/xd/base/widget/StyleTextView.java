@@ -1,4 +1,4 @@
-package com.xd.base.widget;
+package com.pw.base.widget;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -9,7 +9,7 @@ import android.util.AttributeSet;
 
 import androidx.annotation.Nullable;
 
-import com.xd.base.R;
+import com.pw.base.R;
 
 public class StyleTextView extends androidx.appcompat.widget.AppCompatTextView {
     public StyleTextView(Context context) {

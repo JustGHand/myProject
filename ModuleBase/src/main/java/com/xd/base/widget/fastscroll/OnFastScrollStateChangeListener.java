@@ -1,4 +1,4 @@
-package com.xd.base.widget.fastscroll;
+package com.pw.base.widget.fastscroll;
 
 public interface OnFastScrollStateChangeListener {
 

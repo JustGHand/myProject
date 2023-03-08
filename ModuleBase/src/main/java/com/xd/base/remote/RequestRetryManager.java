@@ -1,11 +1,11 @@
-package com.xd.base.remote;
+package com.pw.base.remote;
 
 
 import androidx.annotation.NonNull;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.xd.base.file.FileUtils;
+import com.pw.base.file.FileUtils;
 
 import java.io.File;
 import java.io.IOException;

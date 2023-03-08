@@ -1,10 +1,10 @@
-package com.xd.base.utils;
+package com.pw.base.utils;
 
 import android.app.Activity;
 import android.app.Application;
 import android.os.Bundle;
 
-import com.xd.base.base.BaseActivity;
+import com.pw.base.base.BaseActivity;
 
 /**
  * Created by developer on 2019/7/15.

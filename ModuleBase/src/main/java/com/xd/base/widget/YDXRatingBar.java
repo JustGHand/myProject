@@ -1,4 +1,4 @@
-package com.xd.base.widget;
+package com.pw.base.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -13,7 +13,7 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
-import com.xd.base.R;
+import com.pw.base.R;
 
 public class YDXRatingBar extends View {
     private Bitmap mStartNomal;

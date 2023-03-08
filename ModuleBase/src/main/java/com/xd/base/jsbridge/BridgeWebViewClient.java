@@ -1,4 +1,4 @@
-package com.xd.base.jsbridge;
+package com.pw.base.jsbridge;
 
 import android.graphics.Bitmap;
 import android.webkit.WebView;

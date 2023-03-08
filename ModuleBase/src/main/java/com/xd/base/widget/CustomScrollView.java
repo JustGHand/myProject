@@ -1,4 +1,4 @@
-package com.xd.base.widget;
+package com.pw.base.widget;
 
 /**
  * Created by developer on 2019/11/21.
@@ -12,8 +12,8 @@ import android.view.MotionEvent;
 import android.widget.OverScroller;
 import android.widget.RelativeLayout;
 
-import com.xd.base.R;
-import com.xd.base.utils.ScreenUtils;
+import com.pw.base.R;
+import com.pw.base.utils.ScreenUtils;
 
 public class CustomScrollView extends RelativeLayout
 {

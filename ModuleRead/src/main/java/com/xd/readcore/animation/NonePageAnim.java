@@ -1,4 +1,4 @@
-package com.xd.readcore.animation;
+package com.pw.readcore.animation;
 
 import android.graphics.Canvas;
 import android.view.View;

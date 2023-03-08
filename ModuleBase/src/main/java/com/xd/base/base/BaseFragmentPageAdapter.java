@@ -1,4 +1,4 @@
-package com.xd.base.base;
+package com.pw.base.base;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

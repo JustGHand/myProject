@@ -1,4 +1,4 @@
-package com.xd.readcore.bean;
+package com.pw.readcore.bean;
 
 import java.io.Serializable;
 

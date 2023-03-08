@@ -21,8 +21,8 @@ import com.pw.codeset.base.BaseFragment;
 import com.pw.codeset.databean.BookBean;
 import com.pw.codeset.utils.Constant;
 import com.pw.codeset.utils.DialogUtils;
-import com.xd.baseutils.others.recycle.BaseRecyclerAdapter;
-import com.xd.baseutils.utils.NStringUtils;
+import com.pw.baseutils.others.recycle.BaseRecyclerAdapter;
+import com.pw.baseutils.utils.NStringUtils;
 
 import java.util.ArrayList;
 import java.util.List;

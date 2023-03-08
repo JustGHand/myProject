@@ -41,9 +41,9 @@ import com.pw.read.bean.PageStyle;
 import com.pw.read.bean.TxtPage;
 import com.pw.read.utils.Constant;
 import com.pw.read.utils.Utils;
-import com.xd.baseutils.utils.IOUtils;
-import com.xd.baseutils.utils.NStringUtils;
-import com.xd.baseutils.utils.ScreenUtils;
+import com.pw.baseutils.utils.IOUtils;
+import com.pw.baseutils.utils.NStringUtils;
+import com.pw.baseutils.utils.ScreenUtils;
 
 import java.io.BufferedReader;
 import java.io.File;

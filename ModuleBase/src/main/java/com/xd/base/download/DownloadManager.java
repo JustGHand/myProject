@@ -1,4 +1,4 @@
-package com.xd.base.download;
+package com.pw.base.download;
 
 
 import android.content.ComponentName;
@@ -20,8 +20,8 @@ import com.liulishuo.okdownload.core.breakpoint.BreakpointInfo;
 import com.liulishuo.okdownload.core.cause.EndCause;
 import com.liulishuo.okdownload.core.listener.DownloadListener4WithSpeed;
 import com.liulishuo.okdownload.core.listener.assist.Listener4SpeedAssistExtend;
-import com.xd.base.file.FileUtils;
-import com.xd.base.utils.NStringUtils;
+import com.pw.base.file.FileUtils;
+import com.pw.base.utils.NStringUtils;
 
 import java.io.File;
 import java.util.ArrayList;

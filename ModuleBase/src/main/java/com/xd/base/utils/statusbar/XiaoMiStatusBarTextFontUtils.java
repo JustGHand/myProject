@@ -1,4 +1,4 @@
-package com.xd.base.utils.statusbar;
+package com.pw.base.utils.statusbar;
 
 import android.os.Build;
 import android.os.Environment;

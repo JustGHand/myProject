@@ -1,7 +1,7 @@
-package com.xd.readcore.manager;
+package com.pw.readcore.manager;
 
 
-import static com.xd.readcore.bean.PageMode.SCROLL;
+import static com.pw.readcore.bean.PageMode.SCROLL;
 
 import android.animation.Animator;
 import android.animation.AnimatorSet;
@@ -30,23 +30,23 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.xd.base.ad.YYInsertView;
-import com.xd.base.utils.ScreenUtils;
-import com.xd.readcore.R;
-import com.xd.readcore.animation.AutoReadPageAnim;
-import com.xd.readcore.animation.CoverPageAnim;
-import com.xd.readcore.animation.HorizonPageAnim;
-import com.xd.readcore.animation.NonePageAnim;
-import com.xd.readcore.animation.PageAnimation;
-import com.xd.readcore.animation.ScrollPageAnim;
-import com.xd.readcore.animation.SimulationPageAnim;
-import com.xd.readcore.animation.SlidePageAnim;
+import com.pw.base.ad.YYInsertView;
+import com.pw.base.utils.ScreenUtils;
+import com.pw.readcore.R;
+import com.pw.readcore.animation.AutoReadPageAnim;
+import com.pw.readcore.animation.CoverPageAnim;
+import com.pw.readcore.animation.HorizonPageAnim;
+import com.pw.readcore.animation.NonePageAnim;
+import com.pw.readcore.animation.PageAnimation;
+import com.pw.readcore.animation.ScrollPageAnim;
+import com.pw.readcore.animation.SimulationPageAnim;
+import com.pw.readcore.animation.SlidePageAnim;
 
-import com.xd.readcore.bean.LineInfo;
-import com.xd.readcore.bean.PageMode;
-import com.xd.base.ad.YYFrame;
-import com.xd.readcore.utils.Constant;
-import com.xd.readcore.utils.Constant.InsertViewType;
+import com.pw.readcore.bean.LineInfo;
+import com.pw.readcore.bean.PageMode;
+import com.pw.base.ad.YYFrame;
+import com.pw.readcore.utils.Constant;
+import com.pw.readcore.utils.Constant.InsertViewType;
 
 import java.util.List;
 

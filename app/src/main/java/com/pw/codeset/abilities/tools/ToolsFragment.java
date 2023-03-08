@@ -1,7 +1,6 @@
 package com.pw.codeset.abilities.tools;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,13 +12,11 @@ import com.bumptech.glide.Glide;
 import com.pw.codeset.R;
 import com.pw.codeset.abilities.fileTransfer.FileTransferActivity;
 import com.pw.codeset.abilities.games.GamesActivity;
-import com.pw.codeset.abilities.games.block.BlockGameActivity;
 import com.pw.codeset.base.BaseFragment;
 import com.pw.codeset.databean.ToolsBean;
 import com.pw.codeset.myTest.MyTestActivity;
 import com.pw.codeset.utils.ResourceUtils;
 import com.pw.codeset.weidgt.AnimContainer;
-import com.xd.baseutils.utils.ColorUtil;
 
 import java.util.ArrayList;
 import java.util.List;

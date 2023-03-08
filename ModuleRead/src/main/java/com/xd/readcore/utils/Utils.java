@@ -1,4 +1,4 @@
-package com.xd.readcore.utils;
+package com.pw.readcore.utils;
 
 import android.annotation.TargetApi;
 import android.content.Context;

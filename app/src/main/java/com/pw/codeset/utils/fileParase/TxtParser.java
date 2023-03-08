@@ -5,11 +5,11 @@ import android.app.Activity;
 import com.pw.codeset.manager.BookManager;
 import com.pw.codeset.databean.BookBean;
 import com.pw.read.bean.ChaptersBean;
-import com.xd.baseutils.utils.FileUtil;
+import com.pw.baseutils.utils.FileUtil;
 import com.pw.codeset.utils.MD5Utils;
-import com.xd.baseutils.utils.Charset;
-import com.xd.baseutils.utils.IOUtils;
-import com.xd.baseutils.utils.NStringUtils;
+import com.pw.baseutils.utils.Charset;
+import com.pw.baseutils.utils.IOUtils;
+import com.pw.baseutils.utils.NStringUtils;
 
 import java.io.BufferedReader;
 import java.io.File;

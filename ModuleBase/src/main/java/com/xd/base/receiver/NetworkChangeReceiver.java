@@ -1,4 +1,4 @@
-package com.xd.base.receiver;
+package com.pw.base.receiver;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -6,8 +6,8 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
-import com.xd.base.base.RxBus;
-import com.xd.base.event.NetworkChangeEvent;
+import com.pw.base.base.RxBus;
+import com.pw.base.event.NetworkChangeEvent;
 
 /**
  * 监听网络状态变化

@@ -1,16 +1,8 @@
 package com.pw.codeset.abilities.notes;
 
 import android.content.Intent;
-import android.content.res.ColorStateList;
-import android.graphics.drawable.GradientDrawable;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,12 +13,11 @@ import com.pw.codeset.databean.NotesBean;
 import com.pw.codeset.manager.NotesManager;
 import com.pw.codeset.utils.CommenUseViewUtils;
 import com.pw.codeset.utils.Constant;
-import com.pw.codeset.utils.ResourceUtils;
 import com.pw.codeset.weidgt.SelectDialog;
 import com.pw.codeset.weidgt.WarpLinearLayout;
-import com.xd.baseutils.others.recycle.BaseRecyclerAdapter;
-import com.xd.baseutils.utils.ArrayUtils;
-import com.xd.baseutils.utils.NStringUtils;
+import com.pw.baseutils.others.recycle.BaseRecyclerAdapter;
+import com.pw.baseutils.utils.ArrayUtils;
+import com.pw.baseutils.utils.NStringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +34,6 @@ public class NotesFragment extends BaseFragment {
 
     WarpLinearLayout mLabelViewContainer;
     private List<String> mSelectedLabelList;
-    private List<String> mEnableLabelList;
 
     @Override
     protected void initView(View view) {
@@ -94,7 +84,7 @@ public class NotesFragment extends BaseFragment {
         if (mDataList == null) {
             mDataList = new ArrayList<>();
         }
-        mEnableLabelList = NotesManager.getInstance().getLabelList();
+        List<String> mEnableLabelList = NotesManager.getInstance().getLabelList();
         mSelectedLabelList = new ArrayList<>();
         mLabelViewContainer.removeAllViews();
         if (mEnableLabelList != null && !mEnableLabelList.isEmpty()) {
@@ -125,41 +115,29 @@ public class NotesFragment extends BaseFragment {
         if (notesBean == null) {
             return;
         }
-        String title = notesBean.getTitle();
-        if (NStringUtils.isBlank(title)) {
-            title = getResources().getString(R.string.notes_activity);
-        }
         boolean haveDone = notesBean.haveDone();
         String content = haveDone ? "确认切换为未完成？" : "确认完成？";
         List<String> items = new ArrayList<>();
         items.add(content);
         items.add("删除");
-        SelectDialog selectDialog = new SelectDialog(getActivity(), R.style.transparentFrameWindowStyle, new SelectDialog.SelectDialogListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                switch (position) {
-                    case 0:
-                        notesBean.setState(haveDone ? NotesBean.NOTE_STATE_TODO : NotesBean.NOTE_STATE_DONE);
-                        NotesManager.getInstance().updateNotes(notesBean);
-                        break;
-                    case 1:
-                        NotesManager.getInstance().deleteNotes(notesBean);
-                        break;
-                    default:break;
-                }
-                refreshList();
+        SelectDialog selectDialog = new SelectDialog(getActivity(), R.style.transparentFrameWindowStyle, (parent, view, position, id) -> {
+            switch (position) {
+                case 0:
+                    notesBean.setState(haveDone ? NotesBean.NOTE_STATE_TODO : NotesBean.NOTE_STATE_DONE);
+                    NotesManager.getInstance().updateNotes(notesBean);
+                    break;
+                case 1:
+                    NotesManager.getInstance().deleteNotes(notesBean);
+                    break;
+                default:break;
             }
+            refreshList();
         }, items, -1);
         selectDialog.show();
     }
 
     private void addTagBtn(String label) {
-        CheckBox labelView = CommenUseViewUtils.getNoteLabelView(getContext(), label,false, new CommenUseViewUtils.onLabelCheckListener() {
-            @Override
-            public void onCheckedChange(String label, boolean isChecked) {
-                filterByLabel(label,isChecked);
-            }
-        });
+        CheckBox labelView = CommenUseViewUtils.getNoteLabelView(getContext(), label,false, (label1, isChecked) -> filterByLabel(label1,isChecked));
         mLabelViewContainer.addView(labelView);
     }
 
@@ -175,9 +153,7 @@ public class NotesFragment extends BaseFragment {
         if (isChecked) {
             mSelectedLabelList.add(label);
         } else {
-            if (mSelectedLabelList.contains(label)) {
-                mSelectedLabelList.remove(label);
-            }
+            mSelectedLabelList.remove(label);
         }
 
         if (NStringUtils.isBlank(label)) {
@@ -192,7 +168,7 @@ public class NotesFragment extends BaseFragment {
                         NotesBean data = mDataList.get(i);
                         if (data != null) {
                             List<String> dataLabelList = data.getLabel();
-                            List<String> intersectionLabelList = (List<String>) ArrayUtils.getArrayIntersection(dataLabelList, mSelectedLabelList);
+                            List<?> intersectionLabelList = ArrayUtils.getArrayIntersection(dataLabelList, mSelectedLabelList);
                             if (ArrayUtils.isArrayEnable(intersectionLabelList)) {
                                 filterList.add(data);
                             }

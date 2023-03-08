@@ -1,4 +1,4 @@
-package com.xd.base.event;
+package com.pw.base.event;
 
 
 public class NetworkChangeEvent {

@@ -1,4 +1,4 @@
-package com.xd.readcore.animation;
+package com.pw.readcore.animation;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -7,7 +7,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.xd.readcore.manager.ReadDispatch;
+import com.pw.readcore.manager.ReadDispatch;
 
 
 /**

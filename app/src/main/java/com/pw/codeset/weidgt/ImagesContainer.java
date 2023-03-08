@@ -9,18 +9,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.bumptech.glide.Glide;
 import com.pw.codeset.R;
 import com.pw.codeset.abilities.imagePreview.ImagePreviewActivity;
 import com.pw.codeset.utils.Constant;
-import com.xd.baseutils.utils.NStringUtils;
-import com.xd.baseutils.utils.ScreenUtils;
+import com.pw.baseutils.utils.NStringUtils;
+import com.pw.baseutils.utils.ScreenUtils;
 
 import java.util.HashMap;
 import java.util.Map;

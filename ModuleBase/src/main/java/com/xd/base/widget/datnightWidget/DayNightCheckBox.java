@@ -1,4 +1,4 @@
-package com.xd.base.widget.datnightWidget;
+package com.pw.base.widget.datnightWidget;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -10,7 +10,7 @@ import android.widget.CheckBox;
 
 import androidx.annotation.Nullable;
 
-import com.xd.base.R;
+import com.pw.base.R;
 
 public class DayNightCheckBox extends CheckBox {
     public DayNightCheckBox(Context context) {

@@ -4,10 +4,10 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.pw.codeset.databean.BookBean;
 import com.pw.read.bean.ChaptersBean;
-import com.xd.baseutils.utils.FileUtil;
+import com.pw.baseutils.utils.FileUtil;
 import com.pw.codeset.utils.MD5Utils;
 import com.pw.codeset.utils.SaveFileUtils;
-import com.xd.baseutils.utils.NStringUtils;
+import com.pw.baseutils.utils.NStringUtils;
 
 import java.io.File;
 import java.util.ArrayList;

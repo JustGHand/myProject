@@ -84,4 +84,7 @@ dependencies {
 
 
     implementation (name: 'picture_library-release', ext: 'aar')
+
+    implementation project(':annotation')
+    annotationProcessor project(':compiler')
 }

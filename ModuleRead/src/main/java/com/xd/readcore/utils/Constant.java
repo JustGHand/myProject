@@ -1,4 +1,4 @@
-package com.xd.readcore.utils;
+package com.pw.readcore.utils;
 
 public class Constant {
 

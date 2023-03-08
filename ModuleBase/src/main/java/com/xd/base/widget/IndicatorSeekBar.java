@@ -1,4 +1,4 @@
-package com.xd.base.widget;
+package com.pw.base.widget;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -12,7 +12,7 @@ import android.widget.SeekBar;
 
 import androidx.appcompat.widget.AppCompatSeekBar;
 
-import com.xd.base.R;
+import com.pw.base.R;
 
 public class IndicatorSeekBar extends AppCompatSeekBar {
 

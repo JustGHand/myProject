@@ -1,6 +1,6 @@
-package com.xd.readcore.manager;
+package com.pw.readcore.manager;
 
-import com.xd.readcore.bean.TxtChapter;
+import com.pw.readcore.bean.TxtChapter;
 
 import java.util.HashMap;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.xd.readcore.bean;
+package com.pw.readcore.bean;
 
 /**
  * Created by newbiechen on 2018/2/5.

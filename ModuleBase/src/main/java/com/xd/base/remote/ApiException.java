@@ -1,4 +1,4 @@
-package com.xd.base.remote;
+package com.pw.base.remote;
 public class ApiException extends Exception {
     private int code;
     private String displayMessage;

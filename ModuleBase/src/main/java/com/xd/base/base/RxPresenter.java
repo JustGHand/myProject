@@ -1,4 +1,4 @@
-package com.xd.base.base;
+package com.pw.base.base;
 
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;

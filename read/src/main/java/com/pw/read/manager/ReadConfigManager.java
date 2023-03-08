@@ -7,7 +7,7 @@ import com.pw.read.bean.LayoutMode;
 import com.pw.read.bean.ReadConfigBean;
 import com.pw.read.utils.Constant;
 import com.pw.read.utils.FileSaveUtils;
-import com.xd.baseutils.utils.NStringUtils;
+import com.pw.baseutils.utils.NStringUtils;
 
 public class ReadConfigManager {
     public static ReadConfigManager mInstance;

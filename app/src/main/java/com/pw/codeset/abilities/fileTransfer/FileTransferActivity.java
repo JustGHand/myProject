@@ -1,6 +1,5 @@
 package com.pw.codeset.abilities.fileTransfer;
 
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,13 +14,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.pw.codeset.R;
 import com.pw.codeset.base.BaseActivity;
-import com.pw.codeset.databean.NotesBean;
-import com.pw.codeset.manager.NotesManager;
 import com.pw.codeset.utils.SaveFileUtils;
 import com.pw.codeset.utils.StringUtil;
 import com.pw.codeset.weidgt.SelectDialog;
-import com.xd.baseutils.utils.FileUtil;
-import com.xd.baseutils.utils.NStringUtils;
+import com.pw.baseutils.utils.FileUtil;
+import com.pw.baseutils.utils.NStringUtils;
 
 import java.io.File;
 import java.util.ArrayList;

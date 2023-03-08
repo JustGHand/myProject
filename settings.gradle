@@ -4,3 +4,5 @@ rootProject.name = "My Application"
 include ':read'
 //include ':ModuleRead'
 //include ':ModuleBase'
+include ':annotation'
+include ':compiler'

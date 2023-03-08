@@ -1,7 +1,7 @@
 package com.pw.read.bean;
 
 
-import com.xd.baseutils.utils.NStringUtils;
+import com.pw.baseutils.utils.NStringUtils;
 
 import java.io.Serializable;
 import java.util.ArrayList;

@@ -1,8 +1,8 @@
-package com.xd.readcore.bean;
+package com.pw.readcore.bean;
 
 import android.view.View;
 
-import com.xd.base.ad.YYFrame;
+import com.pw.base.ad.YYFrame;
 
 import java.io.Serializable;
 
