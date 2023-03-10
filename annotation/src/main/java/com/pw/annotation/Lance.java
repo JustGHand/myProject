@@ -26,6 +26,11 @@ import java.lang.annotation.Target;
  *                      在编译器能够获取注解与注解声明的类包括类中所有成员信息，
  *                      一般用户生成额外的辅助类
  *
+ *                      应用场景：
+ *                          1、IDE语法检查  IDE实现、IDE插件实现
+ *                              例： @DrawableRes   @IntDef
+ *                          2、APT注解处理器
+ *
  * CLASS：保留到字节码层   这种类型的Annotation编译时会被保留，在class文件中存在，但是不被JVM读取。
  *                      在编译出Clss后，通过修改Class数据以实现修改代码逻辑目的，对于是否需要修改的区分或者修改为不同逻辑的判断可以使用注解
  *

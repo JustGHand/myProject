@@ -32,14 +32,13 @@
     <string name="login_btn">登录</string>
 
 
-
     <string name="game_block">争霸艾泽拉斯</string>
 
 
     <string name="game_minesweep">扫雷</string>
     <string name="game_minesweep_tip">单击标记；双击打开</string>
 
-<!--  备忘录  -->
+    <!--  备忘录  -->
     <string name="notes_activity">备忘录</string>
     <string name="notes_edit_activity">编辑备忘录</string>
     <string name="notes_edit_title">标题</string>
@@ -55,7 +54,7 @@
 
     <string name="pc_wifi_error">请正确连接WIFI</string>
 
-<!--    read-->
+    <!--    read-->
     <string name="read_act">阅读</string>
     <string name="bookshelf_title">书架</string>
 
@@ -63,10 +62,10 @@
     <string name="read_menu_layout">布局</string>
     <string name="read_menu_style">样式</string>
 
-<!--    book-->
+    <!--    book-->
     <string name="book_default_name">标题</string>
 
-<!--    leadBook-->
+    <!--    leadBook-->
     <string name="leadbook_title">书籍导入</string>
     <string name="leadbook_tip">请取保您的手机和传输设备在同一局域网内，传输过程中请勿关闭此页面</string>
     <string name="leadbook_wifi_title">WIFI导入</string>
@@ -80,17 +79,17 @@
     <string name="leadbook_wifi_error">请正确连接WIFI</string>
 
 
-<!--    文件中转-->
+    <!--    文件中转-->
     <string name="file_transfer_activity_title">文件中转</string>
 
 
-<!--    tools-->
+    <!--    tools-->
     <string name="tools_title">工具</string>
     <string name="tools_game">游戏</string>
     <string name="tools_file_transfer">文件中转</string>
     <string name="tools_develop_test">测试</string>
 
-<!--    iconfont-->
+    <!--    iconfont-->
     <string name="iconfont_add">&#xe609;</string>
     <string name="iconfont_refresh">&#xe622;</string>
     <string name="iconfont_undo">&#xe62b;</string>

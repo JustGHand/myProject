@@ -14,11 +14,13 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/baseUtils" />
             <option value="$PROJECT_DIR$/compiler" />
+            <option value="$PROJECT_DIR$/javaLib" />
             <option value="$PROJECT_DIR$/read" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
       </GradleProjectSettings>
     </option>
+    <option name="offlineMode" value="true" />
   </component>
 </project>

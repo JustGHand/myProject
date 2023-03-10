@@ -17,6 +17,7 @@ import com.pw.codeset.R;
 import com.pw.codeset.utils.AnimUtils;
 import com.pw.codeset.weidgt.ActivityHeaderView;
 import com.pw.codeset.weidgt.MyProgressDialog;
+import com.pw.other.annotation.inject.InjectUtils;
 
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -39,6 +40,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getContentId());
+        InjectUtils.injectView(this);
         initHeader();
         initView();
         isCreating = true;

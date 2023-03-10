@@ -27,8 +27,10 @@
         <entry key="app/src/main/res/drawable/ydx_seek_progress.xml" value="0.35260416666666666" />
         <entry key="app/src/main/res/drawable/ydx_seek_thumb_large.xml" value="0.35260416666666666" />
         <entry key="app/src/main/res/drawable/ydx_seekbar_bg.xml" value="0.35260416666666666" />
+        <entry key="app/src/main/res/layout/act_annotation_test.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/layout/act_my_test.xml" value="0.25" />
         <entry key="app/src/main/res/layout/act_read_test.xml" value="0.18541666666666667" />
+        <entry key="app/src/main/res/layout/act_test_main.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/layout/activity_bezier.xml" value="0.33645833333333336" />
         <entry key="app/src/main/res/layout/activity_booklist.xml" value="0.18541666666666667" />
         <entry key="app/src/main/res/layout/activity_bookshelf.xml" value="0.2" />
@@ -37,6 +39,7 @@
         <entry key="app/src/main/res/layout/activity_game_minesweep.xml" value="0.18541666666666667" />
         <entry key="app/src/main/res/layout/activity_games.xml" value="0.18541666666666667" />
         <entry key="app/src/main/res/layout/activity_image_detail.xml" value="0.37604166666666666" />
+        <entry key="app/src/main/res/layout/activity_inject_view_test.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/layout/activity_lead_book.xml" value="0.33645833333333336" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_notes.xml" value="0.5652818991097923" />
