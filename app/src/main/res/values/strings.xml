@@ -44,6 +44,7 @@
     <string name="notes_edit_title">标题</string>
     <string name="notes_edit_title_hint">备忘录</string>
     <string name="notes_edit_date">日期</string>
+    <string name="notes_edit_knock">提醒</string>
     <string name="notes_edit_content">内容</string>
     <string name="notes_edit_content_hint">无</string>
     <string name="notes_edit_state">状态</string>

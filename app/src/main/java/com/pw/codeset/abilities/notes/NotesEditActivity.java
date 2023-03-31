@@ -7,6 +7,7 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Build;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
@@ -60,7 +61,7 @@ public class NotesEditActivity extends BaseActivity {
     TextView mDateEdit;
     EditText mContentEdit;
 
-    Button mAddCalendarBtn;
+    TextView mAddCalendarBtn;
     Group mCalendarGroup;
 
     List<String> mAllLabels;
@@ -76,6 +77,7 @@ public class NotesEditActivity extends BaseActivity {
 
     @Override
     protected int getContentId() {
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         return R.layout.activity_notes_edit;
     }
 
@@ -212,13 +214,15 @@ public class NotesEditActivity extends BaseActivity {
             long calendarTime = CalendarReminderUtils.getCalendarTime(this, mCalendarId);
             if (calendarTime > 0) {
                 mCalendarGroup.setVisibility(View.VISIBLE);
-                mAddCalendarBtn.setText("删除日历事件");
+                mAddCalendarBtn.setTextColor(getResources().getColor(R.color.normal_import_color));
+//                mAddCalendarBtn.setText("删除日历事件");
                 mDateEdit.setText(NStringUtils.dateConvert(calendarTime, Constant.DATA_PARTNER_WITH_LINE));
                 return;
             }
         }
         mCalendarGroup.setVisibility(View.GONE);
-        mAddCalendarBtn.setText("添加日历事件");
+        mAddCalendarBtn.setTextColor(getResources().getColor(R.color.normal_text_color));
+//        mAddCalendarBtn.setText("添加日历事件");
     }
 
     public void addCalendar(View view) {
@@ -248,6 +252,7 @@ public class NotesEditActivity extends BaseActivity {
                         }
                         mCalendarId = CalendarReminderUtils.addCalendarEvent(NotesEditActivity.this,title,content,time,0);
                         varifyCalendarView();
+                        saveNote();
                     }
                 },calendar.get(Calendar.HOUR),calendar.get(Calendar.MINUTE),true).show();
             }

@@ -53,27 +53,41 @@
                 android:hint="@string/notes_edit_title_hint"
                 android:gravity="right"
                 app:layout_constraintStart_toEndOf="@id/notes_edit_title_title"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/notes_add_calendar"
                 app:layout_constraintTop_toTopOf="@id/notes_edit_title_title"
                 app:layout_constraintBottom_toBottomOf="@id/notes_edit_title_title"
                 android:background="@drawable/back_alpha_radiusall"
                 android:padding="@dimen/view_defaultpadding"
-                android:layout_margin="@dimen/view_defaultmargin"
-                />
-
-
-            <Button
-                android:id="@+id/notes_add_calendar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="添加日历提醒"
-                app:layout_constraintTop_toBottomOf="@id/notes_edit_title_edit"
-                app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginLeft="@dimen/view_defaultmargin"
-                android:layout_marginTop="@dimen/view_defaultmargin"
-                android:onClick="addCalendar"
-                android:visibility="gone"
                 />
+
+            <com.pw.codeset.weidgt.IconImageButton
+                android:id="@+id/notes_add_calendar"
+                android:layout_width="@dimen/clickable_minsize"
+                android:layout_height="@dimen/clickable_minsize"
+                android:text="&#xe607;"
+                android:textSize="20sp"
+                android:textColor="@color/normal_text_color"
+                android:background="@null"
+                android:onClick="addCalendar"
+                app:layout_constraintStart_toEndOf="@id/notes_edit_title_edit"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/notes_edit_title_edit"
+                app:layout_constraintBottom_toBottomOf="@id/notes_edit_title_edit"
+                />
+
+<!--            <Button-->
+<!--                android:id="@+id/notes_add_calendar"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginLeft="@dimen/view_defaultmargin"-->
+<!--                android:layout_marginTop="@dimen/view_defaultmargin"-->
+<!--                android:onClick="addCalendar"-->
+<!--                android:text="添加日历提醒"-->
+<!--                android:visibility="visible"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/notes_edit_title_edit" />-->
 
             <androidx.constraintlayout.widget.Group
                 android:id="@+id/notes_calendar_group"
@@ -87,7 +101,7 @@
                 android:layout_width="0dp"
                 android:layout_height="@dimen/clickable_minsize"
                 android:gravity="center|left"
-                android:text="@string/notes_edit_date"
+                android:text="@string/notes_edit_knock"
                 android:textColor="@color/normal_title_color"
                 android:textSize="@dimen/title_textsize"
                 android:textStyle="bold"
