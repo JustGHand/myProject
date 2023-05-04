@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.pw.codeset.R;
 import com.pw.codeset.abilities.fileTransfer.FileTransferActivity;
 import com.pw.codeset.abilities.games.block.BlockGameActivity;
+import com.pw.codeset.abilities.gdMap.GDMapActivity;
 import com.pw.codeset.base.BaseFragment;
 import com.pw.baseutils.others.recycle.BaseRecyclerAdapter;
 import com.pw.baseutils.utils.NStringUtils;

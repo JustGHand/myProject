@@ -36,8 +36,9 @@
         <entry key="app/src/main/res/layout/activity_bookshelf.xml" value="0.2" />
         <entry key="app/src/main/res/layout/activity_file_transfer.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_game_block.xml" value="0.18541666666666667" />
-        <entry key="app/src/main/res/layout/activity_game_minesweep.xml" value="0.18541666666666667" />
+        <entry key="app/src/main/res/layout/activity_game_minesweep.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_games.xml" value="0.18541666666666667" />
+        <entry key="app/src/main/res/layout/activity_gd_map.xml" value="0.2078125" />
         <entry key="app/src/main/res/layout/activity_image_detail.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/layout/activity_inject_view_test.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/layout/activity_lead_book.xml" value="0.33645833333333336" />
@@ -45,12 +46,15 @@
         <entry key="app/src/main/res/layout/activity_notes.xml" value="0.5652818991097923" />
         <entry key="app/src/main/res/layout/activity_notes_edit.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_read.xml" value="0.16" />
+        <entry key="app/src/main/res/layout/activity_sudoke.xml" value="0.37604166666666666" />
+        <entry key="app/src/main/res/layout/activity_sudoku.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_tools.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/layout/item_bookshelf.xml" value="0.22" />
         <entry key="app/src/main/res/layout/item_file_transfer.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_gamelist.xml" value="0.33645833333333336" />
         <entry key="app/src/main/res/layout/item_notes.xml" value="0.4472361809045226" />
         <entry key="app/src/main/res/layout/item_read_catelog.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/item_sudoku_number.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_test.xml" value="0.33645833333333336" />
         <entry key="app/src/main/res/layout/item_toollist.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/layout/test_activity.xml" value="0.33645833333333336" />
@@ -66,6 +70,10 @@
         <entry key="app/src/main/res/layout/view_my_seekbar.xml" value="0.18541666666666667" />
         <entry key="app/src/main/res/layout/view_notes_image_content.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/layout/view_popup.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/view_soduko.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/view_sudoku.xml" value="0.37604166666666666" />
+        <entry key="app/src/main/res/layout/view_sudoku_line.xml" value="0.37604166666666666" />
+        <entry key="app/src/main/res/layout/view_sudoku_number.xml" value="0.335" />
         <entry key="app/src/main/res/menu/bookshelf_menu.xml" value="0.33645833333333336" />
         <entry key="app/src/main/res/menu/main_page_menu.xml" value="0.33645833333333336" />
         <entry key="app/src/main/res/menu/read_menu.xml" value="0.18541666666666667" />

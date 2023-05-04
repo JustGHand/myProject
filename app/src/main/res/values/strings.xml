@@ -89,6 +89,8 @@
     <string name="tools_game">游戏</string>
     <string name="tools_file_transfer">文件中转</string>
     <string name="tools_develop_test">测试</string>
+    <string name="tools_develop_map">地图</string>
+    <string name="tools_develop_sudoke">数独</string>
 
     <!--    iconfont-->
     <string name="iconfont_add">&#xe609;</string>

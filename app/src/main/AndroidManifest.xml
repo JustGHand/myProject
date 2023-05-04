@@ -20,19 +20,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
-            android:name="com.pw.other.annotation.inject.InjectViewTestActivity"
+            android:name=".abilities.games.sudoku.SudokuActivity"
             android:exported="true" />
-
-<!--        测试首页-->
-<!--         <activity android:name="com.pw.other.TestMainActivity">-->
-<!--             <intent-filter>-->
-<!--                 <action android:name="android.intent.action.MAIN" />-->
-
-<!--                 <category android:name="android.intent.category.LAUNCHER" />-->
-<!--             </intent-filter>-->
-<!--         </activity>-->
-
-<!--        正式首页-->
+        <activity
+            android:name="com.pw.other.annotation.inject.InjectViewTestActivity"
+            android:exported="true" /> <!-- 测试首页 -->
+        <!-- <activity android:name="com.pw.other.TestMainActivity"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.intent.action.MAIN" /> -->
+        <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+        <!-- </intent-filter> -->
+        <!-- </activity> -->
+        <!-- 正式首页 -->
         <activity android:name=".abilities.main.MainActivityView">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -43,18 +42,19 @@
             <meta-data
                 android:name="android.app.shortcuts"
                 android:resource="@xml/shortcuts" />
-        </activity>
-        <!-- 贝塞尔曲线 -->
-        <activity android:name=".abilities.bezier.BezierCurveActivity"></activity> <!-- 触摸view -->
-        <activity android:name=".abilities.touchview.TouchViewAct"></activity> <!-- mvp架构登录页面 -->
-        <activity android:name=".abilities.login_mvp.UserLoginActivity"></activity> <!-- 游戏列表 -->
-        <activity android:name=".abilities.games.GamesActivity"></activity> <!-- 黑白格 -->
+        </activity> <!-- 贝塞尔曲线 -->
+        <activity android:name=".abilities.bezier.BezierCurveActivity" /> <!-- 触摸view -->
+        <activity android:name=".abilities.touchview.TouchViewAct" /> <!-- mvp架构登录页面 -->
+        <activity android:name=".abilities.login_mvp.UserLoginActivity" /> <!-- 游戏列表 -->
+        <activity android:name=".abilities.games.GamesActivity" /> <!-- 黑白格 -->
         <activity
             android:name=".abilities.games.block.BlockGameActivity"
-            android:windowSoftInputMode="adjustResize"></activity>
+            android:windowSoftInputMode="adjustResize" />
         <activity android:name=".abilities.pc_connect.ActivityPcConnect" />
-        <activity android:name=".abilities.notes.NotesActivity"></activity>
-        <activity android:name=".abilities.notes.NotesEditActivity" android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".abilities.notes.NotesActivity" />
+        <activity
+            android:name=".abilities.notes.NotesEditActivity"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".abilities.read.bookshelf.BookShelfActivity" />
         <activity android:name=".abilities.read.leadbook.LeadBookActivity" />
 
@@ -109,6 +109,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".myTest.MyTestActivity" />
+        <activity android:name=".abilities.gdMap.GDMapActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

@@ -188,6 +188,10 @@ public abstract class BaseRecyclerAdapter<T,T2 extends BaseViewHolder> extends R
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        boolean dealClick = onItemClick(holder);
+                        if (dealClick) {
+                            return;
+                        }
                         if (mListener != null) {
                             mListener.onClick(data,pos);
                         }
@@ -281,6 +285,10 @@ public abstract class BaseRecyclerAdapter<T,T2 extends BaseViewHolder> extends R
             }
         }
         return true;
+    }
+
+    protected boolean onItemClick(BaseViewHolder viewHolder) {
+        return false;
     }
 
 }
