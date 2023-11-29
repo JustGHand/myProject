@@ -10,13 +10,13 @@ package com.pw.javalib.proxy;
  *
  * 持有一个真实主题类的引用
  */
-public class MySubjectManager implements MySubject{
+public class MyProxy implements MySubject{
 
     private String managerName;
 
     private MyRealSubject realSubject;//真实主题类的引用
 
-    public MySubjectManager(String managerName, MyRealSubject realSubject) {
+    public MyProxy(String managerName, MyRealSubject realSubject) {
         this.managerName = managerName;
         this.realSubject = realSubject;
     }

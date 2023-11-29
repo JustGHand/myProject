@@ -90,7 +90,7 @@ import java.lang.annotation.Target;
  */
 
 public @interface Lance {
-    String value();
+    String value() default "test";
 
     String id();
 }

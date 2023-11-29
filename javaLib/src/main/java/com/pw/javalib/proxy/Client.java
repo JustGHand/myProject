@@ -1,14 +1,11 @@
 package com.pw.javalib.proxy;
 
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
-import sun.misc.ProxyGenerator;
+//import sun.misc.ProxyGenerator;
 
 /**
  * 代理模式客户端
@@ -43,7 +40,7 @@ public class Client {
         //静态代理
 
         //构造一个代理类
-        MySubjectManager managerA = new MySubjectManager("managerA", realSubjectA);
+        MyProxy managerA = new MyProxy("managerA", realSubjectA);
 
         //访问真实业务
         managerA.doA();
@@ -74,24 +71,8 @@ public class Client {
                     }
                 });
 
-        generateProxyFile("subject",realSubjectA.getClass());
-
         managerB.doA();
 
-    }
-
-    public static void generateProxyFile(String fileName, Class<?> clazz) {
-        byte[] classFile = ProxyGenerator.generateProxyClass(fileName, clazz.getInterfaces());
-        String path = "./proxyFile/"+fileName+".class";
-        try {
-            FileOutputStream fos = new FileOutputStream(path);
-            fos.write(classFile);
-            fos.flush();
-            System.out.println("代理类Class文件写入成功");
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("代理类Class写入失败");
-        }
     }
 
 }
