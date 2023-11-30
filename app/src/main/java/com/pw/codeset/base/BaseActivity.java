@@ -13,6 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.pw.annotation.inject.InjectViewUtil;
+import com.pw.annotation.inject.PWBinder;
 import com.pw.codeset.R;
 import com.pw.codeset.utils.AnimUtils;
 import com.pw.codeset.weidgt.ActivityHeaderView;
@@ -41,6 +43,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(getContentId());
         InjectUtils.injectView(this);
+        InjectViewUtil.bind(this);
         initHeader();
         initView();
         isCreating = true;
