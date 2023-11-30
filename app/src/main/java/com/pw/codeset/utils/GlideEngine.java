@@ -24,6 +24,8 @@ import com.luck.picture.lib.widget.longimage.ImageViewState;
 import com.luck.picture.lib.widget.longimage.SubsamplingScaleImageView;
 import com.pw.codeset.R;
 
+import retrofit2.Retrofit;
+
 /**
  * @author：luck
  * @date：2019-11-13 17:02

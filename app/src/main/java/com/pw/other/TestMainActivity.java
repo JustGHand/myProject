@@ -6,6 +6,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.pw.annotation.inject.InjectView;
+import com.pw.annotation.inject.InjectViewUtil;
 import com.pw.codeset.R;
 import com.pw.codeset.base.BaseActivity;
 import com.pw.other.annotation.inject.InjectUtils;
@@ -22,6 +23,7 @@ public class TestMainActivity extends BaseActivity {
 
     List<TestFuncBean> mFuncList;
 
+
     @Override
     protected int getContentId() {
         return R.layout.act_test_main;
@@ -29,7 +31,6 @@ public class TestMainActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-
         mFuncList = new ArrayList<>();
         mFuncList.add(new TestFuncBean("InjectView", InjectViewTestActivity.class));
 

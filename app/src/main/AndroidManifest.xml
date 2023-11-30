@@ -24,20 +24,23 @@
             android:exported="true" />
         <activity
             android:name="com.pw.other.annotation.inject.InjectViewTestActivity"
-            android:exported="true" /> <!-- 测试首页 -->
-        <!-- <activity android:name="com.pw.other.TestMainActivity"> -->
-        <!-- <intent-filter> -->
-        <!-- <action android:name="android.intent.action.MAIN" /> -->
-        <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-        <!-- </intent-filter> -->
-        <!-- </activity> -->
+            android:exported="true" >
+
+        </activity>
+        <!-- 测试首页 -->
+         <activity android:name="com.pw.other.TestMainActivity">
+         <intent-filter>
+         <action android:name="android.intent.action.MAIN" />
+         <category android:name="android.intent.category.LAUNCHER" />
+         </intent-filter>
+         </activity>
         <!-- 正式首页 -->
         <activity android:name=".abilities.main.MainActivityView">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
 
             <meta-data
                 android:name="android.app.shortcuts"

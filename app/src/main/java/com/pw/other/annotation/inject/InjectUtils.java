@@ -10,6 +10,7 @@ import java.lang.reflect.Field;
 public class InjectUtils {
 
     public static void injectView(Activity activity) {
+
         Class<? extends Activity> clz = activity.getClass();
 
         //获得此类所有的成员
