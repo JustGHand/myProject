@@ -19,21 +19,11 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
-        <activity
-            android:name="com.pw.other.annotation.inject.InjectViewTestActivity"
-            android:exported="true" />
 
-<!--        测试首页-->
-<!--         <activity android:name="com.pw.other.TestMainActivity">-->
-<!--             <intent-filter>-->
-<!--                 <action android:name="android.intent.action.MAIN" />-->
-
-<!--                 <category android:name="android.intent.category.LAUNCHER" />-->
-<!--             </intent-filter>-->
-<!--         </activity>-->
 
 <!--        正式首页-->
-        <activity android:name=".abilities.main.MainActivityView">
+        <activity android:name=".abilities.main.MainActivityView"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -68,6 +58,7 @@
         <activity android:name=".abilities.imagePreview.ImagePreviewActivity" />
         <activity
             android:name=".abilities.fileTransfer.FileTransferActivity"
+            android:exported="true"
             android:label="MyTool">
 
             <!-- //注册接收分享 -->

@@ -1,5 +1,6 @@
 package com.pw.codeset.abilities.read.read;
 
+import android.annotation.SuppressLint;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -104,24 +105,22 @@ public class ReadActivity extends BaseActivity {
 
         mBottomView = findViewById(R.id.read_bottom_view);
         mBottomView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @SuppressLint("NonConstantResourceId")
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.read_menu_catelog:
-                        if (!isCatelogShowing) {
-                            hideAllMenu(false);
-                        }
-                        toggleCatelog();
-                        break;
-                    case R.id.read_menu_layout:
-                        if (!isStyleShowing) {
-                            hideAllMenu(false);
-                            toggleStyleMenu();
-                        }
-                        break;
-                    case R.id.read_menu_style:
+
+                if (item.getItemId() == R.id.read_menu_catelog) {
+                    if (!isCatelogShowing) {
                         hideAllMenu(false);
-                        break;
+                    }
+                    toggleCatelog();
+                }else if (item.getItemId() == R.id.read_menu_layout) {
+                    if (!isStyleShowing) {
+                        hideAllMenu(false);
+                        toggleStyleMenu();
+                    }
+                }else if (item.getItemId() == R.id.read_menu_style) {
+                    hideAllMenu(false);
                 }
                 return true;
             }

@@ -55,19 +55,12 @@ public class MainActivityView extends BaseActivity {
         mBottomView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.main_menu_notes:
-                        mViewPager.setCurrentItem(0);
-                        break;
-
-                    case R.id.main_menu_read:
-                        mViewPager.setCurrentItem(1);
-                        break;
-
-                    case R.id.main_menu_games:
-                        mViewPager.setCurrentItem(2);
-                        break;
-
+                if (item.getItemId() == R.id.main_menu_notes) {
+                    mViewPager.setCurrentItem(0);
+                }else if (item.getItemId() == R.id.main_menu_read) {
+                    mViewPager.setCurrentItem(1);
+                }else if (item.getItemId() == R.id.main_menu_games) {
+                    mViewPager.setCurrentItem(2);
                 }
                 return true;
             }

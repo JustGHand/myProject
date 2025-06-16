@@ -3,13 +3,14 @@ plugins {
 }
 
 android {
-    compileSdkVersion 30
+    namespace "com.pw.codeset"
+    compileSdk 35
     buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.pw.codeset"
         minSdkVersion 24
-        targetSdkVersion 30
+        targetSdk 35
         versionCode 3
         versionName "1.1.3"
 

@@ -60,7 +60,6 @@ dependencies {
     compileOnly "com.squareup.retrofit2:converter-gson:2.2.0"
     compileOnly "com.squareup.retrofit2:adapter-rxjava2:2.2.0"
     compileOnly 'com.amitshekhar.android:rx2-android-networking:1.0.0'
-    compileOnly 'dev.dworks.libs:volleyplus:0.1.4'
 
 // okdownload核心库
     compileOnly 'com.liulishuo.okdownload:okdownload:1.0.5'
