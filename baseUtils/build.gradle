@@ -4,14 +4,13 @@ plugins {
 
 android {
     namespace "com.pw.baseutils"
-    compileSdk 35
-    buildToolsVersion "30.0.3"
+    compileSdk cfgs.compileSdk
 
     defaultConfig {
-        minSdkVersion 23
-        targetSdk 35
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion cfgs.minSdk
+        targetSdk cfgs.targetSdk
+        versionCode cfgs.versionCode
+        versionName cfgs.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -24,8 +23,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility cfgs.javaVersion
+        targetCompatibility cfgs.javaVersion
     }
 }
 

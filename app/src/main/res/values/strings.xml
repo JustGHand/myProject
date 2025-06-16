@@ -40,6 +40,7 @@
 
     <!--  备忘录  -->
     <string name="notes_activity">备忘录</string>
+    <string name="notes_calendar">日历</string>
     <string name="notes_edit_activity">编辑备忘录</string>
     <string name="notes_edit_title">标题</string>
     <string name="notes_edit_title_hint">备忘录</string>

@@ -2,11 +2,12 @@
 <resources>
 
     <declare-styleable name="ActivityHeaderView">
-        <attr name="title_text" format="string"></attr>
-        <attr name="showback" format="boolean"></attr>
-        <attr name="showmenu" format="boolean"></attr>
-        <attr name="menutext" format="string"></attr>
-        <attr name="onMenuClick" format="string"></attr>
+        <attr name="title_text" format="string" />
+        <attr name="showback" format="boolean" />
+        <attr name="showmenu" format="boolean" />
+        <attr name="menutext" format="string" />
+        <attr name="backText" format="string" />
+        <attr name="onMenuClick" format="string" />
     </declare-styleable>
 
     <declare-styleable name="ImagesContainer">

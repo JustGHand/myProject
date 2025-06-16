@@ -71,8 +71,6 @@ public class BookShelfFragment extends BaseFragment {
 
     @Override
     protected void dealWithData() {
-        mBooks = BookManager.getInstance().getBookList();
-        mAdapter.setData(mBooks);
     }
 
     @Override

@@ -77,11 +77,16 @@ public class ActivityHeaderView extends ConstraintLayout {
         if (NStringUtils.isNotBlank(menuText)) {
             mMenuView.setText(menuText);
         }
-
         String menuClick = typedArray.getString(R.styleable.ActivityHeaderView_onMenuClick);
         if (NStringUtils.isNotBlank(menuClick)) {
             mMenuView.setOnClickListener(new DeclaredOnClickListener(mMenuView, menuClick));
         }
+
+        String backText = typedArray.getString(R.styleable.ActivityHeaderView_backText);
+        if (NStringUtils.isNotBlank(backText)) {
+            mBackView.setText(backText);
+        }
+
     }
 
 

@@ -8,9 +8,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.pw.codeset.R;
+import com.pw.codeset.application.MyApp;
 import com.pw.codeset.base.BaseFragment;
 import com.pw.codeset.databean.NotesBean;
 import com.pw.codeset.manager.NotesManager;
+import com.pw.codeset.utils.CalendarUtilKt;
 import com.pw.codeset.utils.CommenUseViewUtils;
 import com.pw.codeset.utils.Constant;
 import com.pw.codeset.weidgt.SelectDialog;
@@ -20,6 +22,7 @@ import com.pw.baseutils.utils.ArrayUtils;
 import com.pw.baseutils.utils.NStringUtils;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class NotesFragment extends BaseFragment {
@@ -38,7 +41,6 @@ public class NotesFragment extends BaseFragment {
     @Override
     protected void initView(View view) {
         mRecyclerView = view.findViewById(R.id.notes_listview);
-
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(layoutManager);
 
@@ -65,6 +67,11 @@ public class NotesFragment extends BaseFragment {
 
     @Override
     protected void dealWithData() {
+    }
+
+    @Override
+    protected void finishData() {
+        super.finishData();
         refreshList();
     }
 
@@ -77,6 +84,12 @@ public class NotesFragment extends BaseFragment {
     @Override
     protected void onMenuClick(View view) {
         toNoteDetal(null);
+    }
+
+    @Override
+    protected void onBackClick(View view) {
+        super.onBackClick(view);
+        CalendarUtilKt.startCalendar(MyApp.getInstance(),System.currentTimeMillis());
     }
 
     private void refreshList() {

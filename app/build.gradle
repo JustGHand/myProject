@@ -1,18 +1,18 @@
 plugins {
     id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
 }
 
 android {
     namespace "com.pw.codeset"
-    compileSdk 35
-    buildToolsVersion "30.0.3"
+    compileSdk cfgs.compileSdk
 
     defaultConfig {
         applicationId "com.pw.codeset"
-        minSdkVersion 24
-        targetSdk 35
-        versionCode 3
-        versionName "1.1.3"
+        minSdkVersion cfgs.minSdk
+        targetSdk cfgs.targetSdk
+        versionCode cfgs.versionCode
+        versionName cfgs.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -45,8 +45,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility cfgs.javaVersion
+        targetCompatibility cfgs.javaVersion
+    }
+    kotlinOptions {
+        jvmTarget = cfgs.jvm
     }
 
     android.applicationVariants.all { variant ->
@@ -61,27 +64,28 @@ android {
 }
 
 dependencies {
-
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation "androidx.appcompat:appcompat:1.3.1"
-    implementation "androidx.activity:activity:1.3.1"
-    implementation "com.google.android.material:material:1.3.0"
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation "androidx.core:core-ktx:$cfgs.ktx"
+    implementation "androidx.appcompat:appcompat:1.7.1"
+    implementation "androidx.activity:activity-ktx:1.10.1"
+    implementation "com.google.android.material:material:1.12.0"
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
 
-    implementation "io.reactivex.rxjava2:rxandroid:2.0.0"
-    implementation "io.reactivex.rxjava2:rxjava:2.0.0"
+    implementation "io.reactivex.rxjava2:rxandroid:2.1.1"
+    implementation "io.reactivex.rxjava2:rxjava:2.2.21"
 
-    implementation "com.github.bumptech.glide:glide:4.9.0"
+    implementation "com.github.bumptech.glide:glide:4.14.2"
     implementation(project(":baseUtils"))
 
     implementation(project(":read"))
 
-    implementation 'com.koushikdutta.async:androidasync:2.+'
+    implementation 'com.koushikdutta.async:androidasync:2.2.1'
 
-    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'com.google.code.gson:gson:2.11.0'
 
 
     implementation (name: 'picture_library-release', ext: 'aar')

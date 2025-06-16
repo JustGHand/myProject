@@ -8,14 +8,15 @@ import android.content.Intent;
 import android.os.Build;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.constraintlayout.widget.Group;
 import androidx.core.app.ActivityCompat;
 
@@ -53,6 +54,8 @@ public class NotesEditActivity extends BaseActivity {
 
     public static final int REUQEST_CODE_SPLASH_PERMISSION = 1001;
     public static final int REUQEST_CODE_INSTALLAPK_PERMISSION = 1002;
+    public static final int REUQEST_CODE_CALENDAR_PERMISSION = 1003;
+    public static final int REUQEST_CODE_FILE_PERMISSION = 1004;
 
 
     NotesBean mNoteBean;
@@ -226,6 +229,10 @@ public class NotesEditActivity extends BaseActivity {
     }
 
     public void addCalendar(View view) {
+        if (mTitleEdit.getText().toString().isBlank()) {
+            LogToastUtils.showLargeToast("请先填写标题");
+            return;
+        }
         if (view.getId() == R.id.notes_add_calendar) {
             if (mCalendarId >= 0) {
                 CalendarReminderUtils.deleteCalendarEvent(this,mCalendarId);
@@ -234,11 +241,16 @@ public class NotesEditActivity extends BaseActivity {
                 return;
             }
         }
+        checkCalendarPermission();
+    }
+
+    private void showCalendarDialog() {
         Calendar calendar = Calendar.getInstance();
         new DatePickerDialog(this, AlertDialog.THEME_HOLO_LIGHT, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 new TimePickerDialog(NotesEditActivity.this, AlertDialog.THEME_HOLO_LIGHT, new TimePickerDialog.OnTimeSetListener() {
+                    @RequiresApi(api = Build.VERSION_CODES.N)
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                         String title = mTitleEdit.getText().toString();
@@ -295,7 +307,7 @@ public class NotesEditActivity extends BaseActivity {
     }
 
     public void addImageToContent(View view) {
-        checkPermission();
+        checkFilePermission();
     }
 
     private void generateImages() {
@@ -312,7 +324,23 @@ public class NotesEditActivity extends BaseActivity {
         }
     }
 
-    private void checkPermission() {
+    private void checkCalendarPermission() {
+
+        if (PermissionUtils.isCalendarPermissionGranted(this)) {
+            showCalendarDialog();
+        }else {
+            String[] permission = new String[2];
+            permission[0] = Manifest.permission.READ_CALENDAR;
+            permission[1] = Manifest.permission.WRITE_CALENDAR;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                requestPermissions(permission,REUQEST_CODE_CALENDAR_PERMISSION);
+            }else {
+                ActivityCompat.requestPermissions(this,permission,REUQEST_CODE_CALENDAR_PERMISSION);
+            }
+        }
+    }
+
+    private void checkFilePermission() {
 
         if (PermissionUtils.isWritePermissionGranted(this)) {
             openFileManager();
@@ -320,9 +348,9 @@ public class NotesEditActivity extends BaseActivity {
             String[] permission = new String[1];
             permission[0] = Manifest.permission.WRITE_EXTERNAL_STORAGE;
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                requestPermissions(permission,REUQEST_CODE_SPLASH_PERMISSION);
+                requestPermissions(permission,REUQEST_CODE_FILE_PERMISSION);
             }else {
-                ActivityCompat.requestPermissions(this,permission,REUQEST_CODE_SPLASH_PERMISSION);
+                ActivityCompat.requestPermissions(this,permission,REUQEST_CODE_FILE_PERMISSION);
             }
         }
     }
@@ -330,10 +358,19 @@ public class NotesEditActivity extends BaseActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (PermissionUtils.hasAllPermissionsGranted(grantResults)) {
-            openFileManager();
-        }else {
-            LogToastUtils.show("缺少必要权限，无法进行文件选择");
+        if (requestCode==REUQEST_CODE_FILE_PERMISSION) {
+            if (PermissionUtils.hasAllPermissionsGranted(grantResults)) {
+                openFileManager();
+            } else {
+                LogToastUtils.show("缺少必要权限，无法进行文件选择");
+            }
+        }
+        if (requestCode == REUQEST_CODE_CALENDAR_PERMISSION) {
+            if (PermissionUtils.hasAllPermissionsGranted(grantResults)) {
+                showCalendarDialog();
+            } else {
+                LogToastUtils.show("缺少必要权限，无法进行文件选择");
+            }
         }
     }
 

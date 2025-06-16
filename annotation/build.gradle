@@ -3,10 +3,10 @@ plugins {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = cfgs.javaVersion
+    targetCompatibility = cfgs.javaVersion
 }
 
 dependencies {
-    implementation "androidx.annotation:annotation:1.2.0"
+    implementation "androidx.annotation:annotation:1.9.1"
 }
