@@ -4,8 +4,10 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.ColorInt;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.pw.codeset.R;
@@ -18,6 +20,7 @@ public class ActivityHeaderView extends ConstraintLayout {
     private IconImageView mBackView;
     private IconImageView mMenuView;
     private TextView mTitleTextView;
+    private LinearLayout mFakeStatusView;
 
     public ActivityHeaderView(Context context) {
         super(context);
@@ -44,9 +47,10 @@ public class ActivityHeaderView extends ConstraintLayout {
         mBackView = this.findViewById(R.id.activity_header_backview);
         mMenuView = this.findViewById(R.id.activity_header_menuview);
         mTitleTextView = this.findViewById(R.id.activity_header_title);
-        LayoutParams layoutParams = (LayoutParams) this.findViewById(R.id.head_fake_status_conainer).getLayoutParams();
+        mFakeStatusView = this.findViewById(R.id.head_fake_status_conainer);
+        LayoutParams layoutParams = (LayoutParams) mFakeStatusView.getLayoutParams();
         layoutParams.height = DeviceUtils.getStatusBarHeight(this.getContext());
-        this.findViewById(R.id.head_fake_status_conainer).setLayoutParams(layoutParams);
+        mFakeStatusView.setLayoutParams(layoutParams);
 
     }
 
@@ -69,6 +73,10 @@ public class ActivityHeaderView extends ConstraintLayout {
 
         boolean showBackView = typedArray.getBoolean(R.styleable.ActivityHeaderView_showback, true);
         boolean showMenuView = typedArray.getBoolean(R.styleable.ActivityHeaderView_showmenu, false);
+        int backColor = typedArray.getColor(R.styleable.ActivityHeaderView_back_color, context.getColor(R.color.theme_color));
+
+        mFakeStatusView.setBackgroundColor(backColor);
+        mTitleTextView.setBackgroundColor(backColor);
 
         setBackViewVisiable(showBackView ? VISIBLE : GONE);
         setMenuViewVisiable(showMenuView ? VISIBLE : GONE);
@@ -89,6 +97,10 @@ public class ActivityHeaderView extends ConstraintLayout {
 
     }
 
+    public void setBackColor(@ColorInt int color) {
+        mFakeStatusView.setBackgroundColor(color);
+        mTitleTextView.setBackgroundColor(color);
+    }
 
     public void setBackViewVisiable(int visiable) {
         if (mBackView!=null) {

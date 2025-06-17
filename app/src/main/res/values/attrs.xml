@@ -5,6 +5,7 @@
         <attr name="title_text" format="string" />
         <attr name="showback" format="boolean" />
         <attr name="showmenu" format="boolean" />
+        <attr name="back_color" format="color" />
         <attr name="menutext" format="string" />
         <attr name="backText" format="string" />
         <attr name="onMenuClick" format="string" />
