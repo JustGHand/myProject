@@ -7,16 +7,18 @@
         android:title="@string/notes_activity"
         />
 
-    <item
-        android:id="@+id/main_menu_read"
-        android:icon="@drawable/selector_icon_read"
-        android:title="@string/read_act"
-        />
+<!--    <item-->
+<!--        android:id="@+id/main_menu_read"-->
+<!--        android:icon="@drawable/selector_icon_read"-->
+<!--        android:title="@string/read_act"-->
+<!--        android:enabled="false"-->
+<!--        />-->
 
-    <item
-        android:id="@+id/main_menu_games"
-        android:icon="@drawable/selector_icon_game"
-        android:title="@string/tools_title"
-        />
+<!--    <item-->
+<!--        android:id="@+id/main_menu_games"-->
+<!--        android:icon="@drawable/selector_icon_game"-->
+<!--        android:title="@string/tools_title"-->
+<!--        android:enabled="false"-->
+<!--        />-->
 
 </menu>

@@ -98,7 +98,7 @@ public class LeadBookActivity extends BaseActivity {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(leadBookEvent -> {
                     if (leadBookEvent.isAdd()) {
-                        onFileSelected(leadBookEvent.getFilePath());
+                        onFileSelected(leadBookEvent.getFilePath(),null);
                         FileUtil.deleteFile(leadBookEvent.getFilePath());
                     }else {
                         File file = new File(leadBookEvent.getFilePath());
@@ -132,8 +132,9 @@ public class LeadBookActivity extends BaseActivity {
         if (isWritePermissionGranted(this)) {
             openFileManager();
         }else {
-            String[] permission = new String[1];
+            String[] permission = new String[2];
             permission[0] = Manifest.permission.WRITE_EXTERNAL_STORAGE;
+            permission[1] = Manifest.permission.WRITE_EXTERNAL_STORAGE;
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 requestPermissions(permission,REUQEST_CODE_PERMISSION);
             }else {
@@ -146,7 +147,8 @@ public class LeadBookActivity extends BaseActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (context.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                 return false;
-            }if (context.checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            }
+            if (context.checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                 return false;
             }
         }else {
@@ -192,9 +194,9 @@ public class LeadBookActivity extends BaseActivity {
         startActivityForResult(intent, FILE_SELECT_REQUESTCODE);
     }
 
-    private void onFileSelected(String filePath) {
+    private void onFileSelected(String filePath,Uri uri) {
 
-        BookBean mCurBook = BookManager.getInstance().addBook(filePath);
+        BookBean mCurBook = BookManager.getInstance().addBook(filePath,uri,this);
 
         if (mCurBook != null) {
             String bookFilePath = mCurBook.getBookPath();
@@ -251,7 +253,7 @@ public class LeadBookActivity extends BaseActivity {
                 Uri uri = data.getData();
                 if (uri != null) {
                     String filePath = FileUtil.getFilePathByUri(LeadBookActivity.this, uri);
-                    onFileSelected(filePath);
+                    onFileSelected(filePath,uri);
                 }
             }
         }

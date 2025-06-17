@@ -81,7 +81,7 @@ public class BookShelfFragment extends BaseFragment {
     }
 
     private void toggleEditMode(boolean editMode) {
-
+        mAdapter.startEdit();
     }
 
     private void addBook() {
@@ -91,27 +91,29 @@ public class BookShelfFragment extends BaseFragment {
 
     private void showMorePopup(View view) {
 
-        if (true) {
-            List<DialogUtils.DialogMenu> dialogMenus = new ArrayList<>();
-            DialogUtils.DialogMenu manager = new DialogUtils.DialogMenu("书籍管理", R.mipmap.icon_bookshelf_manager, "manager");
-            DialogUtils.DialogMenu leadBook = new DialogUtils.DialogMenu("导入书籍", R.mipmap.icon_booklead, "leadBook");
-            dialogMenus.add(manager);
-            dialogMenus.add(leadBook);
-            DialogUtils.showPopUpView(getActivity(), view, dialogMenus, new DialogUtils.MenuClickListener() {
-                @Override
-                public void onItemClick(String itemTag) {
-                    if (NStringUtils.isNotBlank(itemTag)) {
-                        if (itemTag.equals("manager")) {
-                            toggleEditMode(true);
-                            mPopWindow.dismiss();
-                        } else if (itemTag.equals("leadBook")) {
-                            addBook();
-                        }
-                    }
-                }
-            });
-            return;
-        }
+//        if (true) {
+//            List<DialogUtils.DialogMenu> dialogMenus = new ArrayList<>();
+//            DialogUtils.DialogMenu manager = new DialogUtils.DialogMenu("书籍管理", R.mipmap.icon_bookshelf_manager, "manager");
+//            DialogUtils.DialogMenu leadBook = new DialogUtils.DialogMenu("导入书籍", R.mipmap.icon_booklead, "leadBook");
+//            dialogMenus.add(manager);
+//            dialogMenus.add(leadBook);
+//            DialogUtils.showPopUpView(getActivity(), view, dialogMenus, new DialogUtils.MenuClickListener() {
+//                @Override
+//                public void onItemClick(String itemTag) {
+//                    if (NStringUtils.isNotBlank(itemTag)) {
+//                        if (itemTag.equals("manager")) {
+//                            toggleEditMode(true);
+//                            if (mPopWindow != null) {
+//                                mPopWindow.dismiss();
+//                            }
+//                        } else if (itemTag.equals("leadBook")) {
+//                            addBook();
+//                        }
+//                    }
+//                }
+//            });
+//            return;
+//        }
 
 
         View contentView = LayoutInflater.from(getContext()).inflate(R.layout.view_bookshelf_popup, null);

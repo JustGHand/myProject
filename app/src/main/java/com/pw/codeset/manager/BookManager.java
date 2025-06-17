@@ -1,5 +1,9 @@
 package com.pw.codeset.manager;
 
+import android.app.Activity;
+import android.content.Context;
+import android.net.Uri;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.pw.codeset.databean.BookBean;
@@ -42,7 +46,7 @@ public class BookManager {
     }
 
 
-    public BookBean addBook(String filePath) {
+    public BookBean addBook(String filePath, Uri uri, Activity context) {
         BookBean newBookBean = null;
         if (NStringUtils.isFileReadable(filePath)) {
             File file = FileUtil.getFile(filePath);
@@ -55,7 +59,11 @@ public class BookManager {
 
                 String newFilePath = SaveFileUtils.getBookFolderPath(bookId) + file.getName();
 
-                FileUtil.copyFile(filePath, newFilePath);
+                if (uri != null) {
+                    FileUtil.copyFileWithUri(uri,FileUtil.getFile(newFilePath),context);
+                }else {
+                    FileUtil.copyFile(filePath, newFilePath);
+                }
 
                 File newBookFile = FileUtil.getFile(newFilePath);
 

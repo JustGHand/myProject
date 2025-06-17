@@ -1,6 +1,7 @@
 package com.pw.baseutils.utils;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.Context;
@@ -9,13 +10,16 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.core.content.FileProvider;
+import androidx.documentfile.provider.DocumentFile;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -1341,6 +1345,63 @@ public class FileUtil {
         }
         return type;
     }
+    public static void copyFileWithUri(Uri sourceUri, File destinationFolderUri, Activity activity) {
+        String errorMessage = "";
+        try {
+            ContentResolver resolver = activity.getContentResolver();
 
+            // 获取源文件信息
+            DocumentFile sourceFile = DocumentFile.fromSingleUri(activity, sourceUri);
+            if (sourceFile == null || !sourceFile.exists()) {
+                errorMessage = "源文件不存在";
+                return;
+            }
+
+            String fileName = sourceFile.getName();
+            String mimeType = sourceFile.getType();
+
+            // 获取目标文件夹
+//            DocumentFile destinationFolder = DocumentFile.fromFile( destinationFolderUri);
+//            if (destinationFolder == null || !destinationFolder.exists()) {
+//                errorMessage = "目标文件夹不存在";
+//                return;
+//            }
+//
+//            // 检查文件是否已存在
+//            DocumentFile existingFile = destinationFolder.findFile(fileName);
+//            if (existingFile != null) {
+//                errorMessage = "目标位置已存在同名文件";
+//                return;
+//            }
+//
+//            // 创建目标文件
+//            DocumentFile newFile = destinationFolder.createFile(mimeType, fileName);
+//            if (newFile == null) {
+//                errorMessage = "无法在目标位置创建文件";
+//                return;
+//            }
+
+            // 执行复制操作
+            try (InputStream in = resolver.openInputStream(sourceUri);
+                 OutputStream out = resolver.openOutputStream(Uri.fromFile(destinationFolderUri))) {
+                if (in == null || out == null) {
+                    errorMessage = "无法打开文件流";
+                    return;
+                }
+
+                byte[] buffer = new byte[8192];
+                int length;
+                while ((length = in.read(buffer)) > 0) {
+                    out.write(buffer, 0, length);
+                }
+            }
+
+            return;
+        } catch (Exception e) {
+            errorMessage = e.getMessage();
+            return;
+        }
+
+    }
 
 }
