@@ -9,7 +9,9 @@
     <uses-permission android:name="android.permission.READ_CALENDAR" />
     <uses-permission android:name="android.permission.WRITE_CALENDAR" />
     <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
-
+    <queries>
+        <package android:name="com.tencent.mm" />
+    </queries>
     <application
         android:name=".application.MyApp"
         android:allowBackup="true"

@@ -15,10 +15,10 @@ data class ScheduleFilterBean(
 
 fun createScheduleStateFilterList(context: Context): List<ScheduleFilterBean>{
     val stateList = listOf(
-        Constant.SCHEDULE_STATE_ALL,
         Constant.SCHEDULE_STATE_UNDONE,
         Constant.SCHEDULE_STATE_FINISHED,
         Constant.SCHEDULE_STATE_DELETED,
+        Constant.SCHEDULE_STATE_ALL,
     )
     return stateList.map { ScheduleFilterBean(it, getStateFilterText(it, context), Constant.SCHEDULE_FILTER_TYPE_STATE) }
 }

@@ -44,6 +44,7 @@ import androidx.compose.material.icons.filled.Done
 import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Refresh
+import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -89,11 +90,13 @@ import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.MutableLiveData
 import com.pw.baseutils.utils.NStringUtils
 import com.pw.codeset.R
+import com.pw.codeset.application.MyApp
 import com.pw.codeset.databean.ScheduleBean
 import com.pw.codeset.manager.ScheduleManager
 import com.pw.codeset.utils.Constant
 import com.pw.codeset.utils.DateJudge
 import com.pw.codeset.utils.IntentUtils.toScheduleEdit
+import com.pw.codeset.utils.ShareUtils
 import java.text.SimpleDateFormat
 import java.time.ZoneId
 import java.time.format.TextStyle
@@ -146,7 +149,7 @@ fun body(
     val current = LocalContext.current
     val timeFilterList = createScheduleTimeFilterList(current)
     val stateFilterList = createScheduleStateFilterList(current)
-    viewModel.changeFilter(timeFilterList.first())
+    viewModel.changeFilter(listOf(timeFilterList.first(),stateFilterList.first()))
     val filterMaps= mutableMapOf<Int, List<ScheduleFilterBean>>()
     filterMaps[Constant.SCHEDULE_FILTER_TYPE_TIME] = timeFilterList
     filterMaps[Constant.SCHEDULE_FILTER_TYPE_STATE] = stateFilterList
@@ -533,11 +536,17 @@ fun ScheduleItem(
             Column() {
                 ScheduleItemView(scheduleBean, dateType)
                 AnimatedVisibility(selected) {
-                    ScheduleItemEditView(scheduleBean.status, onIconClick)
+                    ScheduleItemEditView(scheduleBean.status, onIconClick,{
+                        clickToShare(scheduleBean)
+                    })
                 }
             }
         }
     }
+}
+
+fun clickToShare(scheduleBean: ScheduleBean) {
+    ShareUtils.shareTextToWeChat(MyApp.getInstance(),scheduleBean.desc)
 }
 
 @Composable
@@ -577,7 +586,7 @@ fun ScheduleItemView(scheduleBean: ScheduleBean, dateType: Int?=null) {
 }
 
 @Composable
-fun ScheduleItemEditView(state:Int,onIconClick:(Int)->Unit) {
+fun ScheduleItemEditView(state:Int,onIconClick:(Int)->Unit,onShareClick:()-> Unit) {
     Row(Modifier.padding(8.dp)) {
         if (state== Constant.SCHEDULE_STATE_UNDONE) {
             IconButton(onClick = { onIconClick(Constant.SCHEDULE_STATE_FINISHED)}) {
@@ -600,6 +609,13 @@ fun ScheduleItemEditView(state:Int,onIconClick:(Int)->Unit) {
         IconButton(onClick = { onIconClick(Constant.SCHEDULE_STATE_DELETED)}) {
             Icon(
                 imageVector = Icons.Filled.Delete, contentDescription = null, Modifier
+                    .padding(horizontal = 10.dp)
+                    .size(16.dp)
+            )
+        }
+        IconButton(onClick = {onShareClick()}) {
+            Icon(
+                imageVector = Icons.Filled.Share, contentDescription = null, Modifier
                     .padding(horizontal = 10.dp)
                     .size(16.dp)
             )

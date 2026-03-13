@@ -35,6 +35,13 @@ class ScheduleViewModel @Inject constructor(): ViewModel() {
         onFilterChange()
     }
 
+    fun changeFilter(list: List<ScheduleFilterBean>) {
+        list.forEach {
+            filterMap.put(it.type,it)
+        }
+        onFilterChange()
+    }
+
     fun onFilterChange() {
         val totalList = ScheduleManager.getInstance().scheduleList
 

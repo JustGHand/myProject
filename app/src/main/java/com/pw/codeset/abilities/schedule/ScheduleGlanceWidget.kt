@@ -11,6 +11,7 @@ import android.widget.RemoteViews
 import android.widget.RemoteViewsService
 import android.widget.RemoteViewsService.RemoteViewsFactory
 import com.pw.codeset.R
+import com.pw.codeset.abilities.main.MainActivityView
 import com.pw.codeset.databean.ScheduleBean
 import com.pw.codeset.manager.ScheduleManager
 
@@ -45,12 +46,22 @@ class ScheduleAppWidgetProvider : AppWidgetProvider() {
                 // 完成后刷新
                 mgr.notifyAppWidgetViewDataChanged(appWidgetId, R.id.lv_schedules)
             }
+        }else if (ACTION_TO_ACT == intent.getAction()) {
+            // 1. 获取要跳转到的 Activity 类名（请将 MainActivity 替换为您实际的入口 Activity）
+            val launchIntent = Intent(context, MainActivityView::class.java).apply {
+                // 2. 核心：必须设置这个 Flag，否则在某些 Android 版本上会报错或无法跳转
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+            }
+            // 4. 执行跳转
+            context?.startActivity(launchIntent)
+            Log.d("PW_CODE", "XML打开APP")
         }
     }
 
     companion object {
         const val ACTION_REFRESH: String = "com.pw.action.REFRESH"
         const val ACTION_COMPLETE: String = "com.pw.action.COMPLETE"
+        const val ACTION_TO_ACT: String = "com.pw.action.TOACT"
         const val EXTRA_ITEM_ID: String = "extra_item_id"
 
         fun updateAppWidget(
@@ -76,6 +87,14 @@ class ScheduleAppWidgetProvider : AppWidgetProvider() {
                 PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
             )
             views.setOnClickPendingIntent(R.id.btn_refresh, refreshPi)
+
+            val toActIntent = Intent(context,ScheduleAppWidgetProvider::class.java)
+            toActIntent.setAction(ACTION_TO_ACT)
+            val toActPi = PendingIntent.getBroadcast(
+                context, appWidgetId, toActIntent,
+                PendingIntent.FLAG_MUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+            )
+            views.setOnClickPendingIntent(R.id.btn_title,toActPi)
 
             // 设置列表项点击的模板 (PendingIntent Template)
             val clickIntent = Intent(context, ScheduleAppWidgetProvider::class.java)
