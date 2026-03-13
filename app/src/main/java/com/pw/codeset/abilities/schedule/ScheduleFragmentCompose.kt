@@ -15,13 +15,19 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
@@ -39,6 +45,8 @@ import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.Button
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -72,6 +80,8 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.core.graphics.toColorInt
 import androidx.fragment.app.Fragment
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle
@@ -195,7 +205,8 @@ fun body(
                             viewModel.endEditMode(true)
                         },{
                             viewModel.endEditMode(false)
-                        }
+                        },
+
                     )
                 }else{
                     content(isEditMode)
@@ -218,29 +229,37 @@ fun filterContent(
     onCheckChange: (ScheduleBean,Boolean) -> Unit,
     onDeleteClick:()-> Unit,
     onCompleteClick:()-> Unit,
+    dateType: Int?=null
 ) {
     Column() {
         if (!isEditMode.value) {
             filters(filterMaps, onFilterSelected)
         }
-        filterList(isEditMode,showList, editSeletedList,onItemStateChangeClick,onItemLongClick,onCheckChange, onDeleteClick,onCompleteClick)
+        filterList(isEditMode,showList, editSeletedList,onItemStateChangeClick,onItemLongClick,onCheckChange, onDeleteClick,onCompleteClick, dateType )
 
     }
 }
 
 @Composable
 fun editBtns(editSeletedList: State<MutableList<ScheduleBean>>,deleteBtnClick: () -> Unit, completeBtnClick: () -> Unit) {
-    Row() {
+    Row(horizontalArrangement = Arrangement.SpaceBetween, modifier = Modifier
+        .padding(horizontal = 15.dp, vertical = 10.dp)
+        .fillMaxWidth()) {
         Button(
             onClick = { deleteBtnClick() },
-            enabled = !editSeletedList.value.isEmpty()
+            enabled = !editSeletedList.value.isEmpty(),
+            contentPadding = PaddingValues(0.dp),
+            modifier = Modifier.height(24.dp)
         ) {
-            Text("删除")
+            Text(stringResource(R.string.dialog_default_delete), fontSize = 12.sp)
         }
         Button(
-            onClick = {completeBtnClick()}
-        ) { Text("完成")}
-
+            onClick = {completeBtnClick()},
+            contentPadding = PaddingValues(0.dp),
+            modifier = Modifier.height(24.dp)
+        ) {
+            Text(stringResource(R.string.dialog_default_cancel), fontSize = 12.sp)
+        }
     }
 }
 
@@ -270,7 +289,9 @@ fun filterRow(
     LazyRow {
         items(list){
             FilterChip(
-                modifier = Modifier.padding(horizontal = 6.dp),
+                modifier = Modifier
+                    .padding(horizontal = 6.dp, vertical = 6.dp)
+                    .height(24.dp),
                 selected = (selectedFilter==it),
                 onClick = {
                     selectedFilter = it
@@ -295,10 +316,14 @@ fun filterList(
     onCheckChange: (ScheduleBean,Boolean) -> Unit,
     onDeleteClick:()-> Unit,
     onCompleteClick:()-> Unit,
+    dateType: Int?
 ) {
     var selectedItem: ScheduleBean? by remember { mutableStateOf(null) }
     if (isEditMode.value) {
         editBtns(editSeletedList,onDeleteClick,onCompleteClick)
+    }
+    if (isEditMode.value) {
+        selectedItem = null
     }
     LazyColumn() {
         items(showList.value) { item ->
@@ -306,14 +331,19 @@ fun filterList(
                 isEditMode,
                 item,
                 {
-                    selectedItem = item
+                    if (selectedItem == item) {
+                        selectedItem = null
+                    }else {
+                        selectedItem = item
+                    }
                 },
                 {
                     onItemStateChangeClick(item, it)
                 },
                 selected = selectedItem == item,
                 onItemLongClick = onItemLongClick,
-                onCheckChange ={ onCheckChange(item, it)}
+                onCheckChange ={ onCheckChange(item, it)},
+                dateType = dateType
             )
         }
     }
@@ -471,11 +501,23 @@ fun ScheduleItem(
     dateType: Int? = null
 ) {
     var isChecked by remember { mutableStateOf(false) }
+    val interactionSource = remember { MutableInteractionSource() }
     Surface(
-        modifier = Modifier.combinedClickable(
-            onClick = onClick,
-            onLongClick = {onItemLongClick(scheduleBean)}
-        ).padding(6.dp),
+        modifier = Modifier
+            .combinedClickable(
+                interactionSource = interactionSource,
+                indication = null,
+                onClick = {
+                    if (isEditMode.value) {
+                        isChecked = !isChecked
+                        onCheckChange(isChecked)
+                    } else {
+                        onClick()
+                    }
+                },
+                onLongClick = { onItemLongClick(scheduleBean) }
+            )
+            .padding(6.dp),
     ) {
         Row() {
             if (isEditMode.value) {
@@ -500,35 +542,38 @@ fun ScheduleItem(
 
 @Composable
 fun ScheduleItemView(scheduleBean: ScheduleBean, dateType: Int?=null) {
-    Row() {
-        scheduleBean.title?.let {
-            Text(text = scheduleBean.title)
-        }
-        val icon = when (scheduleBean.status) {
-            Constant.SCHEDULE_STATE_UNDONE->Icons.Filled.DateRange
-            Constant.SCHEDULE_STATE_FINISHED->Icons.Filled.Done
-            Constant.SCHEDULE_STATE_DELETED->Icons.Filled.Delete
-            else -> Icons.Filled.Notifications
-        }
-        Icon(imageVector = icon, contentDescription = null, Modifier
-            .padding(horizontal = 10.dp)
-            .size(16.dp))
-        Text(text = scheduleBean.desc, modifier = Modifier
-            .weight(1f)
-            .padding(end = 10.dp))
-        var toLocalDate =
-            scheduleBean.tarDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
-        toLocalDate.dayOfWeek.getDisplayName(TextStyle.FULL,Locale.getDefault())
-
-        val tarText = if (DateJudge.isToday(scheduleBean.tarTime)) {
-            NStringUtils.dateConvert(scheduleBean.tarTime, Constant.DATA_PARTNER_WITH_LINE_TILE_TIME_ONLY)
-        }else if (DateJudge.isThisWeek(scheduleBean.tarTime)) {
+    Card(modifier = Modifier.defaultMinSize(minHeight = 44.dp), colors = CardDefaults.cardColors(containerColor = Color("#05000000".toColorInt()))) {
+        Row(Modifier.padding(6.dp)) {
+            scheduleBean.title?.let {
+                Text(text = scheduleBean.title)
+            }
+            val icon = when (scheduleBean.status) {
+                Constant.SCHEDULE_STATE_UNDONE->Icons.Filled.DateRange
+                Constant.SCHEDULE_STATE_FINISHED->Icons.Filled.Done
+                Constant.SCHEDULE_STATE_DELETED->Icons.Filled.Delete
+                else -> Icons.Filled.Notifications
+            }
+            Icon(imageVector = icon, contentDescription = null, Modifier
+                .padding(horizontal = 10.dp)
+                .size(16.dp))
+            Text(text = scheduleBean.desc, modifier = Modifier
+                .weight(1f)
+                .padding(end = 10.dp))
+            var toLocalDate =
+                scheduleBean.tarDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
             toLocalDate.dayOfWeek.getDisplayName(TextStyle.FULL,Locale.getDefault())
-        }else{
-            NStringUtils.dateConvert(scheduleBean.tarTime, Constant.DATA_PARTNER_WITH_CHAR_WITHOUT_TIME)
+
+            val tarText = if (DateJudge.isToday(scheduleBean.tarTime)) {
+                NStringUtils.dateConvert(scheduleBean.tarTime, Constant.DATA_PARTNER_WITH_LINE_TILE_TIME_ONLY)
+            }else if (DateJudge.isThisWeek(scheduleBean.tarTime)) {
+                toLocalDate.dayOfWeek.getDisplayName(TextStyle.FULL,Locale.getDefault())
+            }else{
+                NStringUtils.dateConvert(scheduleBean.tarTime, Constant.DATA_PARTNER_WITH_CHAR_WITHOUT_TIME)
+            }
+            Text(text = tarText)
         }
-        Text(text = tarText)
     }
+
 }
 
 @Composable

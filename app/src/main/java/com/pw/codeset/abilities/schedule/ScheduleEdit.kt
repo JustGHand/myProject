@@ -84,6 +84,10 @@ class ScheduleEdit : BaseBindingActivity<ActSheduleEditBinding>() {
             scheduleBean = ScheduleManager.getInstance().getSchedule(tarId)
         }else{
             scheduleBean = ScheduleBean()
+            (System.currentTimeMillis()).let {
+                scheduleBean?.tarTime =it
+                binding.scheduleEditDateEdit.text = NStringUtils.dateConvert(it, Constant.DATA_PARTNER_WITH_CHAR_WITHOUT_TIME)
+            }
         }
     }
 
@@ -163,7 +167,7 @@ class ScheduleEdit : BaseBindingActivity<ActSheduleEditBinding>() {
                 .toInstant()
                 .toEpochMilli()
             scheduleBean?.tarTime?.let {
-                binding.scheduleEditDateEdit.text = NStringUtils.dateConvert(it, Constant.DATA_PARTNER_WITH_CHAR)
+                binding.scheduleEditDateEdit.text = NStringUtils.dateConvert(it, Constant.DATA_PARTNER_WITH_CHAR_WITHOUT_TIME)
             }
 //            val timePicker = MaterialTimePicker.Builder()
 //                .setTimeFormat(TimeFormat.CLOCK_24H)
