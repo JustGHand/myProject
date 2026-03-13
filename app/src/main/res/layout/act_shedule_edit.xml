@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <com.pw.codeset.weidgt.ActivityHeaderView
+        android:id="@+id/activity_header"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:title_text="@string/schedule_title"
+        app:showmenu="true"
+        app:showback="true"
+        app:menutext="@string/iconfont_correct"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="spread_inside"/>
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activity_header"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/view_defaultmargin"
+            >
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/schedule_title_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:constraint_referenced_ids="schedule_title_title,schedule_edit_title_edit"
+                android:visibility="gone"
+                />
+
+            <TextView
+                android:id="@+id/schedule_title_title"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/clickable_minsize"
+                android:gravity="center|left"
+                android:text="@string/notes_edit_title"
+                android:textColor="@color/normal_title_color"
+                android:textSize="@dimen/title_textsize"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:padding="@dimen/view_defaultpadding_double"
+                android:layout_marginTop="@dimen/view_defaultmargin"
+                />
+
+            <EditText
+                android:id="@+id/schedule_edit_title_edit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/schedule_edit_hint"
+                android:gravity="end"
+                app:layout_constraintStart_toEndOf="@id/schedule_title_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/schedule_title_title"
+                app:layout_constraintBottom_toBottomOf="@id/schedule_title_title"
+                android:background="@drawable/back_alpha_radiusall"
+                android:padding="@dimen/view_defaultpadding"
+                android:layout_marginStart="@dimen/view_defaultmargin"
+                android:layout_marginEnd="@dimen/view_defaultmargin"
+                />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/schedule_date_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:constraint_referenced_ids="schedule_date_title,schedule_edit_date_edit"
+                />
+
+            <TextView
+                android:id="@+id/schedule_date_title"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/clickable_minsize"
+                android:gravity="center|start"
+                android:text="@string/schedule_edit_date"
+                android:textColor="@color/normal_title_color"
+                android:textSize="@dimen/title_textsize"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/schedule_title_title"
+                android:padding="@dimen/view_defaultpadding_double"
+                android:layout_marginTop="@dimen/view_defaultmargin"
+                />
+
+            <TextView
+                android:id="@+id/schedule_edit_date_edit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="日期"
+                app:layout_constraintStart_toEndOf="@id/schedule_date_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/schedule_date_title"
+                app:layout_constraintBottom_toBottomOf="@id/schedule_date_title"
+                android:background="@drawable/back_alpha_radiusall"
+                android:padding="@dimen/view_defaultpadding"
+                android:layout_marginStart="@dimen/view_defaultmargin"
+                android:layout_marginEnd="@dimen/view_defaultmargin"
+                />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/schedule_repeat_switch_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:constraint_referenced_ids="schedule_repeat_switch_title,schedule_edit_date_repeat_switch"
+                />
+
+            <TextView
+                android:id="@+id/schedule_repeat_switch_title"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/clickable_minsize"
+                android:gravity="center|start"
+                android:text="@string/schedule_edit_repeat_switch"
+                android:textColor="@color/normal_title_color"
+                android:textSize="@dimen/title_textsize"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/schedule_edit_date_edit"
+                android:padding="@dimen/view_defaultpadding_double"
+                android:layout_marginTop="@dimen/view_defaultmargin"
+                />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/schedule_edit_date_repeat_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/schedule_repeat_switch_title"
+                app:layout_constraintBottom_toBottomOf="@id/schedule_repeat_switch_title"
+                app:layout_constraintStart_toEndOf="@id/schedule_repeat_switch_title"
+                app:layout_constraintEnd_toStartOf="@id/schedule_repeat_count"
+                app:layout_constraintHorizontal_bias="1"
+                />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/schedule_repeat_set_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:constraint_referenced_ids="schedule_repeat_count,schedule_repeat_unit"
+                android:visibility="gone"/>
+
+
+            <Spinner
+                android:id="@+id/schedule_repeat_count"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:inputType=""
+
+                app:layout_constraintStart_toEndOf="@id/schedule_edit_date_repeat_switch"
+                app:layout_constraintEnd_toStartOf="@id/schedule_repeat_unit"
+                app:layout_constraintTop_toTopOf="@id/schedule_repeat_switch_title"
+                app:layout_constraintBottom_toBottomOf="@id/schedule_repeat_switch_title"
+                />
+            <Spinner
+                android:id="@+id/schedule_repeat_unit"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:inputType=""
+                app:layout_constraintStart_toEndOf="@id/schedule_repeat_count"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/schedule_repeat_switch_title"
+                app:layout_constraintBottom_toBottomOf="@id/schedule_repeat_switch_title"
+                />
+
+
+            <TextView
+                android:id="@+id/schedule_desc_title"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/clickable_minsize"
+                android:gravity="center|left"
+                android:text="@string/notes_edit_content"
+                android:textColor="@color/normal_title_color"
+                android:textSize="@dimen/title_textsize"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/schedule_repeat_switch_title"
+                android:padding="@dimen/view_defaultpadding_double"
+                android:layout_marginTop="@dimen/view_defaultmargin"
+                />
+
+            <EditText
+                android:id="@+id/schedule_edit_desc_edit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/clickable_minsize"
+                android:gravity="end|center"
+                android:text=""
+                app:layout_constraintStart_toEndOf="@id/schedule_desc_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/schedule_desc_title"
+                android:background="@drawable/back_alpha_radiusall"
+                android:padding="@dimen/view_defaultpadding"
+                android:layout_marginStart="@dimen/view_defaultmargin"
+                android:layout_marginEnd="@dimen/view_defaultmargin"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

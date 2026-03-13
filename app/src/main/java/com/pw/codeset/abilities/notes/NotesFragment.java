@@ -15,6 +15,7 @@ import com.pw.codeset.manager.NotesManager;
 import com.pw.codeset.utils.CalendarUtilKt;
 import com.pw.codeset.utils.CommenUseViewUtils;
 import com.pw.codeset.utils.Constant;
+import com.pw.codeset.utils.IntentUtils;
 import com.pw.codeset.weidgt.SelectDialog;
 import com.pw.codeset.weidgt.WarpLinearLayout;
 import com.pw.baseutils.others.recycle.BaseRecyclerAdapter;
@@ -24,6 +25,7 @@ import com.pw.baseutils.utils.NStringUtils;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Objects;
 
 public class NotesFragment extends BaseFragment {
     @Override

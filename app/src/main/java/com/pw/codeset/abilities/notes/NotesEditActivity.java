@@ -20,6 +20,11 @@ import androidx.annotation.RequiresApi;
 import androidx.constraintlayout.widget.Group;
 import androidx.core.app.ActivityCompat;
 
+import com.google.android.material.datepicker.CalendarConstraints;
+import com.google.android.material.datepicker.MaterialDatePicker;
+import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
+import com.google.android.material.timepicker.MaterialTimePicker;
+import com.google.android.material.timepicker.TimeFormat;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
@@ -46,9 +51,12 @@ import com.pw.baseutils.utils.NStringUtils;
 import com.pw.baseutils.utils.PermissionUtils;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class NotesEditActivity extends BaseActivity {
 
@@ -246,29 +254,91 @@ public class NotesEditActivity extends BaseActivity {
 
     private void showCalendarDialog() {
         Calendar calendar = Calendar.getInstance();
-        new DatePickerDialog(this, AlertDialog.THEME_HOLO_LIGHT, new DatePickerDialog.OnDateSetListener() {
+
+        MaterialDatePicker.Builder<Long> builder = MaterialDatePicker.Builder.datePicker();
+        builder.setTitleText("选择日期");
+        builder.setSelection(MaterialDatePicker.todayInUtcMilliseconds());
+        CalendarConstraints.Builder constraintsBuilder = new CalendarConstraints.Builder();
+        long today = MaterialDatePicker.todayInUtcMilliseconds();
+        constraintsBuilder.setStart(today);
+        builder.setCalendarConstraints(constraintsBuilder.build());
+
+        MaterialDatePicker<Long> datePicker = builder.build();
+
+        datePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener<Long>() {
             @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                new TimePickerDialog(NotesEditActivity.this, AlertDialog.THEME_HOLO_LIGHT, new TimePickerDialog.OnTimeSetListener() {
+            public void onPositiveButtonClick(Long selection) {
+                // 处理选择的日期
+                calendar.setTime(new Date(selection));
+                int year = calendar.get(Calendar.YEAR);
+                int month = calendar.get(Calendar.MONTH);
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+                // 创建并显示时间选择器
+                MaterialTimePicker timePicker = new MaterialTimePicker.Builder()
+                        .setTimeFormat(TimeFormat.CLOCK_24H) // 24小时制，或使用 TimeFormat.CLOCK_12H
+                        .setHour(9)  // 初始小时 (0-23)
+                        .setMinute(0) // 初始分钟 (0-59)
+                        .setTitleText("选择时间")
+                        .build();
+
+                timePicker.addOnPositiveButtonClickListener(new View.OnClickListener() {
                     @RequiresApi(api = Build.VERSION_CODES.N)
                     @Override
-                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        String title = mTitleEdit.getText().toString();
-                        String content = mContentEdit.getText().toString();
-                        LogToastUtils.printLog(year+'-'+(month+1)+"-"+dayOfMonth+" "+hourOfDay+":"+minute);
-                        Calendar calendar1 = Calendar.getInstance();
-                        calendar1.set(year, month, dayOfMonth, hourOfDay, minute);
-                        long time = calendar1.getTimeInMillis();
-                        if (mCalendarId >= 0) {
-                            CalendarReminderUtils.deleteCalendarEvent(NotesEditActivity.this,mCalendarId);
-                        }
-                        mCalendarId = CalendarReminderUtils.addCalendarEvent(NotesEditActivity.this,title,content,time,0);
-                        varifyCalendarView();
-                        saveNote();
+                    public void onClick(View v) {
+                        int hour = timePicker.getHour();
+                        int minute = timePicker.getMinute();
+
+                        saveCalendar(year,month,day,hour,minute);
+
                     }
-                },calendar.get(Calendar.HOUR),calendar.get(Calendar.MINUTE),true).show();
+                });
+
+                timePicker.show(getSupportFragmentManager(), "TIME_PICKER_TAG");
             }
-        },calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH)).show();
+        });
+
+        datePicker.show(getSupportFragmentManager(), "DATE_PICKER_TAG");
+
+//        new DatePickerDialog(this, AlertDialog.THEME_HOLO_LIGHT, new DatePickerDialog.OnDateSetListener() {
+//            @Override
+//            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+//                new TimePickerDialog(NotesEditActivity.this, AlertDialog.THEME_HOLO_LIGHT, new TimePickerDialog.OnTimeSetListener() {
+//                    @RequiresApi(api = Build.VERSION_CODES.N)
+//                    @Override
+//                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+//                        String title = mTitleEdit.getText().toString();
+//                        String content = mContentEdit.getText().toString();
+//                        LogToastUtils.printLog(year+'-'+(month+1)+"-"+dayOfMonth+" "+hourOfDay+":"+minute);
+//                        Calendar calendar1 = Calendar.getInstance();
+//                        calendar1.set(year, month, dayOfMonth, hourOfDay, minute);
+//                        long time = calendar1.getTimeInMillis();
+//                        if (mCalendarId >= 0) {
+//                            CalendarReminderUtils.deleteCalendarEvent(NotesEditActivity.this,mCalendarId);
+//                        }
+//                        mCalendarId = CalendarReminderUtils.addCalendarEvent(NotesEditActivity.this,title,content,time,0);
+//                        varifyCalendarView();
+//                        saveNote();
+//                    }
+//                },calendar.get(Calendar.HOUR),calendar.get(Calendar.MINUTE),true).show();
+//            }
+//        },calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH)).show();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void saveCalendar(int year, int month, int dayOfMonth, int hourOfDay, int minute) {
+        String title = mTitleEdit.getText().toString();
+        String content = mContentEdit.getText().toString();
+        LogToastUtils.printLog(year+'-'+(month+1)+"-"+dayOfMonth+" "+hourOfDay+":"+minute);
+        Calendar calendar1 = Calendar.getInstance();
+        calendar1.set(year, month, dayOfMonth, hourOfDay, minute);
+        long time = calendar1.getTimeInMillis();
+        if (mCalendarId >= 0) {
+            CalendarReminderUtils.deleteCalendarEvent(NotesEditActivity.this,mCalendarId);
+        }
+        mCalendarId = CalendarReminderUtils.addCalendarEvent(NotesEditActivity.this,title,content,time,0);
+        varifyCalendarView();
+        saveNote();
     }
 
     private void generateLabelViews() {

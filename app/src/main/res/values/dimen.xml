@@ -28,4 +28,6 @@
 
     <dimen name="defalut_dialog_margin">50dp</dimen>
     <dimen name="dialog_back_radius">12dp</dimen>
+
+    <dimen name="icon_img_size">18dp</dimen>
 </resources>

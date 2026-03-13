@@ -8,14 +8,14 @@
         android:shortcutShortLabel="@string/notes_activity">
         <intent
             android:action="android.intent.action.VIEW"
-            android:targetClass="com.pw.codeset.activity.notes.NotesActivity"
+            android:targetClass="com.pw.codeset.abilities.notes.NotesActivity"
             android:targetPackage="com.pw.codeset" />
         <categories android:name="android.shortcut.conversation" />
         <capability-binding android:key="actions.intent.CREATE_MESSAGE" />
     </shortcut>
 
     <shortcut
-        android:enabled="true"
+        android:enabled="false"
         android:icon="@mipmap/icon_shortcuts_game"
         android:shortcutId="test_1"
         android:shortcutShortLabel="@string/games_activity">

@@ -91,6 +91,26 @@
     <string name="tools_file_transfer">文件中转</string>
     <string name="tools_develop_test">测试</string>
 
+    <!--    日程-->
+    <string name="schedule_title">日程</string>
+    <string name="schedule_edit_hint">日程</string>
+    <string name="schedule_edit_date">日期</string>
+    <string name="schedule_edit_repeat_switch">是否循环</string>
+
+
+    <string name="schedule_filter_all">全部</string>
+
+    <string name="schedule_list_title_earlier">更早</string>
+    <string name="schedule_list_title_today">今天</string>
+    <string name="schedule_list_title_week">本周</string>
+    <string name="schedule_list_title_month">本月</string>
+    <string name="schedule_list_title_year">今年</string>
+
+    <string name="schedule_filter_undone">待办</string>
+    <string name="schedule_filter_finished">已完成</string>
+    <string name="schedule_filter_deleted">已删除</string>
+
+
     <!--    iconfont-->
     <string name="iconfont_add">&#xe609;</string>
     <string name="iconfont_refresh">&#xe622;</string>

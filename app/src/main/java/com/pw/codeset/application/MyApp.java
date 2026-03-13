@@ -10,7 +10,9 @@ import androidx.annotation.Nullable;
 
 import com.pw.annotation.Lance;
 
+import dagger.hilt.android.HiltAndroidApp;
 
+@HiltAndroidApp
 public class MyApp extends Application {
 
     @Lance(value = "test",id = "asd")

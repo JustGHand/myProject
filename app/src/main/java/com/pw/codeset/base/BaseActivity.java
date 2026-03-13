@@ -39,6 +39,10 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        create();
+    }
+
+    protected void create() {
         setContentView(getContentId());
         InjectUtils.injectView(this);
         initHeader();
@@ -46,7 +50,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         isCreating = true;
     }
 
-    private void initHeader() {
+    protected void initHeader() {
         mHeader = findViewById(R.id.activity_header);
         if (mHeader != null) {
             mHeader.setOnBackClick(new View.OnClickListener() {
@@ -65,7 +69,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
-    private boolean isCreating = false;
+    protected boolean isCreating = false;
 
     @Override
     protected void onResume() {

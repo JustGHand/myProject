@@ -1,6 +1,7 @@
 package com.pw.codeset.abilities.main;
 
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
@@ -11,6 +12,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.pw.codeset.R;
 import com.pw.codeset.base.BaseActivity;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class MainActivityView extends BaseActivity {
 
     public static MainActivityView mInstance;
@@ -31,8 +35,10 @@ public class MainActivityView extends BaseActivity {
 
     @Override
     protected void initView() {
+        mBottomView = findViewById(R.id.main_bottom_menu);
 
         mViewPagerAdapter = new MainPageAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_SET_USER_VISIBLE_HINT);
+        mViewPagerAdapter.setMenu(mBottomView.getMenu());
         mViewPager = findViewById(R.id.main_viewpager);
         mViewPager.setAdapter(mViewPagerAdapter);
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -51,13 +57,25 @@ public class MainActivityView extends BaseActivity {
             }
         });
 
-        mBottomView = findViewById(R.id.main_bottom_menu);
         mBottomView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                if (item.getItemId() == R.id.main_menu_notes) {
-                    mViewPager.setCurrentItem(0);
+                Menu menu = mBottomView.getMenu();
+                int index = -1;
+
+                // 遍历查找当前 item 的索引
+                for (int i = 0; i < menu.size(); i++) {
+                    if (menu.getItem(i).getItemId() == item.getItemId()) {
+                        index = i;
+                        break;
+                    }
                 }
+                mViewPager.setCurrentItem(index);
+//                if (item.getItemId() == R.id.main_menu_notes) {
+//                    mViewPager.setCurrentItem(0);
+//                } else if (item.getItemId() == R.id.main_menu_schedule) {
+//                    mViewPager.setCurrentItem(1);
+//                }
 //                else if (item.getItemId() == R.id.main_menu_read) {
 //                    mViewPager.setCurrentItem(1);
 //                }else if (item.getItemId() == R.id.main_menu_games) {

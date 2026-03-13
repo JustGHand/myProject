@@ -22,6 +22,7 @@ public class SaveFileUtils {
     public static final String SAVE_FILE_BOOKMARK_FILE = "bookMark";
     public static final String SAVE_FILE_FILE_TRANSFER_FOLDER = "transfer";
 
+    public static final String SAVE_FILE_SCHEDULE_FILE = "schedule";
 
     /**
      * 备忘录
@@ -248,6 +249,35 @@ public class SaveFileUtils {
         return getBaseFileFolder() + SAVE_FILE_READCONFIG_FILE + SAVE_FILE_JSON_SUFFIX;
     }
 
+
+    /**
+     * 日程
+     * @return
+     */
+    public static String getScheduleListStr() {
+        File scheduleFile = getScheduleFile();
+        if (scheduleFile != null && scheduleFile.exists()) {
+            return FileUtil.getFileContent(scheduleFile);
+        }
+        return null;
+    }
+
+    public static void saveScheduleList(String scheduleListStr) {
+        if (NStringUtils.isBlank(scheduleListStr)) {
+            scheduleListStr = "";
+        }
+        File scheduleFile = getScheduleFile();
+        FileUtil.saveFile(scheduleListStr, scheduleFile);
+    }
+
+    public static File getScheduleFile() {
+        File scheduleFile = FileUtil.getFile(getScheduleFilePath());
+        return scheduleFile;
+    }
+
+    private static String getScheduleFilePath() {
+        return getBaseFileFolder() + SAVE_FILE_SCHEDULE_FILE + SAVE_FILE_JSON_SUFFIX;
+    }
 
 
     public static String getBaseFileFolder() {

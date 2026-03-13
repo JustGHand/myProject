@@ -35,9 +35,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
+import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -480,19 +482,20 @@ public class FileUtil {
 
 
     //存储文件
-    public static void saveFile(String newRecord,File file) {
-        //获取流并存储
-        Writer writer = null;
-        try {
-            writer = new BufferedWriter(new FileWriter(file));
-            writer.write(newRecord);
-            writer.flush();
+    public static void saveFile(String newRecord, File file) {
+        try (FileOutputStream fos = new FileOutputStream(file)) {
+            try (BufferedWriter writer = new BufferedWriter(
+                    new OutputStreamWriter(fos, StandardCharsets.UTF_8))) {
+                writer.write(newRecord);
+                writer.flush();
+                // 关键优化：强制将文件描述符的内容同步到物理存储介质
+                // 这能解决 99% 的“刚存完就读读不到”的问题
+                fos.getFD().sync();
+            }
         } catch (IOException e) {
             e.printStackTrace();
-            IOUtils.close(writer);
         }
     }
-
     //读取文件
     public static String readFile(File file) {
         FileInputStream in = null;

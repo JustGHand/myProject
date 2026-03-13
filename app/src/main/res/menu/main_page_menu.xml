@@ -2,6 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/main_menu_schedule"
+        android:icon="@drawable/selector_icon_notes"
+        android:title="@string/schedule_title"
+        />
+
+    <item
         android:id="@+id/main_menu_notes"
         android:icon="@drawable/selector_icon_notes"
         android:title="@string/notes_activity"

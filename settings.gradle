@@ -1,3 +1,23 @@
+
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+
+        flatDir {
+            dirs 'libs','app/libs'
+        }
+    }
+}
 include ':baseUtils'
 include ':app'
 rootProject.name = "My Application"
