@@ -8,7 +8,6 @@ import java.util.Date;
 public class ScheduleBean {
     String id;
     long time;//创建时间戳
-    Date tarDate;//指定日期
     long tarTime;//指定时间戳
     String title;//标题
     String desc;//备注
@@ -16,6 +15,7 @@ public class ScheduleBean {
     int repeatValue;//重复值
     String repeatUnit;//重复单位 1:天   2: 星期  3：月  4：年
     int status;//状态 0：待完成 1：已完成 2:已删除
+    long putOffTime;
 
     public String getId() {
         return id;
@@ -34,12 +34,9 @@ public class ScheduleBean {
     }
 
     public Date getTarDate() {
-        return tarDate;
+        return new Date(tarTime);
     }
 
-    public void setTarDate(Date tarDate) {
-        this.tarDate = tarDate;
-    }
 
     public String getTitle() {
         return title;
@@ -95,7 +92,6 @@ public class ScheduleBean {
 
     public void setTarTime(long tarTime) {
         this.tarTime = tarTime;
-        this.tarDate = new Date(tarTime);
     }
 
     public ScheduleBean copy(){

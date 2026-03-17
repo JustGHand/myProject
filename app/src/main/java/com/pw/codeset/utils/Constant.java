@@ -37,6 +37,7 @@ public class Constant {
     public static final Integer SCHEDULE_STATE_UNDONE = 0;
     public static final Integer SCHEDULE_STATE_FINISHED = 1;
     public static final Integer SCHEDULE_STATE_DELETED= 2;
+    public static final Integer SCHEDULE_ACTION_PUT_OFF= 3;
 
     public static final Integer SCHEDULE_FILTER_TYPE_TIME = 1;
     public static final Integer SCHEDULE_FILTER_TYPE_STATE = 2;

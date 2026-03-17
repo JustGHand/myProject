@@ -79,13 +79,7 @@ public class ScheduleManager {
     }
 
     private void deleteSingleSchedule(ScheduleBean scheduleBean,Boolean realDelete) {
-        ScheduleBean tarScheduleBean = scheduleBean;
-        for (int i = 0; i < mScheduleList.size(); i++) {
-            ScheduleBean item = mScheduleList.get(i);
-            if (item.getId().equals(scheduleBean.getId())) {
-                tarScheduleBean = item;
-            }
-        }
+        ScheduleBean tarScheduleBean = findRealScheduleBean(scheduleBean);
         if (realDelete) {
             if (mScheduleList == null) {
                 mScheduleList = new ArrayList<>();
@@ -106,6 +100,13 @@ public class ScheduleManager {
 
     public void restoreSchedule(ScheduleBean scheduleBean) {
         scheduleBean.setStatus(Constant.SCHEDULE_STATE_DELETED);
+        updateList();
+        saveScheduleListToFile();
+    }
+
+    public void putOffSchedule(ScheduleBean scheduleBean) {
+        ScheduleBean realScheduleBean = findRealScheduleBean(scheduleBean);
+        realScheduleBean.setTarTime(realScheduleBean.getTarTime()+24*3600*1000);
         updateList();
         saveScheduleListToFile();
     }
@@ -300,6 +301,16 @@ public class ScheduleManager {
                     R.id.lv_schedules
             );
         }
+    }
+
+    private ScheduleBean findRealScheduleBean(ScheduleBean scheduleBean) {
+        for (int i = 0; i < mScheduleList.size(); i++) {
+            ScheduleBean item = mScheduleList.get(i);
+            if (item.getId().equals(scheduleBean.getId())) {
+                return item;
+            }
+        }
+        return scheduleBean;
     }
 
 }

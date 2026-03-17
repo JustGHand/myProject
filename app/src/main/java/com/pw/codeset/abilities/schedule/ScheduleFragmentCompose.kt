@@ -43,8 +43,10 @@ import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Done
 import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.Notifications
+import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Share
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -58,6 +60,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -97,6 +100,8 @@ import com.pw.codeset.utils.Constant
 import com.pw.codeset.utils.DateJudge
 import com.pw.codeset.utils.IntentUtils.toScheduleEdit
 import com.pw.codeset.utils.ShareUtils
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import java.text.SimpleDateFormat
 import java.time.ZoneId
 import java.time.format.TextStyle
@@ -158,6 +163,12 @@ fun body(
     val editSelectedList = viewModel.mEditSelectedList.collectAsState()
     val isEditMode = viewModel.isEditMode.collectAsState()
 
+    var showPutOffConfirmDialog by remember { mutableStateOf(false) }
+    var putOffTarSchedule : ScheduleBean? = null
+
+
+
+
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
@@ -198,6 +209,11 @@ fun body(
                                 Constant.SCHEDULE_STATE_FINISHED->viewModel.completeSchedule(item)
                                 Constant.SCHEDULE_STATE_DELETED->viewModel.deleteSchedule(item)
                                 Constant.SCHEDULE_STATE_UNDONE->viewModel.restoreSchedule(item)
+                                Constant.SCHEDULE_ACTION_PUT_OFF-> {
+                                    putOffTarSchedule = item
+                                    showPutOffConfirmDialog = true
+                                }
+
                             }
                         },
                         { viewModel.startEditMode()},
@@ -213,6 +229,43 @@ fun body(
                     )
                 }else{
                     content(isEditMode)
+                }
+                if (showPutOffConfirmDialog) {
+                    AlertDialog(
+                        onDismissRequest = {
+                            showPutOffConfirmDialog=false
+                            putOffTarSchedule = null
+                        },
+                        title = {
+                            Text(text = "确认推迟?")
+                        },
+                        text = {
+                            Text(text = "推迟后不可恢复，确认推迟？")
+                        },
+                        confirmButton = {
+                            TextButton(
+                                onClick = {
+                                    putOffTarSchedule?.let {
+                                        viewModel.putOffSchedule(it)
+                                    }
+                                    showPutOffConfirmDialog=false
+                                    putOffTarSchedule = null
+                                }
+                            ) {
+                                Text(text = "确认")
+                            }
+                        },
+                        dismissButton = {
+                            TextButton(
+                                onClick = {
+                                    showPutOffConfirmDialog=false
+                                    putOffTarSchedule = null
+                                }
+                            ) {
+                                Text(text = "取消")
+                            }
+                        }
+                    )
                 }
             }
         }
@@ -346,7 +399,7 @@ fun filterList(
                 selected = selectedItem == item,
                 onItemLongClick = onItemLongClick,
                 onCheckChange ={ onCheckChange(item, it)},
-                dateType = dateType
+                dateType = dateType,
             )
         }
     }
@@ -545,6 +598,8 @@ fun ScheduleItem(
     }
 }
 
+
+
 fun clickToShare(scheduleBean: ScheduleBean) {
     ShareUtils.shareTextToWeChat(MyApp.getInstance(),scheduleBean.desc)
 }
@@ -616,6 +671,13 @@ fun ScheduleItemEditView(state:Int,onIconClick:(Int)->Unit,onShareClick:()-> Uni
         IconButton(onClick = {onShareClick()}) {
             Icon(
                 imageVector = Icons.Filled.Share, contentDescription = null, Modifier
+                    .padding(horizontal = 10.dp)
+                    .size(16.dp)
+            )
+        }
+        IconButton(onClick = {onIconClick(Constant.SCHEDULE_ACTION_PUT_OFF)}) {
+            Icon(
+                imageVector = Icons.Filled.PlayArrow, contentDescription = null, Modifier
                     .padding(horizontal = 10.dp)
                     .size(16.dp)
             )

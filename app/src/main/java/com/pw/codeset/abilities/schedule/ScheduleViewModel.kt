@@ -4,10 +4,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.pw.codeset.R
+import com.pw.codeset.application.MyApp
 import com.pw.codeset.databean.ScheduleBean
 import com.pw.codeset.manager.ScheduleManager
 import com.pw.codeset.utils.Constant
 import com.pw.codeset.utils.DateJudge
+import com.pw.codeset.utils.LogToastUtils
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -85,6 +88,11 @@ class ScheduleViewModel @Inject constructor(): ViewModel() {
     }
     fun restoreSchedule(scheduleBean: ScheduleBean) {
         ScheduleManager.getInstance().restoreSchedule(scheduleBean)
+        refreshData()
+    }
+    fun putOffSchedule(scheduleBean: ScheduleBean) {
+        ScheduleManager.getInstance().putOffSchedule(scheduleBean)
+        LogToastUtils.show(MyApp.getInstance().getString(R.string.schedule_put_off_success))
         refreshData()
     }
 

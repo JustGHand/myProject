@@ -111,6 +111,8 @@
     <string name="schedule_filter_finished">已完成</string>
     <string name="schedule_filter_deleted">已删除</string>
 
+    <string name="schedule_put_off_success">已推迟一天</string>
+
 
     <!--    iconfont-->
     <string name="iconfont_add">&#xe609;</string>
