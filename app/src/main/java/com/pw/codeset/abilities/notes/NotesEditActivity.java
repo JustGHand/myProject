@@ -352,6 +352,11 @@ public class NotesEditActivity extends BaseActivity {
                         public void onCheckedChange(String label, boolean isChecked) {
                             setLabelStatus(label, isChecked);
                         }
+
+                        @Override
+                        public Boolean onLongClick(String label, View view) {
+                            return false;
+                        }
                     });
                     mLabelContainer.addView(labelView);
                 }

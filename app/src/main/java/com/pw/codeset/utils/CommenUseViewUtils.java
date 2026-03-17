@@ -2,6 +2,7 @@ package com.pw.codeset.utils;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -13,6 +14,8 @@ public class CommenUseViewUtils {
 
     public interface onLabelCheckListener{
         void onCheckedChange(String label, boolean isChecked);
+
+        Boolean onLongClick(String label,View view);
     }
 
     public static CheckBox getNoteLabelView(Context context, String label,boolean defaultStatus , onLabelCheckListener checkedChangeListener) {
@@ -21,7 +24,7 @@ public class CommenUseViewUtils {
 
     public static CheckBox getNoteLabelView(Context context, String label, boolean defaultStatus, boolean showBack, onLabelCheckListener checkedChangeListener) {
 
-        int defaultMargin = (int) ResourceUtils.getDefaultMargin();
+        int smallBtnHeight = (int) ResourceUtils.getSmallBtnHeight();
 
         CheckBox tagBtn = (CheckBox) LayoutInflater.from(context).inflate(R.layout.view_border_text, null, false);
         tagBtn.setText("#" + label);
@@ -29,7 +32,7 @@ public class CommenUseViewUtils {
         if (!showBack) {
             tagBtn.setBackground(null);
         }
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, defaultMargin);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, smallBtnHeight);
         tagBtn.setLayoutParams(layoutParams);
         tagBtn.setChecked(defaultStatus);
         tagBtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -38,6 +41,12 @@ public class CommenUseViewUtils {
                 if (checkedChangeListener != null) {
                     checkedChangeListener.onCheckedChange(label,isChecked);
                 }
+            }
+        });
+        tagBtn.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                return checkedChangeListener.onLongClick(label,tagBtn);
             }
         });
         return tagBtn;

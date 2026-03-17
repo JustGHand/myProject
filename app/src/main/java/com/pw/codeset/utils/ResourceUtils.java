@@ -15,6 +15,9 @@ public class ResourceUtils {
     public static float getDefaultMargin() {
         return getResDimen(R.dimen.view_defaultmargin);
     }
+    public static float getSmallBtnHeight() {
+        return getResDimen(R.dimen.small_btn_height);
+    }
 
     public static int getRandomColorIndex(Integer exclude,int maxRandomTime) {
         if (exclude == null) {

@@ -3,7 +3,9 @@ package com.pw.codeset.databean;
 import com.google.gson.Gson;
 import com.pw.codeset.utils.Constant;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class ScheduleBean {
     String id;
@@ -16,6 +18,8 @@ public class ScheduleBean {
     String repeatUnit;//重复单位 1:天   2: 星期  3：月  4：年
     int status;//状态 0：待完成 1：已完成 2:已删除
     long putOffTime;
+
+    List<String> labels;
 
     public String getId() {
         return id;
@@ -47,7 +51,13 @@ public class ScheduleBean {
     }
 
     public String getDesc() {
-        return desc;
+        StringBuilder result = new StringBuilder(desc);
+        for (String label : getLabels()) {
+            result.insert(0, " ");
+            result.insert(0, label);
+            result.insert(0, "#");
+        }
+        return result.toString();
     }
 
     public void setDesc(String desc) {
@@ -92,6 +102,21 @@ public class ScheduleBean {
 
     public void setTarTime(long tarTime) {
         this.tarTime = tarTime;
+    }
+
+    public List<String> getLabels() {
+        if (labels == null) {
+            labels = new ArrayList<>();
+        }
+        return labels;
+    }
+
+    public void addLabel(String label) {
+        getLabels().add(label);
+    }
+
+    public void removeLabel(String label) {
+        getLabels().remove(label);
     }
 
     public ScheduleBean copy(){

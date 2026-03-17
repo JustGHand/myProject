@@ -152,7 +152,17 @@ public class NotesFragment extends BaseFragment {
     }
 
     private void addTagBtn(String label) {
-        CheckBox labelView = CommenUseViewUtils.getNoteLabelView(getContext(), label,false, (label1, isChecked) -> filterByLabel(label1,isChecked));
+        CheckBox labelView = CommenUseViewUtils.getNoteLabelView(getContext(), label, false, new CommenUseViewUtils.onLabelCheckListener() {
+            @Override
+            public void onCheckedChange(String label, boolean isChecked) {
+                filterByLabel(label, isChecked);
+            }
+
+            @Override
+            public Boolean onLongClick(String label, View view) {
+                return false;
+            }
+        });
         mLabelViewContainer.addView(labelView);
     }
 

@@ -1,34 +1,24 @@
 package com.pw.codeset.abilities.schedule
 
-import android.app.PendingIntent
-import android.appwidget.AppWidgetManager
-import android.content.ComponentName
-import android.os.Build
-import android.view.KeyEvent
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.TextView
-import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
 import androidx.core.widget.doOnTextChanged
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.MaterialDatePicker
-import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener
-import com.google.android.material.timepicker.MaterialTimePicker
-import com.google.android.material.timepicker.TimeFormat
 import com.pw.baseutils.utils.NStringUtils
 import com.pw.codeset.base.BaseBindingActivity
 import com.pw.codeset.databean.ScheduleBean
 import com.pw.codeset.databinding.ActSheduleEditBinding
+import com.pw.codeset.manager.NotesManager
 import com.pw.codeset.manager.ScheduleManager
+import com.pw.codeset.utils.CommenUseViewUtils
 import com.pw.codeset.utils.Constant
-import com.pw.codeset.utils.LogToastUtils
+import com.pw.codeset.weidgt.InputDialog
 import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneId
-import java.util.Calendar
-import java.util.Date
 
 class ScheduleEdit : BaseBindingActivity<ActSheduleEditBinding>() {
 
@@ -75,6 +65,67 @@ class ScheduleEdit : BaseBindingActivity<ActSheduleEditBinding>() {
             }
         }
         adaptCountItems("天")
+        binding.scheduleEditLabelContainer.apply {
+            NotesManager.getInstance().labelList.forEach({ label ->
+                val labelView = CommenUseViewUtils.getNoteLabelView(this@ScheduleEdit,label,false,object :
+                    CommenUseViewUtils.onLabelCheckListener{
+                    override fun onCheckedChange(label: String?, isChecked: Boolean) {
+                        if (isChecked) {
+                            scheduleBean?.addLabel(label)
+                        }else{
+                            scheduleBean?.removeLabel(label)
+                        }
+                    }
+                    override fun onLongClick(label: String?,view: View): Boolean {
+                        removeView(view)
+                        NotesManager.getInstance().deleteLabel(label)
+                        return true
+                    }
+                })
+                addView(labelView,0)
+            })
+        }
+        binding.labelAddBtn.setOnClickListener {
+            addLabel(it)
+        }
+    }
+
+    fun addLabel(view: View?) {
+        val inputDialog = InputDialog(this, object : InputDialog.DialogListener {
+            override fun cancel() {
+            }
+
+            override fun confirm(content: String?) {
+                if (NStringUtils.isNotBlank(content)) {
+                    NotesManager.getInstance().addLabel(content)
+                    binding.scheduleEditLabelContainer.apply {
+                        val labelView = CommenUseViewUtils.getNoteLabelView(this@ScheduleEdit,content,false,object :
+                            CommenUseViewUtils.onLabelCheckListener{
+                            override fun onCheckedChange(label: String?, isChecked: Boolean) {
+                                if (isChecked) {
+                                    scheduleBean?.addLabel(label)
+                                }else{
+                                    scheduleBean?.removeLabel(label)
+                                }
+                            }
+
+                            override fun onLongClick(label: String?,view: View): Boolean {
+                                removeView(view)
+                                NotesManager.getInstance().deleteLabel(label)
+                                return true
+                            }
+                        })
+                        addView(labelView,0)
+                    }
+                }
+            }
+
+            override fun editChange(content: String?) {
+            }
+        }, "输入标签", "创建标签")
+        if (!this.isFinishing()) {
+            inputDialog.show()
+        }
     }
 
 
