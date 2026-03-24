@@ -67,7 +67,14 @@ public class ScheduleManager {
         if (needAutoComplete(scheduleBean)) {
             completeSchedule(scheduleBean);
         }
-        mScheduleList.add(scheduleBean);
+        ScheduleBean exsitBean = getSchedule(scheduleBean.getId());
+        if (exsitBean != null) {
+            int tarIndex = mScheduleList.indexOf(exsitBean);
+            mScheduleList.remove(exsitBean);
+            mScheduleList.add(tarIndex,scheduleBean);
+        }else {
+            mScheduleList.add(scheduleBean);
+        }
         updateList();
         saveScheduleListToFile();
     }

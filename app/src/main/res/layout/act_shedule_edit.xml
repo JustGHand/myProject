@@ -148,7 +148,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:constraint_referenced_ids="schedule_repeat_count,schedule_repeat_unit"
-                android:visibility="gone"/>
+                android:visibility="visible"/>
 
 
             <Spinner
@@ -156,7 +156,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:inputType=""
-
                 app:layout_constraintStart_toEndOf="@id/schedule_edit_date_repeat_switch"
                 app:layout_constraintEnd_toStartOf="@id/schedule_repeat_unit"
                 app:layout_constraintTop_toTopOf="@id/schedule_repeat_switch_title"

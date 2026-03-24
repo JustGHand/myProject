@@ -7,6 +7,13 @@
     android:gravity="center"
     android:padding="8dp">
 
+    <ImageView
+        android:id="@+id/btn_complete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/icon_select_def_blank"
+        />
+
     <TextView
         android:id="@+id/tv_desc"
         android:layout_width="0dp"
@@ -15,13 +22,8 @@
         android:textSize="14sp"
         tools:text="test测试"
         android:autoSizeTextType="uniform"
-        android:autoSizeMaxTextSize="14sp"/>
-
-    <ImageView
-        android:id="@+id/btn_complete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/icon_select_def_blank"
+        android:autoSizeMaxTextSize="14sp"
+        android:layout_marginStart="6dp"
         />
 
 </LinearLayout>

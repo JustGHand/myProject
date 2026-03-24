@@ -1,6 +1,7 @@
 package com.pw.codeset.databean;
 
 import com.google.gson.Gson;
+import com.pw.baseutils.utils.NStringUtils;
 import com.pw.codeset.utils.Constant;
 
 import java.util.ArrayList;
@@ -51,6 +52,13 @@ public class ScheduleBean {
     }
 
     public String getDesc() {
+        return desc;
+    }
+
+    public String getDescForShow() {
+        if (NStringUtils.isBlank(desc)) {
+            return "";
+        }
         StringBuilder result = new StringBuilder(desc);
         for (String label : getLabels()) {
             result.insert(0, " ");

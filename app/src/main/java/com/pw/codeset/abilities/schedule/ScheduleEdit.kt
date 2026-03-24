@@ -24,6 +24,7 @@ class ScheduleEdit : BaseBindingActivity<ActSheduleEditBinding>() {
 
     var scheduleBean: ScheduleBean? = null
     var haveCheckWidget = false
+    val mUnitList = arrayListOf<String>("天", "周", "月", "年")
 
     override fun initViewBinding(): ActSheduleEditBinding {
         return ActSheduleEditBinding.inflate(layoutInflater)
@@ -44,8 +45,7 @@ class ScheduleEdit : BaseBindingActivity<ActSheduleEditBinding>() {
         binding.scheduleEditDescEdit.doOnTextChanged { text, start, before, count ->
             scheduleBean?.desc=text.toString()
         }
-        val unitList = arrayListOf<String>("天", "周", "月", "年")
-        val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, unitList).apply {
+        val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, mUnitList).apply {
             setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         }
         binding.scheduleRepeatUnit.adapter = arrayAdapter
@@ -137,11 +137,23 @@ class ScheduleEdit : BaseBindingActivity<ActSheduleEditBinding>() {
             scheduleBean = ScheduleBean()
             (System.currentTimeMillis()).let {
                 scheduleBean?.tarTime =it
-                binding.scheduleEditDateEdit.text = NStringUtils.dateConvert(it, Constant.DATA_PARTNER_WITH_CHAR_WITHOUT_TIME)
+            }
+        }
+        syncData()
+    }
+
+    fun syncData() {
+        scheduleBean?.let {
+            binding.scheduleEditDateEdit.text = NStringUtils.dateConvert(it.tarTime, Constant.DATA_PARTNER_WITH_CHAR_WITHOUT_TIME)
+            binding.scheduleEditDescEdit.setText(it.desc)
+            binding.scheduleEditDateRepeatSwitch.isChecked = it.isRepeat
+            binding.scheduleRepeatSetGroup.isVisible = it.isRepeat
+            if (it.isRepeat) {
+                binding.scheduleRepeatUnit.setSelection(mUnitList.indexOf(it.repeatUnit))
+                adaptCountItems(it.repeatUnit)
             }
         }
     }
-
 
     fun adaptCountItems(unit: String) {
         var countItems = mutableListOf<Int>()
@@ -174,6 +186,11 @@ class ScheduleEdit : BaseBindingActivity<ActSheduleEditBinding>() {
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+        }
+        binding.scheduleRepeatCount.post {
+            scheduleBean?.repeatValue?.let {
+                binding.scheduleRepeatCount.setSelection(it-1)
             }
         }
     }

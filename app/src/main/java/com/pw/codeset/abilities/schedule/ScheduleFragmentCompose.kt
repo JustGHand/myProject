@@ -41,6 +41,7 @@ import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Done
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.PlayArrow
@@ -98,6 +99,7 @@ import com.pw.codeset.databean.ScheduleBean
 import com.pw.codeset.manager.ScheduleManager
 import com.pw.codeset.utils.Constant
 import com.pw.codeset.utils.DateJudge
+import com.pw.codeset.utils.IntentUtils
 import com.pw.codeset.utils.IntentUtils.toScheduleEdit
 import com.pw.codeset.utils.ShareUtils
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -206,12 +208,15 @@ fun body(
                         },
                         {item,state->
                             when (state) {
-                                Constant.SCHEDULE_STATE_FINISHED->viewModel.completeSchedule(item)
-                                Constant.SCHEDULE_STATE_DELETED->viewModel.deleteSchedule(item)
-                                Constant.SCHEDULE_STATE_UNDONE->viewModel.restoreSchedule(item)
+                                Constant.SCHEDULE_ACTION_FINISH->viewModel.completeSchedule(item)
+                                Constant.SCHEDULE_ACTION_DELETE->viewModel.deleteSchedule(item)
+                                Constant.SCHEDULE_ACTION_UNDONE->viewModel.restoreSchedule(item)
                                 Constant.SCHEDULE_ACTION_PUT_OFF-> {
                                     putOffTarSchedule = item
                                     showPutOffConfirmDialog = true
+                                }
+                                Constant.SCHEDULE_ACTION_EDIT->{
+                                    IntentUtils.toScheduleEdit(current,item.id)
                                 }
 
                             }
@@ -280,7 +285,7 @@ fun filterContent(
     editSeletedList: State<MutableList<ScheduleBean>>,
     filterMaps: Map<Int, List<ScheduleFilterBean>>,
     onFilterSelected: (ScheduleFilterBean) -> Unit,
-    onItemStateChangeClick:(ScheduleBean,Int)->Unit,
+    onIconClick:(ScheduleBean,Int)->Unit,
     onItemLongClick:(ScheduleBean)-> Unit,
     onCheckChange: (ScheduleBean,Boolean) -> Unit,
     onDeleteClick:()-> Unit,
@@ -291,7 +296,7 @@ fun filterContent(
         if (!isEditMode.value) {
             filters(filterMaps, onFilterSelected)
         }
-        filterList(isEditMode,showList, editSeletedList,onItemStateChangeClick,onItemLongClick,onCheckChange, onDeleteClick,onCompleteClick, dateType )
+        filterList(isEditMode,showList, editSeletedList,onIconClick,onItemLongClick,onCheckChange, onDeleteClick,onCompleteClick, dateType )
 
     }
 }
@@ -367,7 +372,7 @@ fun filterList(
     isEditMode: State<Boolean>,
     showList: State<List<ScheduleBean>>,
     editSeletedList: State<MutableList<ScheduleBean>>,
-    onItemStateChangeClick: (ScheduleBean, Int) -> Unit,
+    onIconClick: (ScheduleBean, Int) -> Unit,
     onItemLongClick:(ScheduleBean)-> Unit,
     onCheckChange: (ScheduleBean,Boolean) -> Unit,
     onDeleteClick:()-> Unit,
@@ -394,7 +399,7 @@ fun filterList(
                     }
                 },
                 {
-                    onItemStateChangeClick(item, it)
+                    onIconClick(item, it)
                 },
                 selected = selectedItem == item,
                 onItemLongClick = onItemLongClick,
@@ -601,7 +606,7 @@ fun ScheduleItem(
 
 
 fun clickToShare(scheduleBean: ScheduleBean) {
-    ShareUtils.shareTextToWeChat(MyApp.getInstance(),scheduleBean.desc)
+    ShareUtils.shareTextToWeChat(MyApp.getInstance(),scheduleBean.getDescForShow())
 }
 
 @Composable
@@ -620,7 +625,7 @@ fun ScheduleItemView(scheduleBean: ScheduleBean, dateType: Int?=null) {
             Icon(imageVector = icon, contentDescription = null, Modifier
                 .padding(horizontal = 10.dp)
                 .size(16.dp))
-            Text(text = scheduleBean.desc, modifier = Modifier
+            Text(text = scheduleBean.getDescForShow(), modifier = Modifier
                 .weight(1f)
                 .padding(end = 10.dp))
             var toLocalDate =
@@ -644,7 +649,7 @@ fun ScheduleItemView(scheduleBean: ScheduleBean, dateType: Int?=null) {
 fun ScheduleItemEditView(state:Int,onIconClick:(Int)->Unit,onShareClick:()-> Unit) {
     Row(Modifier.padding(8.dp)) {
         if (state== Constant.SCHEDULE_STATE_UNDONE) {
-            IconButton(onClick = { onIconClick(Constant.SCHEDULE_STATE_FINISHED)}) {
+            IconButton(onClick = { onIconClick(Constant.SCHEDULE_ACTION_FINISH)}) {
                 Icon(
                     imageVector = Icons.Filled.Done, contentDescription = null, Modifier
                         .padding(horizontal = 10.dp)
@@ -653,7 +658,7 @@ fun ScheduleItemEditView(state:Int,onIconClick:(Int)->Unit,onShareClick:()-> Uni
             }
         }
         if (state == Constant.SCHEDULE_STATE_DELETED) {
-            IconButton(onClick = { onIconClick(Constant.SCHEDULE_STATE_UNDONE)}) {
+            IconButton(onClick = { onIconClick(Constant.SCHEDULE_ACTION_UNDONE)}) {
                 Icon(
                     imageVector = Icons.Filled.Refresh, contentDescription = null, Modifier
                         .padding(horizontal = 10.dp)
@@ -661,7 +666,7 @@ fun ScheduleItemEditView(state:Int,onIconClick:(Int)->Unit,onShareClick:()-> Uni
                 )
             }
         }
-        IconButton(onClick = { onIconClick(Constant.SCHEDULE_STATE_DELETED)}) {
+        IconButton(onClick = { onIconClick(Constant.SCHEDULE_ACTION_DELETE)}) {
             Icon(
                 imageVector = Icons.Filled.Delete, contentDescription = null, Modifier
                     .padding(horizontal = 10.dp)
@@ -678,6 +683,13 @@ fun ScheduleItemEditView(state:Int,onIconClick:(Int)->Unit,onShareClick:()-> Uni
         IconButton(onClick = {onIconClick(Constant.SCHEDULE_ACTION_PUT_OFF)}) {
             Icon(
                 imageVector = Icons.Filled.PlayArrow, contentDescription = null, Modifier
+                    .padding(horizontal = 10.dp)
+                    .size(16.dp)
+            )
+        }
+        IconButton(onClick = {onIconClick(Constant.SCHEDULE_ACTION_EDIT)}) {
+            Icon(
+                imageVector = Icons.Filled.Edit, contentDescription = null, Modifier
                     .padding(horizontal = 10.dp)
                     .size(16.dp)
             )

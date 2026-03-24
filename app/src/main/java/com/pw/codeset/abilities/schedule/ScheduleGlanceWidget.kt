@@ -55,6 +55,14 @@ class ScheduleAppWidgetProvider : AppWidgetProvider() {
             // 4. 执行跳转
             context?.startActivity(launchIntent)
             Log.d("PW_CODE", "XML打开APP")
+        }else if (ACTION_ADD == intent.getAction()) {
+            // 1. 获取要跳转到的 Activity 类名（请将 MainActivity 替换为您实际的入口 Activity）
+            val launchIntent = Intent(context, ScheduleEdit::class.java).apply {
+                // 2. 核心：必须设置这个 Flag，否则在某些 Android 版本上会报错或无法跳转
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+            }
+            // 4. 执行跳转
+            context?.startActivity(launchIntent)
         }
     }
 
@@ -62,6 +70,7 @@ class ScheduleAppWidgetProvider : AppWidgetProvider() {
         const val ACTION_REFRESH: String = "com.pw.action.REFRESH"
         const val ACTION_COMPLETE: String = "com.pw.action.COMPLETE"
         const val ACTION_TO_ACT: String = "com.pw.action.TOACT"
+        const val ACTION_ADD: String = "com.pw.action.ADD"
         const val EXTRA_ITEM_ID: String = "extra_item_id"
 
         fun updateAppWidget(
@@ -95,6 +104,14 @@ class ScheduleAppWidgetProvider : AppWidgetProvider() {
                 PendingIntent.FLAG_MUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
             )
             views.setOnClickPendingIntent(R.id.btn_title,toActPi)
+
+            val addIntent = Intent(context,ScheduleAppWidgetProvider::class.java)
+            addIntent.setAction(ACTION_ADD)
+            val addActPi = PendingIntent.getBroadcast(
+                context, appWidgetId, addIntent,
+                PendingIntent.FLAG_MUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+            )
+            views.setOnClickPendingIntent(R.id.btn_add,addActPi)
 
             // 设置列表项点击的模板 (PendingIntent Template)
             val clickIntent = Intent(context, ScheduleAppWidgetProvider::class.java)
@@ -139,7 +156,7 @@ internal class ScheduleRemoteViewsFactory(private val mContext: Context) : Remot
 
         val bean = mList.get(position)
         val views = RemoteViews(mContext.getPackageName(), R.layout.widget_item_schedule)
-        views.setTextViewText(R.id.tv_desc, bean.getDesc())
+        views.setTextViewText(R.id.tv_desc, bean.getDescForShow())
 
         // 设置点击填充 Intent (Fill-in Intent)
         val fillInIntent = Intent()
